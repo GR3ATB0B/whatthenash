@@ -1,26 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project 2</title>
-  <link rel="stylesheet" href="../style.css">
+  <meta charset="utf-8">
+  <title>HPerplex‑Style Interactive Visual</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+      height: 100%;
+      width: 100%;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Project 2</h1>
-    <a href="../index.html">← Back to Home</a>
-  </header>
-  <main>
-    <p>A second playground page. Try adding interactive elements here!</p>
-    <div id="box" style="width:100px;height:100px;background:red;margin:auto;"></div>
-    <button onclick="document.getElementById('box').style.background = getRandomColor()">Change Color</button>
-  </main>
-
+  <canvas id="c"></canvas>
   <script>
-    function getRandomColor() {
-      return '#' + Math.floor(Math.random() * 16777215).toString(16);
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = window.innerWidth;
+    let H = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const num = 200;
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = W / 2;
+        this.y = H / 2;
+        this.vx = (Math.random() - 0.5) * 4;
+        this.vy = (Math.random() - 0.5) * 4;
+        this.life = Math.random() * 60 + 60;
+        this.size = Math.random() * 2 + 1;
+        this.hue = Math.random() * 360;
+      }
+      update(mouse) {
+        this.life--;
+        this.x += this.vx + (mouse.x - this.x) * 0.001;
+        this.y += this.vy + (mouse.y - this.y) * 0.001;
+        if (this.life <= 0) this.reset();
+      }
+      draw() {
+        ctx.fillStyle = `hsl(${this.hue}, 80%, 60%)`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
+
+    const mouse = { x: W / 2, y: H / 2 };
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    for (let i = 0; i < num; i++) {
+      particles.push(new Particle());
+    }
+
+    function loop() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, W, H);
+
+      particles.forEach(p => {
+        p.update(mouse);
+        p.draw();
+      });
+
+      requestAnimationFrame(loop);
+    }
+
+    loop();
   </script>
 </body>
 </html>
