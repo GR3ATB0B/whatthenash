@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nash Vogeltanz</title>
+  <style>
+    :root {
+      --bg-color: #f4f4f8;
+      --accent-color: #4e9af1;
+      --text-color: #222;
+      --card-bg: #fff;
+      --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--accent-color);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      color: var(--accent-color);
+      margin-top: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 0.5rem 0;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      color: #666;
+    }
+
+    .timer {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    .gimmick {
+      background: #d3ecff;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      font-family: monospace;
+      color: #004c91;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Nash Vogeltanz</h1>
+    <div class="timer" id="timer">I've been alive for ...</div>
+  </header>
+
+  <main>
+    <section>
+      <p>I'm Nash Vogeltanz—a builder, thinker, and hands-on engineer with a deep curiosity about how things work and how to make them better. I’m a student at Atlanta Classical Academy, where I blend classical education with modern innovation, from designing wireless systems using Arduino and ESP32s to 3D-printing custom enclosures, experimenting with ion thrusters, and building DIY tech inspired by devices like the Flipper Zero.</p>
+      
+      <p>Despite challenges like ADHD, dyslexia, dysgraphia, and dyscalculia, I thrive through creative problem-solving and real-world projects. These learning differences aren’t obstacles—they’re part of what makes me relentless, resourceful, and wired to think differently. I’ve learned how to turn limitations into leverage, and curiosity into capability.</p>
+      
+      <p>I'm also a leader on and off the field. As the center on my high school football team, I lead by example—in the weight room, on the field, in the classroom, and among my peers. Whether I’m helping teammates, leading a group project, or building tech to serve others, I take initiative and stay grounded in my values.</p>
+
+      <p>At the core of who I am is my faith—I’m a strong Christian, and I believe in using my gifts to serve something greater than myself. My projects, my leadership, and my drive all flow from that foundation.</p>
+
+      <p>When I'm not building something new, I'm probably exploring future career paths in engineering or service—possibly military—where I can keep learning, leading, and solving real-world problems.</p>
+    </section>
+
+    <section class="gimmick">
+      🧠 Fun Fact: Nash has two pinkie toes that don’t touch the ground. It’s hereditary. Weird? Yes. Awesome? Also yes.
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Nash Vogeltanz
+  </footer>
+
+  <script>
+    const birthDate = new Date('2007-08-24T00:00:00');
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - birthDate;
+
+      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("timer").textContent = `I've been alive for ${years} years, ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
