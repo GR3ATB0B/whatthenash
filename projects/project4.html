@@ -13,6 +13,15 @@
     h1 {
       text-align: center;
     }
+    #search-box {
+      display: block;
+      margin: 0 auto 20px auto;
+      padding: 10px;
+      width: 50%;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
     .container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -24,6 +33,11 @@
       padding: 15px;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
     }
     .card img {
       width: 100%;
@@ -33,29 +47,89 @@
       font-weight: bold;
       margin-top: 10px;
     }
+    .pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .pagination button {
+      margin: 0 5px;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+    }
+    .pagination button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
   <h1>FBI Wanted List</h1>
+  <input type="text" id="search-box" placeholder="Search by name or crime...">
   <div class="container" id="wanted-list"></div>
+  <div class="pagination">
+    <button id="prev-btn" disabled>Previous</button>
+    <button id="next-btn">Next</button>
+  </div>
 
   <script>
+    let currentPage = 1;
+    let searchQuery = "";
+
     async function fetchWanted() {
-      const res = await fetch("https://www.fbi.gov/wanted/api/v1/wanted");
-      const data = await res.json();
-      const container = document.getElementById("wanted-list");
-      
-      data.items.forEach(person => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${person.images?.[0]?.original || ''}" alt="${person.title}">
-          <div class="name">${person.title}</div>
-          <div>${person.subjects ? person.subjects.join(", ") : ""}</div>
-        `;
-        container.appendChild(card);
-      });
+      try {
+        const url = `https://api.fbi.gov/wanted/v1/list?page=${currentPage}&title=${encodeURIComponent(searchQuery)}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        const container = document.getElementById("wanted-list");
+        container.innerHTML = "";
+
+        if (!data.items || data.items.length === 0) {
+          container.innerHTML = "<p>No results found.</p>";
+          return;
+        }
+
+        data.items.forEach(person => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.onclick = () => window.open(person.url, "_blank");
+          card.innerHTML = `
+            <img src="${person.images?.[0]?.large || ''}" alt="${person.title}">
+            <div class="name">${person.title}</div>
+            <div>${person.subjects ? person.subjects.join(", ") : ""}</div>
+          `;
+          container.appendChild(card);
+        });
+
+        document.getElementById("prev-btn").disabled = currentPage === 1;
+        document.getElementById("next-btn").disabled = !data.items || data.items.length < 20;
+      } catch (error) {
+        console.error("Error fetching FBI data:", error);
+      }
     }
+
+    document.getElementById("search-box").addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      currentPage = 1;
+      fetchWanted();
+    });
+
+    document.getElementById("prev-btn").addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        fetchWanted();
+      }
+    });
+
+    document.getElementById("next-btn").addEventListener("click", () => {
+      currentPage++;
+      fetchWanted();
+    });
 
     fetchWanted();
   </script>
