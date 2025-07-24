@@ -53,7 +53,15 @@ function switchMode(newMode) {
 let particles = [];
 function initEffect() {
   particles = [];
-  if (mode === 10) { // Interactive Particle Playground
+  if (mode === 6) { // starfield uses z
+    for (let i = 0; i < 500; i++) {
+      particles.push({
+        x: Math.random() * W - W/2,
+        y: Math.random() * H - H/2,
+        z: Math.random() * W
+      });
+    }
+  } else if (mode === 10) { // Interactive Particle Playground
     for (let i = 0; i < 300; i++) {
       particles.push({
         x: Math.random() * W,
@@ -73,7 +81,7 @@ function initEffect() {
         vy: (Math.random() - 0.5) * 2,
         hue: Math.random() * 360,
         size: Math.random() * 2 + 1,
-        z: Math.random() * W // for starfield
+        y0: Math.random() * H // for Matrix Rain
       });
     }
   }
@@ -101,7 +109,128 @@ function draw() {
   ctx.fillRect(0, 0, W, H);
 
   switch(mode) {
-    case 0: /* ... same modes 0–9 as before ... */ break;
+    case 0: // Particle Swarm
+      particles.forEach(p => {
+        p.x += p.vx + (mouse.x - p.x) * 0.001;
+        p.y += p.vy + (mouse.y - p.y) * 0.001;
+        ctx.fillStyle = `hsl(${p.hue},100%,50%)`;
+        ctx.fillRect(p.x, p.y, 2, 2);
+      });
+      break;
+
+    case 1: // Neon Vortex
+      particles.forEach(p => {
+        let dx = mouse.x - p.x, dy = mouse.y - p.y;
+        p.vx += (-dy) * 0.0005;
+        p.vy += dx * 0.0005;
+        p.x += p.vx; p.y += p.vy;
+        ctx.fillStyle = `hsl(${p.hue},100%,60%)`;
+        ctx.fillRect(p.x, p.y, 2, 2);
+      });
+      break;
+
+    case 2: // Fireworks
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        p.vy += 0.02; p.hue += 1;
+        if (p.y > H) {
+          p.x = mouse.x; p.y = mouse.y;
+          p.vx = (Math.random() - 0.5) * 6;
+          p.vy = (Math.random() - 0.5) * 6;
+        }
+        ctx.fillStyle = `hsl(${p.hue},100%,60%)`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
+      });
+      break;
+
+    case 3: // Matrix Rain
+      ctx.fillStyle = "rgba(0,0,0,0.3)";
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = `hsl(${mouse.x % 360}, 100%, 50%)`;
+      ctx.font = "14px monospace";
+      particles.forEach((p, i) => {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        ctx.fillText(text, (i % 50) * 14, p.y0);
+        p.y0 += 14;
+        if (p.y0 > H) p.y0 = 0;
+      });
+      break;
+
+    case 4: // Gravity Bubbles
+      particles.forEach(p => {
+        let dx = mouse.x - p.x, dy = mouse.y - p.y;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+        let force = 100 / (dist + 100);
+        p.vx += dx * force * 0.001;
+        p.vy += dy * force * 0.001;
+        p.x += p.vx; p.y += p.vy;
+        ctx.fillStyle = `hsl(${p.hue},100%,70%)`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+      });
+      break;
+
+    case 5: // Laser Grid
+      ctx.strokeStyle = `hsl(${mouse.y % 360},100%,50%)`;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let i = 0; i < 20; i++) {
+        ctx.moveTo(0, i * H / 20);
+        ctx.lineTo(W, i * H / 20);
+        ctx.moveTo(i * W / 20, 0);
+        ctx.lineTo(i * W / 20, H);
+      }
+      ctx.stroke();
+      break;
+
+    case 6: // Starfield Warp
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, W, H);
+      particles.forEach(p => {
+        p.z -= 2;
+        if (p.z <= 0) { p.z = W; p.x = Math.random() * W - W/2; p.y = Math.random() * H - H/2; }
+        let k = 128.0 / p.z;
+        let px = p.x * k + W / 2;
+        let py = p.y * k + H / 2;
+        ctx.fillStyle = `white`;
+        ctx.fillRect(px, py, 2, 2);
+      });
+      break;
+
+    case 7: // Morphing Shape
+      ctx.strokeStyle = `hsl(${mouse.x % 360},100%,50%)`;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      let time = Date.now() * 0.002;
+      for (let i = 0; i < 360; i += 10) {
+        let r = 200 + 50 * Math.sin(i * Math.PI / 180 + time);
+        let x = W/2 + r * Math.cos(i * Math.PI / 180);
+        let y = H/2 + r * Math.sin(i * Math.PI / 180);
+        ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.stroke();
+      break;
+
+    case 8: // Glitch Field
+      ctx.fillStyle = "rgba(0,0,0,0.2)";
+      ctx.fillRect(0, 0, W, H);
+      for (let i = 0; i < 200; i++) {
+        ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        ctx.fillRect(Math.random() * W, Math.random() * H, 20, 2);
+      }
+      break;
+
+    case 9: // Electric Web
+      particles.forEach(p => {
+        p.x += (Math.random() - 0.5) * 2;
+        p.y += (Math.random() - 0.5) * 2;
+        ctx.strokeStyle = `hsl(${p.hue},100%,50%)`;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+      });
+      break;
 
     case 10: // Interactive Particle Playground
       particles.forEach(p => {
