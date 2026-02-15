@@ -4,48 +4,123 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What The Nash!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Welcome to my website</h1>
-    <p>A place where I tinker, break things, and build cool stuff.</p>
-  </header>
 
-  <main>
-    <section>
-      <h2>About Me</h2>
-      <p>Hi! I’m Nash. I like experimenting with code and making fun things happen on the web.</p>
-      <li><a href="projects/bio.html">More about me</a></li>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>What The Nash!</h1>
+      <p class="tagline">I tinker, break things, and build cool stuff.</p>
+    </div>
+    <div class="hero-model">
+      <model-viewer 
+          src="assets/Face.glb"
+          alt="A 3D model"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 400px; background: #3d16a7; border-radius: 16px;">
+      </model-viewer>
+    </div>
+  </section>
 
-<section>
-  <h2>3D me!</h2>
-  <model-viewer 
-      src="assets/Face.glb"
-      alt="A 3D model"
-      auto-rotate
-      camera-controls
-      style="width: 100%; height: 400px; background: #3d16a7; border-radius: 10px;">
-  </model-viewer>
-</section>
+  <!-- Projects -->
+  <section class="section">
+    <h2>Projects</h2>
+    <div class="projects-grid">
 
-    </section>
+      <a href="https://github.com/GR3ATB0B/Memeiverse" class="card card-1" target="_blank">
+        <div class="card-content">
+          <h3>Memeiverse</h3>
+          <p>iOS meme discovery app</p>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 60%"></div>
+          </div>
+          <span class="progress-label">60%</span>
+        </div>
+      </a>
 
-    <section>
-      <h2>Tinker Pages</h2>
-      <ul>
-        <li><a href="projects/project1.html">GHP project</a></li>
-        <li><a href="projects/project2.html">Random HTML thangs</a></li>
-        <li><a href="projects/project3.html">Unbeatable pong</a></li>
-        <li><a href="projects/project4.html">FBI most wanted!</a></li>
-        <li><a href="projects/project5.html">cool physics sandbox</a></li>
-      </ul>
-    </section>
-  </main>
+      <a href="#" class="card card-2">
+        <div class="card-content">
+          <h3>NFC Wallet Cards</h3>
+          <p>Custom NFC cards for Apple Wallet</p>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 5%"></div>
+          </div>
+          <span class="progress-label">5%</span>
+        </div>
+      </a>
 
+      <a href="https://github.com/GR3ATB0B/aca-website" class="card card-3" target="_blank">
+        <div class="card-content">
+          <h3>ACA Website</h3>
+          <p>Website for Atlanta Classical Academy</p>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 80%"></div>
+          </div>
+          <span class="progress-label">80%</span>
+        </div>
+      </a>
+
+      <a href="projects/project3.html" class="card card-4">
+        <div class="card-content">
+          <h3>Unbeatable Pong</h3>
+          <p>Can you beat the AI?</p>
+          <span class="badge">✓ Complete</span>
+        </div>
+      </a>
+
+      <a href="projects/project5.html" class="card card-5">
+        <div class="card-content">
+          <h3>Physics Sandbox</h3>
+          <p>Play with gravity and particles</p>
+          <span class="badge">✓ Complete</span>
+        </div>
+      </a>
+
+      <a href="projects/project4.html" class="card card-6">
+        <div class="card-content">
+          <h3>FBI Most Wanted</h3>
+          <p>Just a fun API project</p>
+          <span class="badge">✓ Complete</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Playground -->
+  <section class="section">
+    <h2>Playground</h2>
+    <div class="playground-grid">
+      <a href="projects/project1.html" class="mini-card">GHP Project</a>
+      <a href="projects/project2.html" class="mini-card">Random HTML Thangs</a>
+      <a href="projects/bio.html" class="mini-card">Bio Page</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section about">
+    <h2>About</h2>
+    <p>
+      <strong>Nash Vogeltanz</strong> — Engineering student heading to Auburn University.
+      I build apps, hardware projects, and AI tools. I like coffee, electronics, and breaking things to learn how they work.
+    </p>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>Made with ❤️ by Nash | <a href="https://github.com/GR3ATB0B">GitHub</a></p>
+    <div class="footer-links">
+      <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
+      <a href="https://buymeacoffee.com/nashvogeltanz" target="_blank">Buy me a coffee ☕</a>
+    </div>
+    <p>Made with ❤️ by Nash</p>
   </footer>
+
 </body>
 </html>
