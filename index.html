@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
 
@@ -47,7 +48,19 @@
         </div>
       </div>
       <div class="hero-3d">
-        <canvas id="hero-canvas"></canvas>
+        <model-viewer
+          id="hero-model"
+          src="assets/Face.glb"
+          auto-rotate
+          camera-controls
+          interaction-prompt="none"
+          rotation-per-second="12deg"
+          camera-orbit="0deg 75deg 2.5m"
+          field-of-view="35deg"
+          exposure="1.2"
+          shadow-intensity="0"
+          style="width:100%;height:100%;background:transparent;"
+        ></model-viewer>
       </div>
     </div>
     <div class="scroll-indicator" id="scroll-indicator">
@@ -198,16 +211,13 @@
         </a>
         <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">☕ Buy me a coffee</a>
       </div>
-      <p class="copyright">© 2025 Nash Vogeltanz. Made with ❤️ and too much coffee.</p>
+      <p class="copyright">© 2026 Nash Vogeltanz. Made with ❤️ and too much coffee.</p>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-
   <script>
   (function() {
     'use strict';
@@ -272,104 +282,6 @@
         });
       });
     }
-
-    // ═══════════════════════════════════
-    // THREE.JS — 3D HEAD
-    // ═══════════════════════════════════
-    const canvas = document.getElementById('hero-canvas');
-    const heroSection = document.querySelector('.hero-3d');
-    let scene, camera, renderer, headModel, headMixer;
-
-    function initThree() {
-      scene = new THREE.Scene();
-
-      const w = heroSection.clientWidth;
-      const h = heroSection.clientHeight;
-      camera = new THREE.PerspectiveCamera(35, w / h, 0.1, 100);
-      camera.position.set(0, 0, 4);
-
-      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-      renderer.setSize(w, h);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.outputEncoding = THREE.sRGBEncoding;
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.2;
-
-      // Lighting
-      const ambient = new THREE.AmbientLight(0xffffff, 0.6);
-      scene.add(ambient);
-
-      const key = new THREE.DirectionalLight(0x4e9af1, 1.2);
-      key.position.set(2, 3, 4);
-      scene.add(key);
-
-      const fill = new THREE.DirectionalLight(0xa855f7, 0.6);
-      fill.position.set(-3, 1, 2);
-      scene.add(fill);
-
-      const rim = new THREE.DirectionalLight(0xffffff, 0.4);
-      rim.position.set(0, -2, -3);
-      scene.add(rim);
-
-      // Load head
-      const gltfLoader = new THREE.GLTFLoader();
-      gltfLoader.load('assets/Face.glb', gltf => {
-        headModel = gltf.scene;
-        headModel.scale.set(2.2, 2.2, 2.2);
-        headModel.position.set(0, -0.5, 0);
-        scene.add(headModel);
-
-        if (gltf.animations && gltf.animations.length) {
-          headMixer = new THREE.AnimationMixer(headModel);
-          gltf.animations.forEach(clip => headMixer.clipAction(clip).play());
-        }
-      });
-
-      // Resize
-      window.addEventListener('resize', () => {
-        const w2 = heroSection.clientWidth;
-        const h2 = heroSection.clientHeight;
-        camera.aspect = w2 / h2;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w2, h2);
-      });
-
-      // Mouse follow
-      let targetRotX = 0, targetRotY = 0;
-      document.addEventListener('mousemove', e => {
-        targetRotY = ((e.clientX / window.innerWidth) - 0.5) * 0.6;
-        targetRotX = ((e.clientY / window.innerHeight) - 0.5) * 0.4;
-      });
-
-      // Mobile device orientation
-      if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', e => {
-          if (e.gamma !== null) {
-            targetRotY = (e.gamma / 90) * 0.3;
-            targetRotX = (e.beta / 90 - 0.5) * 0.3;
-          }
-        });
-      }
-
-      const clock = new THREE.Clock();
-      function animate() {
-        requestAnimationFrame(animate);
-        const delta = clock.getDelta();
-
-        if (headModel) {
-          // Auto-rotate slowly + mouse influence
-          headModel.rotation.y += (targetRotY - headModel.rotation.y) * 0.05;
-          headModel.rotation.x += (-targetRotX * 0.5 - headModel.rotation.x) * 0.05;
-          // Gentle idle float
-          headModel.position.y = -0.5 + Math.sin(Date.now() * 0.001) * 0.05;
-        }
-        if (headMixer) headMixer.update(delta);
-        renderer.render(scene, camera);
-      }
-      animate();
-    }
-
-    initThree();
 
     // ═══════════════════════════════════
     // PARTICLES
