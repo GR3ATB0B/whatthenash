@@ -405,7 +405,8 @@ body {
   perspective: 800px;
   opacity: 0;
   transform: translateY(60px);
-  transition: box-shadow 0.4s ease;
+  transition: transform 0.12s ease-out, box-shadow 0.4s ease;
+  will-change: transform;
 }
 .card::before {
   content: '';
