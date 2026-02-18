@@ -101,6 +101,7 @@ body {
   position: fixed;
   top: 20px;
   left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-100px);
   transform: translateX(-50%) translateY(-100px);
   z-index: 10000;
   background: rgba(18, 18, 26, 0.85);
@@ -210,6 +211,8 @@ body {
 }
 .hero-title .char {
   display: inline-block;
+  vertical-align: top;
+  -webkit-transform: translateY(120%);
   transform: translateY(120%);
   opacity: 0;
   background: linear-gradient(135deg, #4e9af1, #a855f7, #f97316);
@@ -217,7 +220,13 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+  -webkit-animation: gradientShift 8s ease infinite;
   animation: gradientShift 8s ease infinite;
+}
+@-webkit-keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 @keyframes gradientShift {
   0%, 100% { background-position: 0% 50%; }
@@ -307,9 +316,13 @@ body {
   transform: rotate(45deg);
   animation: scrollBounce 2s ease-in-out infinite;
 }
+@-webkit-keyframes scrollBounce {
+  0%, 100% { -webkit-transform: rotate(45deg) translate(0, 0); transform: rotate(45deg) translate(0, 0); opacity: 0.5; }
+  50% { -webkit-transform: rotate(45deg) translate(5px, 5px); transform: rotate(45deg) translate(5px, 5px); opacity: 1; }
+}
 @keyframes scrollBounce {
-  0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.5; }
-  50% { transform: rotate(45deg) translate(5px, 5px); opacity: 1; }
+  0%, 100% { -webkit-transform: rotate(45deg) translate(0, 0); transform: rotate(45deg) translate(0, 0); opacity: 0.5; }
+  50% { -webkit-transform: rotate(45deg) translate(5px, 5px); transform: rotate(45deg) translate(5px, 5px); opacity: 1; }
 }
 
 /* Floating particles */
@@ -532,6 +545,10 @@ body {
   box-shadow: 0 0 8px #22c55e;
   animation: bobPulse 2s ease-in-out infinite;
 }
+@-webkit-keyframes bobPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px #22c55e; }
+  50% { opacity: 0.5; box-shadow: 0 0 20px #22c55e; }
+}
 @keyframes bobPulse {
   0%, 100% { opacity: 1; box-shadow: 0 0 8px #22c55e; }
   50% { opacity: 0.5; box-shadow: 0 0 20px #22c55e; }
@@ -558,6 +575,10 @@ body {
 .bob-cursor {
   animation: cursorBlink 1s step-end infinite;
   font-size: 0.7rem;
+}
+@-webkit-keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 @keyframes cursorBlink {
   0%, 50% { opacity: 1; }
