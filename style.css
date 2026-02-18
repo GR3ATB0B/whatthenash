@@ -63,14 +63,13 @@ body {
    ═══════════════════════════════════════ */
 .loader {
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   background: var(--bg);
   z-index: 100000;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 1.5rem;
 }
 .loader-text {
   font-size: 1.2rem;
@@ -78,6 +77,7 @@ body {
   letter-spacing: 6px;
   text-transform: uppercase;
   color: var(--text-muted);
+  margin-bottom: 1.5rem;
 }
 .loader-bar {
   width: 200px;
@@ -153,7 +153,7 @@ body {
    ═══════════════════════════════════════ */
 .bg-grid {
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   z-index: -2;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
@@ -162,7 +162,7 @@ body {
 }
 .bg-gradient {
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   z-index: -1;
   opacity: 0.4;
   pointer-events: none;
@@ -315,7 +315,7 @@ body {
 /* Floating particles */
 .particles {
   position: absolute;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   overflow: hidden;
   pointer-events: none;
   z-index: 1;
@@ -397,7 +397,7 @@ body {
 .card::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   border-radius: var(--radius);
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -499,6 +499,7 @@ body {
   border-radius: 20px;
   font-size: 0.78rem;
   font-weight: 600;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
