@@ -197,11 +197,12 @@ body {
   max-width: 600px;
 }
 .hero-title {
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
   font-weight: 700;
   letter-spacing: -2px;
   line-height: 1.05;
   overflow: hidden;
+  white-space: nowrap;
 }
 .hero-title .word {
   display: inline-block;
@@ -272,7 +273,7 @@ body {
   height: 500px;
   position: relative;
 }
-#hero-canvas {
+#hero-canvas, model-viewer {
   width: 100%;
   height: 100%;
   display: block;
@@ -336,6 +337,7 @@ body {
   margin: 0 auto;
   padding: 6rem 2rem;
   position: relative;
+  z-index: 1;
 }
 .section-header {
   margin-bottom: 3rem;
