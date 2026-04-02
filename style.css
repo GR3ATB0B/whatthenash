@@ -394,6 +394,21 @@ section {
   margin-top: auto;
 }
 
+/* === HOBBY WHEEL SPIN === */
+@keyframes wheelSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hobby-wheel-spin {
+  transform-origin: 250px 250px;
+  animation: wheelSpin 75s linear infinite;
+}
+
+.hobby-wheel-container:hover .hobby-wheel-spin {
+  animation-play-state: paused;
+}
+
 /* === HOBBY WHEEL === */
 .hobby-section {
   text-align: center;
