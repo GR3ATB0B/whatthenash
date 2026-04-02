@@ -3,580 +3,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What The Nash!</title>
-  <meta name="description" content="Nash Vogeltanz — Engineering student, builder, tinkerer. Apps, hardware, AI tools, and cool stuff.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Nash — Builder, Maker, Explorer</title>
+  <meta name="description" content="Nash's personal website — projects, hobbies, and more.">
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body>
 
-  <!-- Loader -->
-  <div class="loader" id="loader">
-    <div class="loader-text">NASH</div>
-    <div class="loader-bar"><div class="loader-bar-fill" id="loader-fill"></div></div>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <a href="#hero">Home</a>
-    <a href="#graduation">Graduation</a>
-    <a href="#projects">Projects</a>
-    <a href="#hobbies">Hobbies</a>
-    <a href="#about">About</a>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Nash</a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
+      </div>
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
+  <!-- HERO -->
+  <section class="hero">
     <div class="hero-content">
-      <div class="hero-text">
-        <h1 class="hero-title" id="hero-title">What The Nash!</h1>
-        <p class="hero-tagline">I tinker, break things, and build cool stuff.</p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn-primary">See My Work</a>
-          <a href="https://github.com/GR3ATB0B" target="_blank" class="btn-secondary">GitHub</a>
-        </div>
-      </div>
-      <div class="hero-3d">
-        <model-viewer
-          id="hero-model"
-          src="assets/Face.glb"
-          orientation="90deg 180deg 0deg"
-          auto-rotate
-          camera-controls
-          interaction-prompt="none"
-          rotation-per-second="12deg"
-          camera-orbit="180deg 80deg 1.5m"
-          field-of-view="30deg"
-          exposure="1.2"
-          shadow-intensity="0"
-          style="width:100%;height:100%;background:transparent;transform:rotate(-90deg) translateX(-15%);"
-        ></model-viewer>
-      </div>
-    </div>
-    <div class="scroll-indicator" id="scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-chevron"></div>
+      <model-viewer
+        src="assets/Face.glb"
+        auto-rotate
+        camera-controls
+        rotation-per-second="30deg"
+        interaction-prompt="none"
+        shadow-intensity="0"
+        style="background: transparent;"
+      ></model-viewer>
+      <h1>Hey, I'm Nash</h1>
+      <p class="subtitle">Builder of things. Explorer of ideas. Currently obsessed with film photography.</p>
+      <div class="scroll-hint">↓ scroll</div>
     </div>
   </section>
 
-  <!-- Graduation Section -->
-  <section class="section graduation-section" id="graduation">
-    <div class="graduation-content">
-      <h2 class="graduation-title">I'm Graduating! <span class="grad-emoji">&#127891;</span></h2>
-      <p class="graduation-text">Hello! I'm graduating from Atlanta Classical Academy and heading to Auburn University to study Electrical Engineering. I'm incredibly thankful for the people who helped shape me along the way. I look forward to what's ahead.</p>
+  <!-- GRADUATION -->
+  <section id="graduation">
+    <div class="graduation">
+      <span class="emoji-cap">🎓</span>
+      <h2>I'm Graduating!</h2>
+      <p class="story">Hello! I'm graduating from Atlanta Classical Academy and heading to Auburn University to study Electrical Engineering. I'm incredibly thankful for the people who helped shape me along the way. I look forward to what's ahead.</p>
       <div class="gift-buttons">
-        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn">
-          <span class="gift-icon">&#9749;</span>
-          <span>Buy Me a Coffee</span>
-        </a>
-        <a href="#" class="gift-btn">
-          <span class="gift-icon">&#128181;</span>
-          <span>Cash App</span>
-        </a>
-        <a href="#" class="gift-btn">
-          <span class="gift-icon">&#127873;</span>
-          <span>Amazon Wishlist</span>
-        </a>
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn coffee">☕ Buy Me a Coffee</a>
+        <a href="#" class="gift-btn cash">💵 Cash App</a>
+        <a href="#" class="gift-btn wishlist">🎁 Amazon Wishlist</a>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section class="section" id="projects">
-    <div class="section-header">
-      <span class="section-label">Portfolio</span>
-      <h2 class="section-title">Things I've Built</h2>
-      <div class="section-divider"></div>
-    </div>
-    <div class="projects-grid">
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">What I'm Building</p>
+      <h2>Projects</h2>
+      <div class="projects-grid">
 
-      <a href="https://github.com/GR3ATB0B/Memeiverse" class="card" target="_blank">
-        <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-          <h3>Memeiverse</h3>
-          <p>iOS meme discovery app</p>
-          <div class="progress-wrap"><div class="progress-bar" data-width="60"></div></div>
-          <span class="progress-label">60% complete</span>
-        </div>
-      </a>
-
-      <a href="projects/bob.html" class="card card-bob">
-        <div class="card-inner">
-          <div class="bob-card-header">
-            <span class="bob-brain">&#129504;</span>
-            <span class="bob-status-indicator"></span>
-          </div>
-          <h3>B.O.B.</h3>
-          <p class="bob-subtitle">Background Operations Brain</p>
-          <div class="bob-terminal-mini">
-            <span class="bob-prompt">&gt;</span>
-            <span class="bob-typing" id="bob-typing"></span>
-            <span class="bob-cursor">&#9610;</span>
-          </div>
-          <div class="bob-agents-mini">
-            <span title="Clyde">&#9889;</span>
-            <span title="Scribe">&#9997;&#65039;</span>
-            <span title="Atlas">&#127758;</span>
-            <span title="Sentinel">&#128737;&#65039;</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://github.com/GR3ATB0B/diy-graphing-calculator" class="card" target="_blank">
-        <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        <a href="https://github.com/GR3ATB0B/diy-graphing-calculator" target="_blank" class="project-card reveal">
           <h3>DIY Graphing Calculator</h3>
-          <p>Custom-built graphing calculator from scratch</p>
-          <div class="progress-wrap"><div class="progress-bar" data-width="15"></div></div>
+          <p class="desc">Building a graphing calculator from scratch with custom hardware and software.</p>
+          <div class="progress-bar"><div class="progress-fill" style="width: 15%"></div></div>
           <span class="progress-label">15% complete</span>
-        </div>
-      </a>
+        </a>
 
-      <a href="https://github.com/GR3ATB0B/esp32-web-controller" class="card" target="_blank">
-        <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        <a href="https://github.com/GR3ATB0B/Memeiverse" target="_blank" class="project-card reveal">
+          <h3>Memeiverse</h3>
+          <p class="desc">A meme-sharing universe. Social platform built for the culture.</p>
+          <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+          <span class="progress-label">60% complete</span>
+        </a>
+
+        <a href="projects/bob.html" class="project-card reveal">
+          <h3>B.O.B.</h3>
+          <p class="desc">My personal AI assistant — always learning, always building.</p>
+          <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+          <span class="progress-label">Ongoing</span>
+        </a>
+
+        <a href="https://github.com/GR3ATB0B/esp32-web-controller" target="_blank" class="project-card reveal">
           <h3>ESP32 Web Controller</h3>
-          <p>Web-based microcontroller interface</p>
-          <span class="badge complete">Complete</span>
-        </div>
-      </a>
+          <p class="desc">IoT web interface for controlling ESP32 microcontrollers remotely.</p>
+          <span class="badge-complete">Complete ✓</span>
+        </a>
 
-      <a href="https://github.com/GR3ATB0B/chord-engine" class="card" target="_blank">
-        <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        <a href="https://github.com/GR3ATB0B/chord-engine" target="_blank" class="project-card reveal">
           <h3>Chord Engine</h3>
-          <p>Music synthesizer and chord generator</p>
-          <span class="badge complete">Complete</span>
-        </div>
-      </a>
+          <p class="desc">Music theory engine for generating and analyzing chord progressions.</p>
+          <div class="progress-bar"><div class="progress-fill" style="width: 30%"></div></div>
+          <span class="progress-label">In progress</span>
+        </a>
 
-      <a href="projects/project3.html" class="card">
-        <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-          <h3>Unbeatable Pong</h3>
-          <p>Can you beat the AI?</p>
-          <span class="badge complete">Complete</span>
-        </div>
-      </a>
-
-      <a href="projects/project4.html" class="card">
-        <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-          <h3>FBI Most Wanted</h3>
-          <p>Live FBI API data visualization</p>
-          <span class="badge complete">Complete</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/GR3ATB0B/aca-website" class="card" target="_blank">
-        <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-          <h3>AP Comp Sci</h3>
-          <p>Projects from AP Computer Science</p>
-          <span class="badge complete">Complete</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/GR3ATB0B/NFC-Wallet" class="card" target="_blank">
-        <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-          <h3>NFC Wallet Cards</h3>
-          <p>Custom NFC cards for Apple Wallet</p>
-          <div class="progress-wrap"><div class="progress-bar" data-width="5"></div></div>
+        <a href="https://github.com/GR3ATB0B/NFC-Wallet" target="_blank" class="project-card reveal">
+          <h3>NFC Wallet</h3>
+          <p class="desc">Custom NFC-based digital wallet for contactless payments.</p>
+          <div class="progress-bar"><div class="progress-fill" style="width: 5%"></div></div>
           <span class="progress-label">5% complete</span>
-        </div>
-      </a>
+        </a>
 
-      <div class="card card-placeholder">
-        <div class="card-inner">
-          <h3>SkyStream</h3>
-          <p>Atmospheric water harvester</p>
-          <span class="badge upcoming">In Progress</span>
-        </div>
-      </div>
-
-      <div class="card card-placeholder">
-        <div class="card-inner">
-          <h3>Ares II</h3>
-          <p>Ion thruster RC aircraft</p>
-          <span class="badge upcoming">In Progress</span>
-        </div>
-      </div>
-
-      <div class="card card-placeholder">
-        <div class="card-inner">
-          <h3>Robotic Arm</h3>
-          <p>Wheelchair-mounted assistive arm</p>
-          <span class="badge upcoming">In Progress</span>
-        </div>
-      </div>
-
-      <div class="card card-placeholder">
-        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
-      </div>
-      <div class="card card-placeholder">
-        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
-      </div>
-      <div class="card card-placeholder">
-        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
-      </div>
-      <div class="card card-placeholder">
-        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
-      </div>
-      <div class="card card-placeholder">
-        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
-      </div>
-      <div class="card card-placeholder">
-        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
-      </div>
-      <div class="card card-placeholder">
-        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
-      </div>
-      <div class="card card-placeholder">
-        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Hobby Cycle Section -->
-  <section class="section" id="hobbies">
-    <div class="section-header">
-      <span class="section-label">Interests</span>
-      <h2 class="section-title">The Hobby Cycle</h2>
-      <div class="section-divider"></div>
-    </div>
-    <p class="hobby-note">I have ADHD -- my brain cycles through hobbies and I always come back to them.</p>
-    <div class="hobby-wheel-container">
-      <div class="hobby-wheel" id="hobby-wheel">
-        <div class="hobby-item active" data-hobby="Photography">
-          <div class="hobby-icon">&#128247;</div>
-          <div class="hobby-label">Photography</div>
-        </div>
-        <div class="hobby-item" data-hobby="Music Production">
-          <div class="hobby-icon">&#127911;</div>
-          <div class="hobby-label">Music Production</div>
-        </div>
-        <div class="hobby-item" data-hobby="Electrical Engineering">
-          <div class="hobby-icon">&#9889;</div>
-          <div class="hobby-label">Electrical Engineering</div>
-        </div>
-        <div class="hobby-item" data-hobby="Software Development">
-          <div class="hobby-icon">&#128187;</div>
-          <div class="hobby-label">Software Dev</div>
-        </div>
-        <div class="hobby-item" data-hobby="3D Printing">
-          <div class="hobby-icon">&#9881;&#65039;</div>
-          <div class="hobby-label">3D Printing</div>
-        </div>
-        <div class="hobby-item" data-hobby="RC Aircraft">
-          <div class="hobby-icon">&#9992;&#65039;</div>
-          <div class="hobby-label">RC Aircraft</div>
-        </div>
-        <div class="hobby-item" data-hobby="Coffee">
-          <div class="hobby-icon">&#9749;</div>
-          <div class="hobby-label">Coffee</div>
-        </div>
-        <div class="hobby-item" data-hobby="Fishing">
-          <div class="hobby-icon">&#127907;</div>
-          <div class="hobby-label">Fishing</div>
-        </div>
-      </div>
-      <div class="hobby-current">
-        <span class="hobby-current-label">Currently obsessed with</span>
-        <span class="hobby-current-name" id="hobby-current-name">Photography</span>
       </div>
     </div>
   </section>
 
-  <!-- Photography Section -->
-  <section class="section" id="photography">
-    <div class="section-header">
-      <span class="section-label">Gallery</span>
-      <h2 class="section-title">Through My Lens</h2>
-      <div class="section-divider"></div>
-    </div>
-    <div class="photo-grid">
-      <div class="photo-placeholder"><span>Photo coming soon</span></div>
-      <div class="photo-placeholder tall"><span>Photo coming soon</span></div>
-      <div class="photo-placeholder"><span>Photo coming soon</span></div>
-      <div class="photo-placeholder"><span>Photo coming soon</span></div>
-      <div class="photo-placeholder tall"><span>Photo coming soon</span></div>
-      <div class="photo-placeholder"><span>Photo coming soon</span></div>
+  <!-- HOBBIES -->
+  <section id="hobbies" class="hobby-section">
+    <div class="container">
+      <p class="section-label">The Hobby Cycle</p>
+      <h2>What I'm Into</h2>
+      <p style="color: var(--text-light); max-width: 500px; margin: 0.5rem auto 0;">I rotate through hobbies like seasons. Click a slice to explore.</p>
+
+      <div class="hobby-wheel-container">
+        <svg viewBox="0 0 500 500" id="hobbyWheel"></svg>
+        <div class="hobby-tooltip" id="hobbyTooltip"></div>
+      </div>
+
+      <p class="hobby-current-label">Currently obsessed with: <strong>Film Photography 📷</strong></p>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section class="section" id="about">
-    <div class="section-header">
-      <span class="section-label">Who I Am</span>
-      <h2 class="section-title">About Nash</h2>
-      <div class="section-divider"></div>
-    </div>
-    <div class="about-content">
-      <div class="about-text">
-        <p>
-          <span class="line"><strong>Nash Vogeltanz</strong> -- Engineering student heading to Auburn University.</span>
-          <span class="line">I build apps, hardware projects, and AI tools.</span>
-          <span class="line">I like coffee, electronics, and breaking things to learn how they work.</span>
-        </p>
-        <p>
-          <span class="line">When I'm not coding, I'm probably tinkering with something I shouldn't be,</span>
-          <span class="line">or figuring out how to make a computer do something it wasn't meant to do.</span>
-        </p>
-      </div>
-      <div class="about-stats">
-        <div class="stat">
-          <div class="stat-number" data-target="20">0</div>
-          <div class="stat-label">Projects</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number" data-target="4">0</div>
-          <div class="stat-label">AI Agents</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number" data-target="1000" data-suffix="+">0</div>
-          <div class="stat-label">Commits</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number" data-target="99" data-suffix="%">0</div>
-          <div class="stat-label">Caffeine</div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about">
+      <div class="about-grid">
+        <div class="about-photo">Photo placeholder</div>
+        <div class="about-text">
+          <p class="section-label">About Me</p>
+          <h2>Nash</h2>
+          <p>I'm a maker, tinkerer, and lifelong learner from Atlanta. I love building things — from circuits to code to campfires. Heading to Auburn University for Electrical Engineering this fall.</p>
+          <p>When I'm not soldering or coding, you can find me shooting film, casting metal, or hunting through Goodwill for hidden gems.</p>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-number">25+</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">18</div>
+              <div class="stat-label">Hobbies</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">∞</div>
+              <div class="stat-label">Curiosity</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer id="footer">
-    <div class="footer-content">
-      <div class="footer-signoff">Let's build something cool.</div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="gift-buttons" style="margin-bottom: 2rem;">
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn coffee">☕ Buy Me a Coffee</a>
+        <a href="#" class="gift-btn cash">💵 Cash App</a>
+        <a href="#" class="gift-btn wishlist">🎁 Amazon Wishlist</a>
+      </div>
       <div class="footer-links">
-        <a href="https://github.com/GR3ATB0B" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
-        </a>
-        <a href="https://instagram.com/nashvogeltanz" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          Instagram
-        </a>
-        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">Buy me a coffee</a>
+        <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">Buy Me a Coffee</a>
       </div>
-      <div class="footer-gift-links">
-        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn-sm">Coffee</a>
-        <a href="#" class="gift-btn-sm">Cash App</a>
-        <a href="#" class="gift-btn-sm">Wishlist</a>
-      </div>
-      <p class="copyright">&copy; 2026 Nash Vogeltanz</p>
+      <p class="footer-copy">© 2026 Nash. Built with curiosity and caffeine.</p>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
   <script>
-  (function() {
-    'use strict';
+    // === GSAP Animations ===
+    gsap.registerPlugin(ScrollTrigger);
 
-    // LOADER
-    const loader = document.getElementById('loader');
-    const loaderFill = document.getElementById('loader-fill');
-    let loadProgress = 0;
-    const loadInterval = setInterval(() => {
-      loadProgress = Math.min(loadProgress + Math.random() * 30, 100);
-      loaderFill.style.width = loadProgress + '%';
-      if (loadProgress >= 100) {
-        clearInterval(loadInterval);
-        setTimeout(() => {
-          gsap.to(loader, { opacity: 0, duration: 0.6, ease: 'power2.inOut', onComplete: () => {
-            loader.style.display = 'none';
-            initAnimations();
-          }});
-        }, 200);
-      }
-    }, 150);
+    // Hero entrance
+    gsap.to('.hero model-viewer', { opacity: 1, duration: 1, delay: 0.2 });
+    gsap.to('.hero h1', { opacity: 1, y: 0, duration: 0.8, delay: 0.6 });
+    gsap.to('.hero .subtitle', { opacity: 1, y: 0, duration: 0.8, delay: 0.9 });
 
-    // NAV smooth scroll
-    const nav = document.getElementById('nav');
-    const navLinks = nav.querySelectorAll('a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) gsap.to(window, { scrollTo: { y: target, offsetY: 80 }, duration: 1, ease: 'power3.inOut' });
+    // Reveal on scroll
+    gsap.utils.toArray('.reveal').forEach(el => {
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.7,
+        scrollTrigger: { trigger: el, start: 'top 85%' }
       });
     });
 
-    // BOB TYPING
-    const phrases = ['systems online', 'agents ready', 'routing tasks...', 'claude jr: coding', 'all nominal'];
-    const bobEl = document.getElementById('bob-typing');
-    let pi = 0, ci = 0, deleting = false;
-    function typeLoop() {
-      if (!bobEl) return;
-      const phrase = phrases[pi];
-      if (!deleting) {
-        bobEl.textContent = phrase.slice(0, ++ci);
-        if (ci === phrase.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
-        setTimeout(typeLoop, 60);
-      } else {
-        bobEl.textContent = phrase.slice(0, --ci);
-        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(typeLoop, 400); return; }
-        setTimeout(typeLoop, 30);
-      }
-    }
-    typeLoop();
+    // Graduation
+    gsap.from('.graduation', {
+      opacity: 0, y: 40, duration: 0.8,
+      scrollTrigger: { trigger: '.graduation', start: 'top 80%' }
+    });
 
-    // HOBBY WHEEL rotation
-    const hobbyItems = document.querySelectorAll('.hobby-item');
-    const hobbyName = document.getElementById('hobby-current-name');
-    let currentHobby = 0;
-    
-    function positionHobbies() {
-      const total = hobbyItems.length;
-      hobbyItems.forEach((item, i) => {
-        const angle = (i / total) * 360;
-        item.style.setProperty('--angle', angle + 'deg');
+    // About
+    gsap.from('.about-grid', {
+      opacity: 0, y: 40, duration: 0.8,
+      scrollTrigger: { trigger: '.about', start: 'top 80%' }
+    });
+
+    // === HOBBY WHEEL ===
+    const hobbies = [
+      { name: 'Film Photography', url: 'hobbies/photography.html', current: true, color: '#5a9a82' },
+      { name: 'Music Production', url: 'hobbies/music.html', color: '#7ab8a0' },
+      { name: 'Music Theory', url: 'hobbies/music.html', color: '#a8d5c2' },
+      { name: 'Arduino / Electronics', url: 'hobbies/electronics.html', color: '#b09a7a' },
+      { name: 'Python / Coding', url: '#', color: '#8b7355' },
+      { name: 'AI', url: '#', color: '#6b5540' },
+      { name: 'RC', url: 'hobbies/rc.html', color: '#c4956a' },
+      { name: 'Forging & Metal', url: '#', color: '#9a7b5b' },
+      { name: '3D Printing', url: '#', color: '#7ab8a0' },
+      { name: 'Goodwill Hunting', url: '#', color: '#5a9a82' },
+      { name: 'Camping', url: '#', color: '#6b8f71' },
+      { name: 'LEGO', url: '#', color: '#d4a574' },
+      { name: 'Minecraft', url: '#', color: '#8bb07a' },
+      { name: 'Weightlifting', url: '#', color: '#a08060' },
+      { name: 'Reading', url: '#', color: '#b09a7a' },
+      { name: 'Fly Fishing', url: '#', color: '#7ab8a0' },
+      { name: 'Magic Tricks', url: '#', color: '#8b7355' },
+      { name: 'Math', url: '#', color: '#5a9a82' }
+    ];
+
+    const svg = document.getElementById('hobbyWheel');
+    const tooltip = document.getElementById('hobbyTooltip');
+    const cx = 250, cy = 250, outerR = 230, innerR = 130;
+    const n = hobbies.length;
+    const angleStep = (2 * Math.PI) / n;
+
+    hobbies.forEach((h, i) => {
+      const a1 = i * angleStep - Math.PI / 2;
+      const a2 = (i + 1) * angleStep - Math.PI / 2;
+
+      const x1o = cx + outerR * Math.cos(a1);
+      const y1o = cy + outerR * Math.sin(a1);
+      const x2o = cx + outerR * Math.cos(a2);
+      const y2o = cy + outerR * Math.sin(a2);
+      const x1i = cx + innerR * Math.cos(a2);
+      const y1i = cy + innerR * Math.sin(a2);
+      const x2i = cx + innerR * Math.cos(a1);
+      const y2i = cy + innerR * Math.sin(a1);
+
+      const d = `M ${x1o} ${y1o} A ${outerR} ${outerR} 0 0 1 ${x2o} ${y2o} L ${x1i} ${y1i} A ${innerR} ${innerR} 0 0 0 ${x2i} ${y2i} Z`;
+
+      const link = document.createElementNS('http://www.w3.org/2000/svg', 'a');
+      link.setAttributeNS('http://www.w3.org/1999/xlink', 'href', h.url);
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', d);
+      path.setAttribute('fill', h.color);
+      path.setAttribute('class', 'hobby-slice' + (h.current ? ' current' : ''));
+      path.setAttribute('stroke', '#f5f0eb');
+      path.setAttribute('stroke-width', '2');
+
+      path.addEventListener('mouseenter', () => {
+        tooltip.textContent = h.name + (h.current ? ' ✨' : '');
+        tooltip.classList.add('visible');
       });
-    }
-    positionHobbies();
+      path.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
 
-    // Auto-rotate highlight every 3s
-    setInterval(() => {
-      hobbyItems[currentHobby].classList.remove('active');
-      currentHobby = (currentHobby + 1) % hobbyItems.length;
-      hobbyItems[currentHobby].classList.add('active');
-      if (hobbyName) hobbyName.textContent = hobbyItems[currentHobby].dataset.hobby;
-    }, 3000);
+      link.appendChild(path);
 
-    // GSAP ANIMATIONS
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+      // Label
+      const midA = (a1 + a2) / 2;
+      const labelR = (outerR + innerR) / 2;
+      const lx = cx + labelR * Math.cos(midA);
+      const ly = cy + labelR * Math.sin(midA);
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', lx);
+      text.setAttribute('y', ly);
+      text.setAttribute('class', 'hobby-label');
+      text.setAttribute('transform', `rotate(${(midA * 180 / Math.PI) + 90}, ${lx}, ${ly})`);
+      text.setAttribute('dominant-baseline', 'middle');
+      // Shorten long names
+      const short = h.name.length > 12 ? h.name.slice(0, 11) + '…' : h.name;
+      text.textContent = short;
 
-    function initAnimations() {
-      // Hero title split
-      const title = document.getElementById('hero-title');
-      const text = title.textContent;
-      title.innerHTML = '';
-      text.split('').forEach(char => {
-        const span = document.createElement('span');
-        span.className = 'char';
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        title.appendChild(span);
-      });
+      svg.appendChild(link);
+      svg.appendChild(text);
+    });
 
-      const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      heroTL
-        .to('.hero-title .char', { y: 0, opacity: 1, duration: 0.8, stagger: 0.04 })
-        .to('.hero-tagline', { opacity: 1, y: 0, duration: 0.8 }, '-=0.3')
-        .to('.hero-cta', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
-        .to('#scroll-indicator', { opacity: 1, duration: 1 }, '-=0.3');
-
-      // Nav
-      ScrollTrigger.create({
-        start: 'top -100',
-        onUpdate: self => {
-          if (self.direction === 1 && window.scrollY > 100) {
-            gsap.to(nav, { y: 0, duration: 0.4, ease: 'power2.out' });
-            nav.classList.add('visible');
-          } else if (window.scrollY < 100) {
-            gsap.to(nav, { y: -100, duration: 0.3 });
-            nav.classList.remove('visible');
-          }
-        }
-      });
-
-      ScrollTrigger.create({
-        start: 'top -50',
-        onEnter: () => gsap.to('#scroll-indicator', { opacity: 0, duration: 0.3 }),
-        onLeaveBack: () => gsap.to('#scroll-indicator', { opacity: 1, duration: 0.5 })
-      });
-
-      // Graduation fade in
-      gsap.to('.graduation-content', {
-        scrollTrigger: { trigger: '.graduation-section', start: 'top 80%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
-      });
-
-      // Section headers
-      document.querySelectorAll('.section-header').forEach(header => {
-        gsap.timeline({
-          scrollTrigger: { trigger: header, start: 'top 80%', toggleActions: 'play none none reverse' }
-        })
-        .to(header.querySelector('.section-label'), { opacity: 1, y: 0, duration: 0.6 })
-        .to(header.querySelector('.section-title'), { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-        .to(header.querySelector('.section-divider'), { opacity: 1, scaleX: 1, duration: 0.6 }, '-=0.3');
-      });
-
-      // Cards
-      gsap.to('.card', {
-        scrollTrigger: { trigger: '.projects-grid', start: 'top 85%', toggleActions: 'play none none none' },
-        opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out'
-      });
-
-      // Progress bars
-      document.querySelectorAll('.progress-bar').forEach(bar => {
-        ScrollTrigger.create({
-          trigger: bar, start: 'top 90%',
-          onEnter: () => gsap.to(bar, { width: bar.dataset.width + '%', duration: 1.2, ease: 'power2.out' })
-        });
-      });
-
-      // Hobby items
-      gsap.to('.hobby-item', {
-        scrollTrigger: { trigger: '#hobbies', start: 'top 75%' },
-        opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, ease: 'back.out(1.5)'
-      });
-
-      // Photo grid
-      gsap.to('.photo-placeholder', {
-        scrollTrigger: { trigger: '.photo-grid', start: 'top 80%' },
-        opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out'
-      });
-
-      // About
-      gsap.to('.about-text .line', {
-        scrollTrigger: { trigger: '.about-text', start: 'top 75%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out'
-      });
-
-      document.querySelectorAll('.stat').forEach((stat, i) => {
-        gsap.to(stat, {
-          scrollTrigger: { trigger: stat, start: 'top 85%' },
-          opacity: 1, y: 0, scale: 1, duration: 0.6, delay: i * 0.1, ease: 'back.out(1.5)',
-          onComplete: () => {
-            const numEl = stat.querySelector('.stat-number');
-            const target = parseInt(numEl.dataset.target);
-            const suffix = numEl.dataset.suffix || '';
-            gsap.to({ val: 0 }, {
-              val: target, duration: 1.5, ease: 'power2.out',
-              onUpdate: function() { numEl.textContent = Math.round(this.targets()[0].val) + suffix; }
-            });
-          }
-        });
-      });
-
-      gsap.to('.footer-content', {
-        scrollTrigger: { trigger: 'footer', start: 'top 85%' },
-        opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
-      });
-
-      // Active nav
-      document.querySelectorAll('section[id]').forEach(sec => {
-        ScrollTrigger.create({
-          trigger: sec, start: 'top center', end: 'bottom center',
-          onToggle: self => {
-            if (self.isActive) {
-              navLinks.forEach(l => l.classList.remove('active'));
-              const activeLink = nav.querySelector('a[href="#' + sec.id + '"]');
-              if (activeLink) activeLink.classList.add('active');
-            }
-          }
-        });
-      });
-    }
-  })();
+    // Center text
+    const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    centerText.setAttribute('x', cx);
+    centerText.setAttribute('y', cy);
+    centerText.setAttribute('text-anchor', 'middle');
+    centerText.setAttribute('dominant-baseline', 'middle');
+    centerText.setAttribute('font-family', 'Figtree, sans-serif');
+    centerText.setAttribute('font-size', '14');
+    centerText.setAttribute('font-weight', '600');
+    centerText.setAttribute('fill', '#3a3530');
+    centerText.textContent = '18 Hobbies';
+    svg.appendChild(centerText);
   </script>
+
 </body>
 </html>
