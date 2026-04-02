@@ -19,32 +19,24 @@
     <div class="loader-bar"><div class="loader-bar-fill" id="loader-fill"></div></div>
   </div>
 
-  <!-- Custom Cursor -->
-  <div class="cursor-dot" id="cursor-dot"></div>
-  <div class="cursor-ring" id="cursor-ring"></div>
-
-  <!-- Background -->
-  <div class="bg-grid"></div>
-  <div class="bg-gradient" id="bg-gradient"></div>
-
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <a href="#hero">Home</a>
+    <a href="#graduation">Graduation</a>
     <a href="#projects">Projects</a>
+    <a href="#hobbies">Hobbies</a>
     <a href="#about">About</a>
-    <a href="#footer">Contact</a>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
-    <div class="particles" id="particles"></div>
     <div class="hero-content">
       <div class="hero-text">
         <h1 class="hero-title" id="hero-title">What The Nash!</h1>
         <p class="hero-tagline">I tinker, break things, and build cool stuff.</p>
         <div class="hero-cta">
           <a href="#projects" class="btn-primary">See My Work</a>
-          <a href="https://github.com/GR3ATB0B" target="_blank" class="btn-secondary">GitHub ↗</a>
+          <a href="https://github.com/GR3ATB0B" target="_blank" class="btn-secondary">GitHub</a>
         </div>
       </div>
       <div class="hero-3d">
@@ -70,6 +62,28 @@
     </div>
   </section>
 
+  <!-- Graduation Section -->
+  <section class="section graduation-section" id="graduation">
+    <div class="graduation-content">
+      <h2 class="graduation-title">I'm Graduating! <span class="grad-emoji">&#127891;</span></h2>
+      <p class="graduation-text">Hello! I'm graduating from Atlanta Classical Academy and heading to Auburn University to study Electrical Engineering. I'm incredibly thankful for the people who helped shape me along the way. I look forward to what's ahead.</p>
+      <div class="gift-buttons">
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn">
+          <span class="gift-icon">&#9749;</span>
+          <span>Buy Me a Coffee</span>
+        </a>
+        <a href="#" class="gift-btn">
+          <span class="gift-icon">&#128181;</span>
+          <span>Cash App</span>
+        </a>
+        <a href="#" class="gift-btn">
+          <span class="gift-icon">&#127873;</span>
+          <span>Amazon Wishlist</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Projects Section -->
   <section class="section" id="projects">
     <div class="section-header">
@@ -79,8 +93,7 @@
     </div>
     <div class="projects-grid">
 
-      <a href="https://github.com/GR3ATB0B/Memeiverse" class="card card-1" target="_blank">
-        <div class="card-glow"></div>
+      <a href="https://github.com/GR3ATB0B/Memeiverse" class="card" target="_blank">
         <div class="card-inner">
           <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
           <h3>Memeiverse</h3>
@@ -90,8 +103,84 @@
         </div>
       </a>
 
-      <a href="https://github.com/GR3ATB0B/NFC-Wallet" class="card card-2" target="_blank">
-        <div class="card-glow"></div>
+      <a href="projects/bob.html" class="card card-bob">
+        <div class="card-inner">
+          <div class="bob-card-header">
+            <span class="bob-brain">&#129504;</span>
+            <span class="bob-status-indicator"></span>
+          </div>
+          <h3>B.O.B.</h3>
+          <p class="bob-subtitle">Background Operations Brain</p>
+          <div class="bob-terminal-mini">
+            <span class="bob-prompt">&gt;</span>
+            <span class="bob-typing" id="bob-typing"></span>
+            <span class="bob-cursor">&#9610;</span>
+          </div>
+          <div class="bob-agents-mini">
+            <span title="Clyde">&#9889;</span>
+            <span title="Scribe">&#9997;&#65039;</span>
+            <span title="Atlas">&#127758;</span>
+            <span title="Sentinel">&#128737;&#65039;</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://github.com/GR3ATB0B/diy-graphing-calculator" class="card" target="_blank">
+        <div class="card-inner">
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <h3>DIY Graphing Calculator</h3>
+          <p>Custom-built graphing calculator from scratch</p>
+          <div class="progress-wrap"><div class="progress-bar" data-width="15"></div></div>
+          <span class="progress-label">15% complete</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/GR3ATB0B/esp32-web-controller" class="card" target="_blank">
+        <div class="card-inner">
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <h3>ESP32 Web Controller</h3>
+          <p>Web-based microcontroller interface</p>
+          <span class="badge complete">Complete</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/GR3ATB0B/chord-engine" class="card" target="_blank">
+        <div class="card-inner">
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <h3>Chord Engine</h3>
+          <p>Music synthesizer and chord generator</p>
+          <span class="badge complete">Complete</span>
+        </div>
+      </a>
+
+      <a href="projects/project3.html" class="card">
+        <div class="card-inner">
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <h3>Unbeatable Pong</h3>
+          <p>Can you beat the AI?</p>
+          <span class="badge complete">Complete</span>
+        </div>
+      </a>
+
+      <a href="projects/project4.html" class="card">
+        <div class="card-inner">
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <h3>FBI Most Wanted</h3>
+          <p>Live FBI API data visualization</p>
+          <span class="badge complete">Complete</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/GR3ATB0B/aca-website" class="card" target="_blank">
+        <div class="card-inner">
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <h3>AP Comp Sci</h3>
+          <p>Projects from AP Computer Science</p>
+          <span class="badge complete">Complete</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/GR3ATB0B/NFC-Wallet" class="card" target="_blank">
         <div class="card-inner">
           <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
           <h3>NFC Wallet Cards</h3>
@@ -101,59 +190,122 @@
         </div>
       </a>
 
-      <a href="https://github.com/GR3ATB0B/aca-website" class="card card-3" target="_blank">
-        <div class="card-glow"></div>
+      <div class="card card-placeholder">
         <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-          <h3>AP Comp Sci</h3>
-          <p>Projects & assets from AP Computer Science</p>
-          <span class="badge complete">✓ Complete</span>
+          <h3>SkyStream</h3>
+          <p>Atmospheric water harvester</p>
+          <span class="badge upcoming">In Progress</span>
         </div>
-      </a>
+      </div>
 
-      <a href="projects/project3.html" class="card card-4">
-        <div class="card-glow"></div>
+      <div class="card card-placeholder">
         <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-          <h3>Unbeatable Pong</h3>
-          <p>Can you beat the AI?</p>
-          <span class="badge complete">✓ Complete</span>
+          <h3>Ares II</h3>
+          <p>Ion thruster RC aircraft</p>
+          <span class="badge upcoming">In Progress</span>
         </div>
-      </a>
+      </div>
 
-      <a href="projects/project4.html" class="card card-5">
-        <div class="card-glow"></div>
+      <div class="card card-placeholder">
         <div class="card-inner">
-          <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-          <h3>FBI Most Wanted</h3>
-          <p>Live FBI API data</p>
-          <span class="badge complete">✓ Complete</span>
+          <h3>Robotic Arm</h3>
+          <p>Wheelchair-mounted assistive arm</p>
+          <span class="badge upcoming">In Progress</span>
         </div>
-      </a>
+      </div>
 
-      <a href="projects/bob.html" class="card card-bob">
-        <div class="card-glow"></div>
-        <div class="card-inner">
-          <div class="bob-card-header">
-            <span class="bob-brain">🧠</span>
-            <span class="bob-status-indicator"></span>
-          </div>
-          <h3>B.O.B.</h3>
-          <p class="bob-subtitle">Background Operations Brain</p>
-          <div class="bob-terminal-mini">
-            <span class="bob-prompt">&gt;</span>
-            <span class="bob-typing" id="bob-typing"></span>
-            <span class="bob-cursor">▊</span>
-          </div>
-          <div class="bob-agents-mini">
-            <span title="Clyde">⚡</span>
-            <span title="Scribe">✍️</span>
-            <span title="Atlas">🌍</span>
-            <span title="Sentinel">🛡️</span>
-          </div>
+      <div class="card card-placeholder">
+        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
+      </div>
+      <div class="card card-placeholder">
+        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
+      </div>
+      <div class="card card-placeholder">
+        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
+      </div>
+      <div class="card card-placeholder">
+        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
+      </div>
+      <div class="card card-placeholder">
+        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
+      </div>
+      <div class="card card-placeholder">
+        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
+      </div>
+      <div class="card card-placeholder">
+        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
+      </div>
+      <div class="card card-placeholder">
+        <div class="card-inner"><h3>Coming Soon</h3><p>New project in the works</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Hobby Cycle Section -->
+  <section class="section" id="hobbies">
+    <div class="section-header">
+      <span class="section-label">Interests</span>
+      <h2 class="section-title">The Hobby Cycle</h2>
+      <div class="section-divider"></div>
+    </div>
+    <p class="hobby-note">I have ADHD -- my brain cycles through hobbies and I always come back to them.</p>
+    <div class="hobby-wheel-container">
+      <div class="hobby-wheel" id="hobby-wheel">
+        <div class="hobby-item active" data-hobby="Photography">
+          <div class="hobby-icon">&#128247;</div>
+          <div class="hobby-label">Photography</div>
         </div>
-      </a>
+        <div class="hobby-item" data-hobby="Music Production">
+          <div class="hobby-icon">&#127911;</div>
+          <div class="hobby-label">Music Production</div>
+        </div>
+        <div class="hobby-item" data-hobby="Electrical Engineering">
+          <div class="hobby-icon">&#9889;</div>
+          <div class="hobby-label">Electrical Engineering</div>
+        </div>
+        <div class="hobby-item" data-hobby="Software Development">
+          <div class="hobby-icon">&#128187;</div>
+          <div class="hobby-label">Software Dev</div>
+        </div>
+        <div class="hobby-item" data-hobby="3D Printing">
+          <div class="hobby-icon">&#9881;&#65039;</div>
+          <div class="hobby-label">3D Printing</div>
+        </div>
+        <div class="hobby-item" data-hobby="RC Aircraft">
+          <div class="hobby-icon">&#9992;&#65039;</div>
+          <div class="hobby-label">RC Aircraft</div>
+        </div>
+        <div class="hobby-item" data-hobby="Coffee">
+          <div class="hobby-icon">&#9749;</div>
+          <div class="hobby-label">Coffee</div>
+        </div>
+        <div class="hobby-item" data-hobby="Fishing">
+          <div class="hobby-icon">&#127907;</div>
+          <div class="hobby-label">Fishing</div>
+        </div>
+      </div>
+      <div class="hobby-current">
+        <span class="hobby-current-label">Currently obsessed with</span>
+        <span class="hobby-current-name" id="hobby-current-name">Photography</span>
+      </div>
+    </div>
+  </section>
 
+  <!-- Photography Section -->
+  <section class="section" id="photography">
+    <div class="section-header">
+      <span class="section-label">Gallery</span>
+      <h2 class="section-title">Through My Lens</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="photo-grid">
+      <div class="photo-placeholder"><span>Photo coming soon</span></div>
+      <div class="photo-placeholder tall"><span>Photo coming soon</span></div>
+      <div class="photo-placeholder"><span>Photo coming soon</span></div>
+      <div class="photo-placeholder"><span>Photo coming soon</span></div>
+      <div class="photo-placeholder tall"><span>Photo coming soon</span></div>
+      <div class="photo-placeholder"><span>Photo coming soon</span></div>
     </div>
   </section>
 
@@ -167,7 +319,7 @@
     <div class="about-content">
       <div class="about-text">
         <p>
-          <span class="line"><strong>Nash Vogeltanz</strong> — Engineering student heading to Auburn University.</span>
+          <span class="line"><strong>Nash Vogeltanz</strong> -- Engineering student heading to Auburn University.</span>
           <span class="line">I build apps, hardware projects, and AI tools.</span>
           <span class="line">I like coffee, electronics, and breaking things to learn how they work.</span>
         </p>
@@ -178,7 +330,7 @@
       </div>
       <div class="about-stats">
         <div class="stat">
-          <div class="stat-number" data-target="6">0</div>
+          <div class="stat-number" data-target="20">0</div>
           <div class="stat-label">Projects</div>
         </div>
         <div class="stat">
@@ -210,9 +362,14 @@
           <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           Instagram
         </a>
-        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">☕ Buy me a coffee</a>
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">Buy me a coffee</a>
       </div>
-      <p class="copyright">© 2026 Nash Vogeltanz. Made with ❤️ and too much coffee.</p>
+      <div class="footer-gift-links">
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn-sm">Coffee</a>
+        <a href="#" class="gift-btn-sm">Cash App</a>
+        <a href="#" class="gift-btn-sm">Wishlist</a>
+      </div>
+      <p class="copyright">&copy; 2026 Nash Vogeltanz</p>
     </div>
   </footer>
 
@@ -224,9 +381,7 @@
   (function() {
     'use strict';
 
-    // ═══════════════════════════════════
     // LOADER
-    // ═══════════════════════════════════
     const loader = document.getElementById('loader');
     const loaderFill = document.getElementById('loader-fill');
     let loadProgress = 0;
@@ -244,136 +399,23 @@
       }
     }, 150);
 
-    // ═══════════════════════════════════
-    // CUSTOM CURSOR
-    // ═══════════════════════════════════
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, dx = 0, dy = 0;
-
-    if (window.matchMedia('(hover: hover)').matches) {
-      document.addEventListener('mousemove', e => {
-        mx = e.clientX; my = e.clientY;
-        dot.style.left = mx - 4 + 'px';
-        dot.style.top = my - 4 + 'px';
-
-        // Background gradient follow
-        const bgGrad = document.getElementById('bg-gradient');
-        bgGrad.style.setProperty('--mouse-x', (mx / window.innerWidth * 100) + '%');
-        bgGrad.style.setProperty('--mouse-y', (my / window.innerHeight * 100) + '%');
-      });
-
-      function animateCursor() {
-        dx += (mx - dx) * 0.15;
-        dy += (my - dy) * 0.15;
-        ring.style.left = dx - 20 + 'px';
-        ring.style.top = dy - 20 + 'px';
-        requestAnimationFrame(animateCursor);
-      }
-      animateCursor();
-
-      // Hover effect on interactive elements
-      document.querySelectorAll('a, button, .card').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          dot.classList.add('hovering');
-          ring.classList.add('hovering');
-        });
-        el.addEventListener('mouseleave', () => {
-          dot.classList.remove('hovering');
-          ring.classList.remove('hovering');
-        });
-      });
-    }
-
-    // ═══════════════════════════════════
-    // PARTICLES
-    // ═══════════════════════════════════
-    const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 30; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.left = Math.random() * 100 + '%';
-      p.style.top = Math.random() * 100 + '%';
-      p.style.width = (Math.random() * 3 + 1) + 'px';
-      p.style.height = p.style.width;
-      p.style.opacity = Math.random() * 0.3 + 0.1;
-      p.style.animation = `particleFloat ${Math.random() * 10 + 10}s ease-in-out infinite`;
-      p.style.animationDelay = Math.random() * 5 + 's';
-      particlesContainer.appendChild(p);
-    }
-
-    // Particle float keyframes
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes particleFloat {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
-        25% { transform: translate(${Math.random()*60-30}px, ${Math.random()*-80}px) scale(1.3); opacity: 0.3; }
-        50% { transform: translate(${Math.random()*40-20}px, ${Math.random()*-60}px) scale(0.8); opacity: 0.2; }
-        75% { transform: translate(${Math.random()*-50+25}px, ${Math.random()*-40}px) scale(1.1); opacity: 0.25; }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // ═══════════════════════════════════
-    // NAV
-    // ═══════════════════════════════════
+    // NAV smooth scroll
     const nav = document.getElementById('nav');
     const navLinks = nav.querySelectorAll('a');
-
-    // Smooth scroll
     navLinks.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
         const target = document.querySelector(link.getAttribute('href'));
-        if (target) {
-          gsap.to(window, { scrollTo: { y: target, offsetY: 80 }, duration: 1, ease: 'power3.inOut' });
-        }
+        if (target) gsap.to(window, { scrollTo: { y: target, offsetY: 80 }, duration: 1, ease: 'power3.inOut' });
       });
     });
 
-    // ═══════════════════════════════════
-    // CARD 3D TILT + GLOW (RAF-throttled, smooth)
-    // ═══════════════════════════════════
-    document.querySelectorAll('.card').forEach(card => {
-      const glow = card.querySelector('.card-glow');
-      let tiltRAF = null;
-
-      card.addEventListener('mousemove', e => {
-        if (tiltRAF) return; // throttle to one update per frame
-        tiltRAF = requestAnimationFrame(() => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const cx = rect.width / 2;
-          const cy = rect.height / 2;
-          const rotateX = ((y - cy) / cy) * -6;
-          const rotateY = ((x - cx) / cx) * 6;
-
-          card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-          card.style.boxShadow = '0 20px 60px rgba(0,0,0,0.4)';
-
-          if (glow) {
-            glow.style.left = x + 'px';
-            glow.style.top = y + 'px';
-          }
-          tiltRAF = null;
-        });
-      });
-
-      card.addEventListener('mouseleave', () => {
-        if (tiltRAF) { cancelAnimationFrame(tiltRAF); tiltRAF = null; }
-        card.style.transform = '';
-        card.style.boxShadow = '';
-      });
-    });
-
-    // ═══════════════════════════════════
     // BOB TYPING
-    // ═══════════════════════════════════
-    const phrases = ['systems online', 'agents ready', 'routing tasks...', 'claude jr: coding', 'all nominal ✓'];
+    const phrases = ['systems online', 'agents ready', 'routing tasks...', 'claude jr: coding', 'all nominal'];
     const bobEl = document.getElementById('bob-typing');
     let pi = 0, ci = 0, deleting = false;
     function typeLoop() {
+      if (!bobEl) return;
       const phrase = phrases[pi];
       if (!deleting) {
         bobEl.textContent = phrase.slice(0, ++ci);
@@ -387,35 +429,51 @@
     }
     typeLoop();
 
-    // ═══════════════════════════════════
+    // HOBBY WHEEL rotation
+    const hobbyItems = document.querySelectorAll('.hobby-item');
+    const hobbyName = document.getElementById('hobby-current-name');
+    let currentHobby = 0;
+    
+    function positionHobbies() {
+      const total = hobbyItems.length;
+      hobbyItems.forEach((item, i) => {
+        const angle = (i / total) * 360;
+        item.style.setProperty('--angle', angle + 'deg');
+      });
+    }
+    positionHobbies();
+
+    // Auto-rotate highlight every 3s
+    setInterval(() => {
+      hobbyItems[currentHobby].classList.remove('active');
+      currentHobby = (currentHobby + 1) % hobbyItems.length;
+      hobbyItems[currentHobby].classList.add('active');
+      if (hobbyName) hobbyName.textContent = hobbyItems[currentHobby].dataset.hobby;
+    }, 3000);
+
     // GSAP ANIMATIONS
-    // ═══════════════════════════════════
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     function initAnimations() {
-      // Hero title — split into chars
+      // Hero title split
       const title = document.getElementById('hero-title');
       const text = title.textContent;
       title.innerHTML = '';
-      text.split('').forEach((char, i) => {
+      text.split('').forEach(char => {
         const span = document.createElement('span');
         span.className = 'char';
         span.textContent = char === ' ' ? '\u00A0' : char;
         title.appendChild(span);
       });
 
-      // Hero entrance timeline
       const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
       heroTL
-        .to('.hero-title .char', {
-          y: 0, opacity: 1, duration: 0.8,
-          stagger: 0.04,
-        })
+        .to('.hero-title .char', { y: 0, opacity: 1, duration: 0.8, stagger: 0.04 })
         .to('.hero-tagline', { opacity: 1, y: 0, duration: 0.8 }, '-=0.3')
         .to('.hero-cta', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
         .to('#scroll-indicator', { opacity: 1, duration: 1 }, '-=0.3');
 
-      // Nav show on scroll
+      // Nav
       ScrollTrigger.create({
         start: 'top -100',
         onUpdate: self => {
@@ -429,14 +487,19 @@
         }
       });
 
-      // Hide scroll indicator on scroll
       ScrollTrigger.create({
         start: 'top -50',
         onEnter: () => gsap.to('#scroll-indicator', { opacity: 0, duration: 0.3 }),
         onLeaveBack: () => gsap.to('#scroll-indicator', { opacity: 1, duration: 0.5 })
       });
 
-      // Section headers animation
+      // Graduation fade in
+      gsap.to('.graduation-content', {
+        scrollTrigger: { trigger: '.graduation-section', start: 'top 80%', toggleActions: 'play none none reverse' },
+        opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
+      });
+
+      // Section headers
       document.querySelectorAll('.section-header').forEach(header => {
         gsap.timeline({
           scrollTrigger: { trigger: header, start: 'top 80%', toggleActions: 'play none none reverse' }
@@ -446,30 +509,38 @@
         .to(header.querySelector('.section-divider'), { opacity: 1, scaleX: 1, duration: 0.6 }, '-=0.3');
       });
 
-      // Cards stagger in
+      // Cards
       gsap.to('.card', {
-        scrollTrigger: { trigger: '.projects-grid', start: 'top 80%', toggleActions: 'play none none none' },
-        opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out',
-        clearProps: 'transform'
+        scrollTrigger: { trigger: '.projects-grid', start: 'top 85%', toggleActions: 'play none none none' },
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out'
       });
 
-      // Progress bars animate
+      // Progress bars
       document.querySelectorAll('.progress-bar').forEach(bar => {
-        const width = bar.dataset.width;
         ScrollTrigger.create({
-          trigger: bar,
-          start: 'top 90%',
-          onEnter: () => gsap.to(bar, { width: width + '%', duration: 1.2, ease: 'power2.out' })
+          trigger: bar, start: 'top 90%',
+          onEnter: () => gsap.to(bar, { width: bar.dataset.width + '%', duration: 1.2, ease: 'power2.out' })
         });
       });
 
-      // About lines reveal
+      // Hobby items
+      gsap.to('.hobby-item', {
+        scrollTrigger: { trigger: '#hobbies', start: 'top 75%' },
+        opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, ease: 'back.out(1.5)'
+      });
+
+      // Photo grid
+      gsap.to('.photo-placeholder', {
+        scrollTrigger: { trigger: '.photo-grid', start: 'top 80%' },
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out'
+      });
+
+      // About
       gsap.to('.about-text .line', {
         scrollTrigger: { trigger: '.about-text', start: 'top 75%', toggleActions: 'play none none reverse' },
         opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out'
       });
 
-      // Stats animate in + counter
       document.querySelectorAll('.stat').forEach((stat, i) => {
         gsap.to(stat, {
           scrollTrigger: { trigger: stat, start: 'top 85%' },
@@ -486,23 +557,19 @@
         });
       });
 
-      // Footer
       gsap.to('.footer-content', {
         scrollTrigger: { trigger: 'footer', start: 'top 85%' },
         opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
       });
 
-      // Active nav highlight
-      document.querySelectorAll('.section, .hero').forEach(sec => {
+      // Active nav
+      document.querySelectorAll('section[id]').forEach(sec => {
         ScrollTrigger.create({
-          trigger: sec,
-          start: 'top center',
-          end: 'bottom center',
+          trigger: sec, start: 'top center', end: 'bottom center',
           onToggle: self => {
             if (self.isActive) {
               navLinks.forEach(l => l.classList.remove('active'));
-              const id = sec.id || sec.getAttribute('id');
-              const activeLink = nav.querySelector(`a[href="#${id}"]`);
+              const activeLink = nav.querySelector('a[href="#' + sec.id + '"]');
               if (activeLink) activeLink.classList.add('active');
             }
           }
