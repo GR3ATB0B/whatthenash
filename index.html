@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nash — Builder, Maker, Explorer</title>
   <meta name="description" content="Nash's personal website — projects, hobbies, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
@@ -14,13 +17,13 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="/" class="nav-logo">Nash</a>
-      <div class="nav-links">
+      <div class="nav-links" id="navLinks">
         <a href="#projects">Projects</a>
         <a href="#hobbies">Hobbies</a>
         <a href="#about">About</a>
         <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
       </div>
-      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -39,17 +42,16 @@
         style="background: transparent;"
       ></model-viewer>
       <h1>Hey, I'm Nash</h1>
-      <p class="subtitle">Builder of things. Explorer of ideas. Currently obsessed with film photography.</p>
-      <div class="scroll-hint">↓ scroll</div>
+      <p class="subtitle">Builder of things. Explorer of ideas.<br>Currently obsessed with film photography.</p>
     </div>
   </section>
 
   <!-- GRADUATION -->
   <section id="graduation">
-    <div class="graduation">
-      <span class="emoji-cap">🎓</span>
+    <div class="graduation reveal">
+      <div class="grad-icon">🎓</div>
       <h2>I'm Graduating!</h2>
-      <p class="story">Hello! I'm graduating from Atlanta Classical Academy and heading to Auburn University to study Electrical Engineering. I'm incredibly thankful for the people who helped shape me along the way. I look forward to what's ahead.</p>
+      <p class="story">I'm graduating from Atlanta Classical Academy and heading to Auburn University to study Electrical Engineering. I'm incredibly thankful for the people who helped shape me along the way — and excited for what's ahead.</p>
       <div class="gift-buttons">
         <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn coffee">☕ Buy Me a Coffee</a>
         <a href="#" class="gift-btn cash">💵 Cash App</a>
@@ -67,41 +69,41 @@
 
         <a href="https://github.com/GR3ATB0B/diy-graphing-calculator" target="_blank" class="project-card reveal">
           <h3>DIY Graphing Calculator</h3>
-          <p class="desc">Building a graphing calculator from scratch with custom hardware and software.</p>
+          <p class="desc">A graphing calculator built from the ground up — custom PCB, firmware, and UI.</p>
           <div class="progress-bar"><div class="progress-fill" style="width: 15%"></div></div>
           <span class="progress-label">15% complete</span>
         </a>
 
         <a href="https://github.com/GR3ATB0B/Memeiverse" target="_blank" class="project-card reveal">
           <h3>Memeiverse</h3>
-          <p class="desc">A meme-sharing universe. Social platform built for the culture.</p>
+          <p class="desc">A social platform for memes — built for the culture, by the culture.</p>
           <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
           <span class="progress-label">60% complete</span>
         </a>
 
         <a href="projects/bob.html" class="project-card reveal">
           <h3>B.O.B.</h3>
-          <p class="desc">My personal AI assistant — always learning, always building.</p>
+          <p class="desc">My personal AI assistant that learns and grows alongside me.</p>
           <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
           <span class="progress-label">Ongoing</span>
         </a>
 
         <a href="https://github.com/GR3ATB0B/esp32-web-controller" target="_blank" class="project-card reveal">
           <h3>ESP32 Web Controller</h3>
-          <p class="desc">IoT web interface for controlling ESP32 microcontrollers remotely.</p>
+          <p class="desc">A clean web interface for controlling ESP32 microcontrollers over WiFi.</p>
           <span class="badge-complete">Complete ✓</span>
         </a>
 
         <a href="https://github.com/GR3ATB0B/chord-engine" target="_blank" class="project-card reveal">
           <h3>Chord Engine</h3>
-          <p class="desc">Music theory engine for generating and analyzing chord progressions.</p>
+          <p class="desc">A music theory engine that generates and analyzes chord progressions.</p>
           <div class="progress-bar"><div class="progress-fill" style="width: 30%"></div></div>
           <span class="progress-label">In progress</span>
         </a>
 
         <a href="https://github.com/GR3ATB0B/NFC-Wallet" target="_blank" class="project-card reveal">
           <h3>NFC Wallet</h3>
-          <p class="desc">Custom NFC-based digital wallet for contactless payments.</p>
+          <p class="desc">A custom NFC-based wallet for tap-to-pay without the bulk.</p>
           <div class="progress-bar"><div class="progress-fill" style="width: 5%"></div></div>
           <span class="progress-label">5% complete</span>
         </a>
@@ -115,7 +117,7 @@
     <div class="container">
       <p class="section-label">The Hobby Cycle</p>
       <h2>What I'm Into</h2>
-      <p style="color: var(--text-light); max-width: 500px; margin: 0.5rem auto 0;">I rotate through hobbies like seasons. Click a slice to explore.</p>
+      <p class="hobby-intro">I rotate through hobbies like seasons. Click a slice to explore.</p>
 
       <div class="hobby-wheel-container">
         <svg viewBox="0 0 500 500" id="hobbyWheel"></svg>
@@ -128,9 +130,14 @@
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="about">
+    <div class="about reveal">
       <div class="about-grid">
-        <div class="about-photo">Photo placeholder</div>
+        <div class="about-photo">
+          <div class="photo-placeholder-inner">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Photo coming soon</span>
+          </div>
+        </div>
         <div class="about-text">
           <p class="section-label">About Me</p>
           <h2>Nash</h2>
@@ -158,7 +165,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <div class="gift-buttons" style="margin-bottom: 2rem;">
+      <div class="gift-buttons" style="margin-bottom: 2.5rem;">
         <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn coffee">☕ Buy Me a Coffee</a>
         <a href="#" class="gift-btn cash">💵 Cash App</a>
         <a href="#" class="gift-btn wishlist">🎁 Amazon Wishlist</a>
@@ -177,59 +184,81 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <script>
+    // === NAV HAMBURGER ===
+    const hamburger = document.getElementById('navHamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('mobile-open');
+      hamburger.classList.toggle('active');
+    });
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-open');
+        hamburger.classList.remove('active');
+      });
+    });
+
     // === GSAP Animations ===
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero entrance
-    gsap.to('.hero model-viewer', { opacity: 1, duration: 1, delay: 0.2 });
-    gsap.to('.hero h1', { opacity: 1, y: 0, duration: 0.8, delay: 0.6 });
-    gsap.to('.hero .subtitle', { opacity: 1, y: 0, duration: 0.8, delay: 0.9 });
+    // Hero entrance sequence
+    const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTL
+      .to('.hero model-viewer', { opacity: 1, scale: 1, duration: 1.2 }, 0.2)
+      .to('.hero h1', { opacity: 1, y: 0, duration: 0.9 }, 0.6)
+      .to('.hero .subtitle', { opacity: 1, y: 0, duration: 0.9 }, 0.9);
 
-    // Reveal on scroll
-    gsap.utils.toArray('.reveal').forEach(el => {
+    // Reveal on scroll with stagger for project cards
+    gsap.utils.toArray('.projects-grid .reveal').forEach((el, i) => {
       gsap.to(el, {
         opacity: 1, y: 0, duration: 0.7,
+        delay: i * 0.1,
+        scrollTrigger: { trigger: el, start: 'top 88%' }
+      });
+    });
+
+    // Other reveals
+    gsap.utils.toArray('.reveal:not(.project-card)').forEach(el => {
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.8,
         scrollTrigger: { trigger: el, start: 'top 85%' }
       });
     });
 
-    // Graduation
-    gsap.from('.graduation', {
-      opacity: 0, y: 40, duration: 0.8,
-      scrollTrigger: { trigger: '.graduation', start: 'top 80%' }
-    });
-
-    // About
-    gsap.from('.about-grid', {
-      opacity: 0, y: 40, duration: 0.8,
-      scrollTrigger: { trigger: '.about', start: 'top 80%' }
+    // Stats counter animation
+    gsap.from('.stat-number', {
+      textContent: 0,
+      duration: 1.5,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '.stats', start: 'top 85%' }
     });
 
     // === HOBBY WHEEL ===
     const hobbies = [
-      { name: 'Film Photography', url: 'hobbies/photography.html', current: true, color: '#5a9a82' },
-      { name: 'Music Production', url: 'hobbies/music.html', color: '#7ab8a0' },
-      { name: 'Music Theory', url: 'hobbies/music.html', color: '#a8d5c2' },
-      { name: 'Arduino / Electronics', url: 'hobbies/electronics.html', color: '#b09a7a' },
-      { name: 'Python / Coding', url: '#', color: '#8b7355' },
-      { name: 'AI', url: '#', color: '#6b5540' },
-      { name: 'RC', url: 'hobbies/rc.html', color: '#c4956a' },
-      { name: 'Forging & Metal', url: '#', color: '#9a7b5b' },
-      { name: '3D Printing', url: '#', color: '#7ab8a0' },
-      { name: 'Goodwill Hunting', url: '#', color: '#5a9a82' },
-      { name: 'Camping', url: '#', color: '#6b8f71' },
-      { name: 'LEGO', url: '#', color: '#d4a574' },
-      { name: 'Minecraft', url: '#', color: '#8bb07a' },
-      { name: 'Weightlifting', url: '#', color: '#a08060' },
-      { name: 'Reading', url: '#', color: '#b09a7a' },
-      { name: 'Fly Fishing', url: '#', color: '#7ab8a0' },
-      { name: 'Magic Tricks', url: '#', color: '#8b7355' },
-      { name: 'Math', url: '#', color: '#5a9a82' }
+      { name: 'Film Photography', short: 'Film Photo', url: 'hobbies/photography.html', current: true, color: '#5a9a82' },
+      { name: 'Music Production', short: 'Music Prod', url: 'hobbies/music.html', color: '#d4a574' },
+      { name: 'Music Theory', short: 'Music Theory', url: 'hobbies/music.html', color: '#7eb8c9' },
+      { name: 'Arduino / Electronics', short: 'Electronics', url: 'hobbies/electronics.html', color: '#c4956a' },
+      { name: 'Python / Coding', short: 'Coding', url: '#', color: '#8b7ba8' },
+      { name: 'AI', short: 'AI', url: '#', color: '#e8937a' },
+      { name: 'RC', short: 'RC', url: 'hobbies/rc.html', color: '#6b8f71' },
+      { name: 'Forging & Metal', short: 'Metalwork', url: '#', color: '#9a7b5b' },
+      { name: '3D Printing', short: '3D Printing', url: '#', color: '#7ab8a0' },
+      { name: 'Goodwill Hunting', short: 'Thrifting', url: '#', color: '#b08880' },
+      { name: 'Camping', short: 'Camping', url: '#', color: '#8ba07a' },
+      { name: 'LEGO', short: 'LEGO', url: '#', color: '#d4a574' },
+      { name: 'Minecraft', short: 'Minecraft', url: '#', color: '#7db89a' },
+      { name: 'Weightlifting', short: 'Lifting', url: '#', color: '#a08060' },
+      { name: 'Reading', short: 'Reading', url: '#', color: '#9a8ab0' },
+      { name: 'Fly Fishing', short: 'Fly Fishing', url: '#', color: '#7ab8c0' },
+      { name: 'Magic Tricks', short: 'Magic', url: '#', color: '#c09070' },
+      { name: 'Math', short: 'Math', url: '#', color: '#7a9a8a' }
     ];
 
     const svg = document.getElementById('hobbyWheel');
     const tooltip = document.getElementById('hobbyTooltip');
-    const cx = 250, cy = 250, outerR = 230, innerR = 130;
+    const cx = 250, cy = 250, outerR = 230, innerR = 120;
     const n = hobbies.length;
     const angleStep = (2 * Math.PI) / n;
 
@@ -256,47 +285,84 @@
       path.setAttribute('fill', h.color);
       path.setAttribute('class', 'hobby-slice' + (h.current ? ' current' : ''));
       path.setAttribute('stroke', '#f5f0eb');
-      path.setAttribute('stroke-width', '2');
+      path.setAttribute('stroke-width', '2.5');
 
-      path.addEventListener('mouseenter', () => {
+      path.addEventListener('mouseenter', (e) => {
         tooltip.textContent = h.name + (h.current ? ' ✨' : '');
         tooltip.classList.add('visible');
+      });
+      path.addEventListener('mousemove', (e) => {
+        const rect = svg.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = (y - 40) + 'px';
+        tooltip.style.transform = 'translateX(-50%)';
       });
       path.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
 
       link.appendChild(path);
 
-      // Label
+      // Label — radial text pointing toward center
       const midA = (a1 + a2) / 2;
       const labelR = (outerR + innerR) / 2;
       const lx = cx + labelR * Math.cos(midA);
       const ly = cy + labelR * Math.sin(midA);
+
+      // Calculate rotation: text should read radially
+      let rotDeg = midA * 180 / Math.PI;
+      // If in bottom half, flip 180 so text isn't upside down
+      if (rotDeg > 90 || rotDeg < -90) {
+        rotDeg += 180;
+      }
+
       const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       text.setAttribute('x', lx);
       text.setAttribute('y', ly);
       text.setAttribute('class', 'hobby-label');
-      text.setAttribute('transform', `rotate(${(midA * 180 / Math.PI) + 90}, ${lx}, ${ly})`);
-      text.setAttribute('dominant-baseline', 'middle');
-      // Shorten long names
-      const short = h.name.length > 12 ? h.name.slice(0, 11) + '…' : h.name;
-      text.textContent = short;
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('dominant-baseline', 'central');
+      text.setAttribute('transform', `rotate(${rotDeg}, ${lx}, ${ly})`);
+      text.textContent = h.short || h.name;
 
       svg.appendChild(link);
       svg.appendChild(text);
     });
 
+    // Center circle background
+    const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    centerCircle.setAttribute('cx', cx);
+    centerCircle.setAttribute('cy', cy);
+    centerCircle.setAttribute('r', innerR - 5);
+    centerCircle.setAttribute('fill', '#f5f0eb');
+    svg.appendChild(centerCircle);
+
     // Center text
     const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     centerText.setAttribute('x', cx);
-    centerText.setAttribute('y', cy);
+    centerText.setAttribute('y', cy - 6);
     centerText.setAttribute('text-anchor', 'middle');
     centerText.setAttribute('dominant-baseline', 'middle');
     centerText.setAttribute('font-family', 'Figtree, sans-serif');
-    centerText.setAttribute('font-size', '14');
-    centerText.setAttribute('font-weight', '600');
+    centerText.setAttribute('font-size', '28');
+    centerText.setAttribute('font-weight', '800');
     centerText.setAttribute('fill', '#3a3530');
-    centerText.textContent = '18 Hobbies';
+    centerText.textContent = '18';
     svg.appendChild(centerText);
+
+    const centerSub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    centerSub.setAttribute('x', cx);
+    centerSub.setAttribute('y', cy + 16);
+    centerSub.setAttribute('text-anchor', 'middle');
+    centerSub.setAttribute('dominant-baseline', 'middle');
+    centerSub.setAttribute('font-family', 'Figtree, sans-serif');
+    centerSub.setAttribute('font-size', '11');
+    centerSub.setAttribute('font-weight', '500');
+    centerSub.setAttribute('fill', '#9a9490');
+    centerSub.setAttribute('text-transform', 'uppercase');
+    centerSub.setAttribute('letter-spacing', '0.1em');
+    centerSub.textContent = 'HOBBIES';
+    svg.appendChild(centerSub);
   </script>
 
 </body>
