@@ -42,7 +42,7 @@
         style="background: transparent;"
       ></model-viewer>
       <h1>Hey, I'm Nash</h1>
-      <p class="subtitle">Builder of things. Explorer of ideas.<br>Currently obsessed with film photography.</p>
+      <p class="subtitle">Builder of things. Explorer of ideas.<br>Always making, always learning.</p>
     </div>
   </section>
 
@@ -91,7 +91,8 @@
         <a href="https://github.com/GR3ATB0B/esp32-web-controller" target="_blank" class="project-card reveal">
           <h3>ESP32 Web Controller</h3>
           <p class="desc">A clean web interface for controlling ESP32 microcontrollers over WiFi.</p>
-          <span class="badge-complete">Complete ✓</span>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+          <span class="progress-label">Complete ✓</span>
         </a>
 
         <a href="https://github.com/GR3ATB0B/chord-engine" target="_blank" class="project-card reveal">
@@ -191,7 +192,6 @@
       navLinks.classList.toggle('mobile-open');
       hamburger.classList.toggle('active');
     });
-    // Close menu on link click
     navLinks.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         navLinks.classList.remove('mobile-open');
@@ -202,14 +202,12 @@
     // === GSAP Animations ===
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero entrance sequence
     const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTL
       .to('.hero model-viewer', { opacity: 1, scale: 1, duration: 1.2 }, 0.2)
       .to('.hero h1', { opacity: 1, y: 0, duration: 0.9 }, 0.6)
       .to('.hero .subtitle', { opacity: 1, y: 0, duration: 0.9 }, 0.9);
 
-    // Reveal on scroll with stagger for project cards
     gsap.utils.toArray('.projects-grid .reveal').forEach((el, i) => {
       gsap.to(el, {
         opacity: 1, y: 0, duration: 0.7,
@@ -218,7 +216,6 @@
       });
     });
 
-    // Other reveals
     gsap.utils.toArray('.reveal:not(.project-card)').forEach(el => {
       gsap.to(el, {
         opacity: 1, y: 0, duration: 0.8,
@@ -226,7 +223,6 @@
       });
     });
 
-    // Stats counter animation
     gsap.from('.stat-number', {
       textContent: 0,
       duration: 1.5,
@@ -240,20 +236,20 @@
       { name: 'Music Production', short: 'Music Prod', url: 'hobbies/music.html', color: '#d4a574' },
       { name: 'Music Theory', short: 'Music Theory', url: 'hobbies/music.html', color: '#7eb8c9' },
       { name: 'Arduino / Electronics', short: 'Electronics', url: 'hobbies/electronics.html', color: '#c4956a' },
-      { name: 'Python / Coding', short: 'Coding', url: '#', color: '#8b7ba8' },
-      { name: 'AI', short: 'AI', url: '#', color: '#e8937a' },
+      { name: 'Python / Coding', short: 'Coding', url: 'hobbies/coding.html', color: '#8b7ba8' },
+      { name: 'AI', short: 'AI', url: 'hobbies/ai.html', color: '#e8937a' },
       { name: 'RC', short: 'RC', url: 'hobbies/rc.html', color: '#6b8f71' },
-      { name: 'Forging & Metal', short: 'Metalwork', url: '#', color: '#9a7b5b' },
-      { name: '3D Printing', short: '3D Printing', url: '#', color: '#7ab8a0' },
-      { name: 'Goodwill Hunting', short: 'Thrifting', url: '#', color: '#b08880' },
-      { name: 'Camping', short: 'Camping', url: '#', color: '#8ba07a' },
-      { name: 'LEGO', short: 'LEGO', url: '#', color: '#d4a574' },
-      { name: 'Minecraft', short: 'Minecraft', url: '#', color: '#7db89a' },
-      { name: 'Weightlifting', short: 'Lifting', url: '#', color: '#a08060' },
-      { name: 'Reading', short: 'Reading', url: '#', color: '#9a8ab0' },
-      { name: 'Fly Fishing', short: 'Fly Fishing', url: '#', color: '#7ab8c0' },
-      { name: 'Magic Tricks', short: 'Magic', url: '#', color: '#c09070' },
-      { name: 'Math', short: 'Math', url: '#', color: '#7a9a8a' }
+      { name: 'Forging & Metal', short: 'Metalwork', url: 'hobbies/forging.html', color: '#9a7b5b' },
+      { name: '3D Printing', short: '3D Printing', url: 'hobbies/3d-printing.html', color: '#7ab8a0' },
+      { name: 'Goodwill Hunting', short: 'Thrifting', url: 'hobbies/thrifting.html', color: '#b08880' },
+      { name: 'Camping', short: 'Camping', url: 'hobbies/camping.html', color: '#8ba07a' },
+      { name: 'LEGO', short: 'LEGO', url: 'hobbies/lego.html', color: '#d4a574' },
+      { name: 'Minecraft', short: 'Minecraft', url: 'hobbies/minecraft.html', color: '#7db89a' },
+      { name: 'Weightlifting', short: 'Lifting', url: 'hobbies/weightlifting.html', color: '#a08060' },
+      { name: 'Reading', short: 'Reading', url: 'hobbies/reading.html', color: '#9a8ab0' },
+      { name: 'Fly Fishing', short: 'Fly Fishing', url: 'hobbies/fly-fishing.html', color: '#7ab8c0' },
+      { name: 'Magic Tricks', short: 'Magic', url: 'hobbies/magic.html', color: '#c09070' },
+      { name: 'Math', short: 'Math', url: 'hobbies/math.html', color: '#7a9a8a' }
     ];
 
     const svg = document.getElementById('hobbyWheel');
@@ -261,6 +257,11 @@
     const cx = 250, cy = 250, outerR = 230, innerR = 120;
     const n = hobbies.length;
     const angleStep = (2 * Math.PI) / n;
+
+    // Create a group for spinning
+    const wheelGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    wheelGroup.setAttribute('class', 'hobby-wheel-spin');
+    svg.appendChild(wheelGroup);
 
     hobbies.forEach((h, i) => {
       const a1 = i * angleStep - Math.PI / 2;
@@ -303,16 +304,17 @@
 
       link.appendChild(path);
 
-      // Label — radial text pointing toward center
+      // Label — radial text reading from OUTSIDE to INSIDE
       const midA = (a1 + a2) / 2;
       const labelR = (outerR + innerR) / 2;
       const lx = cx + labelR * Math.cos(midA);
       const ly = cy + labelR * Math.sin(midA);
 
-      // Calculate rotation: text should read radially
-      let rotDeg = midA * 180 / Math.PI;
-      // If in bottom half, flip 180 so text isn't upside down
-      if (rotDeg > 90 || rotDeg < -90) {
+      // Text reads from outer edge toward center
+      // Base rotation points text along the radius toward center
+      let rotDeg = midA * 180 / Math.PI + 90;
+      // For bottom half slices, flip so first letter is still at outside
+      if (midA > 0 && midA < Math.PI) {
         rotDeg += 180;
       }
 
@@ -325,11 +327,11 @@
       text.setAttribute('transform', `rotate(${rotDeg}, ${lx}, ${ly})`);
       text.textContent = h.short || h.name;
 
-      svg.appendChild(link);
-      svg.appendChild(text);
+      wheelGroup.appendChild(link);
+      wheelGroup.appendChild(text);
     });
 
-    // Center circle background
+    // Center circle background (outside spin group so it stays still)
     const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     centerCircle.setAttribute('cx', cx);
     centerCircle.setAttribute('cy', cy);
@@ -337,7 +339,6 @@
     centerCircle.setAttribute('fill', '#f5f0eb');
     svg.appendChild(centerCircle);
 
-    // Center text
     const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     centerText.setAttribute('x', cx);
     centerText.setAttribute('y', cy - 6);
