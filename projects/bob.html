@@ -3,135 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOB — Background Operations Brain</title>
+  <title>B.O.B. — Background Operations Brain</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
   <style>
-    :root {
-      --bg: #0e0e12;
-      --surface: #1a1a24;
-      --text: #e8e8ed;
-      --text-muted: #8888a0;
-      --neural: #7c3aed;
-      --neural-glow: #a78bfa;
-      --synapse: #06b6d4;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    .bob-page { padding-top: 6rem; }
 
-    /* Header */
-    .header {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 1.5rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .header a {
-      color: var(--neural-glow);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-    .header a:hover { text-decoration: underline; }
-
-    /* Hero */
     .bob-hero {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
-      padding: 3rem 1.5rem 2rem;
+      padding: 3rem 2rem 2rem;
       text-align: center;
-      position: relative;
     }
     .bob-hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #7c3aed, #06b6d4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: clamp(2.8rem, 6vw, 4rem);
       margin-bottom: 0.5rem;
-    }
-    .bob-hero .subtitle {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
+      color: var(--sage-dark);
     }
     .bob-hero .acronym {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--neural-glow);
-      letter-spacing: 2px;
-      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      color: var(--sage);
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .bob-hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.8;
     }
 
-    /* Terminal status */
+    /* Terminal */
     .terminal {
       max-width: 600px;
-      margin: 0 auto 3rem;
-      background: #12121a;
-      border: 1px solid rgba(124, 58, 237, 0.3);
-      border-radius: 12px;
+      margin: 2rem auto 4rem;
+      background: var(--white);
+      border: 1px solid rgba(138, 115, 85, 0.1);
+      border-radius: var(--radius);
       overflow: hidden;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-align: left;
+      box-shadow: 0 4px 40px rgba(58, 53, 48, 0.06);
     }
     .terminal-bar {
-      background: #1e1e2e;
-      padding: 0.5rem 1rem;
+      background: var(--cream-dark);
+      padding: 0.6rem 1rem;
       display: flex;
       gap: 6px;
-      align-items: center;
     }
-    .terminal-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-    }
-    .terminal-dot.r { background: #ef4444; }
-    .terminal-dot.y { background: #eab308; }
-    .terminal-dot.g { background: #22c55e; }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-dot.r { background: #e8937a; }
+    .terminal-dot.y { background: #d4a574; }
+    .terminal-dot.g { background: var(--sage); }
     .terminal-body {
-      padding: 1rem 1.25rem;
-      line-height: 1.8;
+      padding: 1.2rem 1.5rem;
+      line-height: 1.9;
       min-height: 180px;
+      color: var(--text);
     }
     .terminal-body .line { opacity: 0; animation: fadeInLine 0.3s forwards; }
-    .terminal-body .prompt { color: #22c55e; }
-    .terminal-body .info { color: var(--neural-glow); }
-    .terminal-body .ok { color: #22c55e; }
-    .terminal-body .warn { color: #eab308; }
+    .terminal-body .prompt { color: var(--sage-dark); font-weight: 600; }
+    .terminal-body .info { color: var(--sage); }
+    .terminal-body .ok { color: var(--sage-dark); }
+    .terminal-body .warn { color: #d4a574; }
     .terminal-body .dim { color: var(--text-muted); }
+    @keyframes fadeInLine { to { opacity: 1; } }
 
-    @keyframes fadeInLine {
-      to { opacity: 1; }
-    }
-
-    /* Agent architecture */
+    /* Agents */
     .agents-section {
       max-width: 900px;
       margin: 0 auto;
-      padding: 0 1.5rem 3rem;
-    }
-    .agents-section h2 {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 1.5rem;
-      text-align: center;
+      padding: 0 2rem 4rem;
     }
 
-    /* Brain diagram */
     .brain-layout {
       display: flex;
       flex-direction: column;
@@ -140,24 +90,17 @@
     }
 
     .bob-core {
-      background: linear-gradient(135deg, #7c3aed, #4c1d95);
-      border-radius: 20px;
+      background: linear-gradient(135deg, var(--sage), var(--sage-dark));
+      border-radius: var(--radius-lg);
       padding: 2rem 3rem;
       text-align: center;
-      position: relative;
-      box-shadow: 0 0 60px rgba(124, 58, 237, 0.3);
-      animation: corePulse 3s ease-in-out infinite;
+      color: var(--white);
+      box-shadow: 0 8px 40px rgba(90, 154, 130, 0.3);
     }
-    .bob-core h3 { font-size: 1.8rem; margin-bottom: 0.25rem; }
-    .bob-core .role { font-size: 0.9rem; opacity: 0.8; }
     .bob-core .brain-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .bob-core h3 { font-size: 1.8rem; color: var(--white); margin-bottom: 0.25rem; }
+    .bob-core .role { font-size: 0.9rem; opacity: 0.85; }
 
-    @keyframes corePulse {
-      0%, 100% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.3); }
-      50% { box-shadow: 0 0 80px rgba(124, 58, 237, 0.5); }
-    }
-
-    /* Connection lines */
     .connections {
       display: flex;
       justify-content: center;
@@ -166,79 +109,54 @@
     .conn-line {
       width: 2px;
       height: 40px;
-      background: linear-gradient(to bottom, var(--neural), var(--synapse));
-      opacity: 0.5;
-      animation: pulseDown 2s ease-in-out infinite;
-    }
-    .conn-line:nth-child(2) { animation-delay: 0.3s; }
-    .conn-line:nth-child(3) { animation-delay: 0.6s; }
-    .conn-line:nth-child(4) { animation-delay: 0.9s; }
-
-    @keyframes pulseDown {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
+      background: linear-gradient(to bottom, var(--sage), var(--brown-light));
+      opacity: 0.3;
     }
 
-    /* Agent cards grid */
     .agents-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
+      gap: 1.2rem;
       width: 100%;
     }
     .agent-card {
-      background: var(--surface);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
+      background: var(--white);
+      border: 1px solid rgba(138, 115, 85, 0.08);
+      border-radius: var(--radius);
       padding: 1.5rem;
       text-align: center;
-      transition: all 0.3s ease;
-      cursor: default;
+      transition: all 0.3s;
+      box-shadow: 0 1px 3px rgba(58, 53, 48, 0.03);
     }
     .agent-card:hover {
       transform: translateY(-4px);
-      border-color: var(--neural);
-      box-shadow: 0 8px 30px rgba(124, 58, 237, 0.2);
+      box-shadow: 0 12px 40px rgba(58, 53, 48, 0.08);
+      border-color: var(--sage-light);
     }
     .agent-card .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
     .agent-card h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
     .agent-card .model {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.7rem;
-      color: var(--synapse);
+      color: var(--sage);
       margin-bottom: 0.5rem;
     }
-    .agent-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
+    .agent-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
     .agent-card .status-dot {
       display: inline-block;
       width: 8px; height: 8px;
       border-radius: 50%;
-      background: #22c55e;
+      background: var(--sage);
       margin-right: 4px;
       animation: blink 2s infinite;
     }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-    /* Description section */
+    /* How it works */
     .description {
       max-width: 900px;
       margin: 0 auto;
-      padding: 0 1.5rem 3rem;
-    }
-    .description h2 {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 1rem;
+      padding: 0 2rem 4rem;
     }
     .desc-grid {
       display: grid;
@@ -246,37 +164,24 @@
       gap: 1.25rem;
     }
     .desc-card {
-      background: var(--surface);
-      border-radius: 14px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      border: 1px solid rgba(138, 115, 85, 0.06);
     }
-    .desc-card h4 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: var(--neural-glow);
-    }
-    .desc-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
+    .desc-card h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--sage-dark); }
+    .desc-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; }
 
-    /* Footer */
     .bob-footer {
       max-width: 900px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 3rem;
+      padding: 2rem 2rem 3rem;
       text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(138, 115, 85, 0.06);
     }
-    .bob-footer p {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
+    .bob-footer p { color: var(--text-muted); font-size: 0.85rem; }
 
     @media (max-width: 700px) {
-      .bob-hero h1 { font-size: 2.5rem; }
       .agents-grid { grid-template-columns: 1fr 1fr; }
       .desc-grid { grid-template-columns: 1fr; }
       .bob-core { padding: 1.5rem 2rem; }
@@ -286,20 +191,29 @@
     }
   </style>
 </head>
-<body>
+<body class="bob-page">
 
-  <div class="header">
-    <a href="../index.html">← Back</a>
-    <a href="../index.html">whatthenash.com</a>
-  </div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Nash</a>
+      <div class="nav-links">
+        <a href="/">← Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#hobbies">Hobbies</a>
+        <a href="/#about">About</a>
+      </div>
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
   <section class="bob-hero">
     <h1>🧠 B.O.B.</h1>
-    <div class="acronym">BACKGROUND OPERATIONS BRAIN</div>
-    <p class="subtitle">Nash's AI butler-brain. A multi-agent system living inside a MacBook,<br>managing the digital chaos so Nash doesn't have to.</p>
+    <div class="acronym">Background Operations Brain</div>
+    <p class="subtitle">Nash's AI butler-brain. A multi-agent system living inside a MacBook, managing the digital chaos so Nash doesn't have to.</p>
   </section>
 
-  <!-- Terminal -->
   <div class="terminal">
     <div class="terminal-bar">
       <span class="terminal-dot r"></span>
@@ -309,9 +223,8 @@
     <div class="terminal-body" id="terminal"></div>
   </div>
 
-  <!-- Agent Architecture -->
   <section class="agents-section">
-    <h2>Agent Architecture</h2>
+    <p class="section-label" style="text-align:center;">Agent Architecture</p>
     <div class="brain-layout">
       <div class="bob-core">
         <div class="brain-emoji">🧠</div>
@@ -329,7 +242,7 @@
           <div class="emoji">⚡</div>
           <h4>Clyde</h4>
           <div class="model">Claude Opus 4</div>
-          <p><span class="status-dot"></span>The Coder. Builds features, fixes bugs, ships code. That's me!</p>
+          <p><span class="status-dot"></span>The Coder. Builds features, fixes bugs, ships code.</p>
         </div>
         <div class="agent-card">
           <div class="emoji">✍️</div>
@@ -353,9 +266,8 @@
     </div>
   </section>
 
-  <!-- How it works -->
   <section class="description">
-    <h2>How It Works</h2>
+    <p class="section-label">How It Works</p>
     <div class="desc-grid">
       <div class="desc-card">
         <h4>🎯 Task Routing</h4>
@@ -381,7 +293,6 @@
   </footer>
 
   <script>
-    // Terminal typing animation
     const lines = [
       { text: '$ bob status', cls: 'prompt' },
       { text: '◆ BOB v1.0 — Background Operations Brain', cls: 'info' },
@@ -397,7 +308,6 @@
       { text: '  Systems: ✓ All nominal', cls: 'ok' },
       { text: '  Coffee level: ██████░░ 75%', cls: 'info' },
     ];
-
     const terminal = document.getElementById('terminal');
     lines.forEach((line, i) => {
       const div = document.createElement('div');
@@ -407,6 +317,5 @@
       terminal.appendChild(div);
     });
   </script>
-
 </body>
 </html>
