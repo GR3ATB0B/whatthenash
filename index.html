@@ -3,368 +3,356 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nash — Builder, Maker, Explorer</title>
-  <meta name="description" content="Nash's personal website — projects, hobbies, and more.">
+  <title>What The Nash!</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --cream: #FDF6EE;
+      --tan: #F5E6D3;
+      --sage: #8FAE8B;
+      --sage-dark: #6B8E68;
+      --sage-light: #B8D4B5;
+      --text: #3D3229;
+      --text-light: #7A6F64;
+      --white: #FFFFFF;
+      --radius: 16px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Figtree', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: var(--sage-dark); text-decoration: none; }
+    a:hover { color: var(--sage); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,246,238,0.85);
+      backdrop-filter: blur(12px);
+      padding: 16px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    nav .logo { font-weight: 700; font-size: 1.2rem; }
+    nav .links { display: flex; gap: 24px; font-size: 0.95rem; }
+    nav .links a { color: var(--text-light); transition: color 0.2s; }
+    nav .links a:hover { color: var(--sage-dark); }
+
+    /* SECTIONS */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 100px 24px 60px;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 80px;
+    }
+    .hero model-viewer {
+      width: 280px;
+      height: 280px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 500px;
+    }
+
+    /* GRADUATION */
+    .grad {
+      text-align: center;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 60px 32px;
+      max-width: 700px;
+      margin: 0 auto 60px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+    .grad h2 { font-size: 2.2rem; margin-bottom: 16px; }
+    .grad p { color: var(--text-light); margin-bottom: 24px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .grad-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .grad-buttons a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      background: var(--sage);
+      color: var(--white);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .grad-buttons a:hover { background: var(--sage-dark); transform: translateY(-2px); color: var(--white); }
+
+    /* HOBBIES */
+    .hobbies { text-align: center; }
+    .hobbies .current-hobby {
+      font-size: 1.1rem;
+      color: var(--sage-dark);
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+    .bubble-container {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+    .bubble {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--tan);
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.82rem;
+      text-align: center;
+      padding: 10px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      line-height: 1.2;
+    }
+    .bubble:hover {
+      transform: scale(1.12) !important;
+      box-shadow: 0 4px 20px rgba(143,174,139,0.3);
+      border-color: var(--sage);
+      color: var(--text);
+    }
+    .bubble.current {
+      background: var(--sage);
+      color: var(--white);
+      border-color: var(--sage-dark);
+      font-weight: 700;
+    }
+
+    @keyframes float1 { 0%,100%{transform:translate(0,0)} 25%{transform:translate(12px,-18px)} 50%{transform:translate(-8px,-10px)} 75%{transform:translate(15px,12px)} }
+    @keyframes float2 { 0%,100%{transform:translate(0,0)} 25%{transform:translate(-15px,10px)} 50%{transform:translate(10px,18px)} 75%{transform:translate(-12px,-14px)} }
+    @keyframes float3 { 0%,100%{transform:translate(0,0)} 25%{transform:translate(8px,15px)} 50%{transform:translate(-14px,-8px)} 75%{transform:translate(10px,-16px)} }
+
+    /* PROJECTS TEASER */
+    .projects-teaser { text-align: center; }
+    .projects-teaser p { color: var(--text-light); font-size: 1.1rem; margin-bottom: 28px; }
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--sage);
+      color: var(--white);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--sage-dark); transform: translateY(-2px); color: var(--white); }
+
+    /* ABOUT */
+    .about { text-align: center; }
+    .about p { color: var(--text-light); max-width: 520px; margin: 0 auto 16px; }
+    .about .stats {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--sage-dark);
+      margin: 24px 0;
+    }
+    .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
+    .social-links a {
+      padding: 10px 20px;
+      background: var(--white);
+      border-radius: 50px;
+      font-weight: 500;
+      border: 2px solid var(--tan);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .social-links a:hover { border-color: var(--sage); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--tan);
+      max-width: 900px;
+      margin: 40px auto 0;
+    }
+    footer a { color: var(--text-light); margin: 0 12px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero model-viewer { width: 200px; height: 200px; }
+      .bubble-container { height: 600px; }
+      nav .links { gap: 14px; font-size: 0.85rem; }
+      .grad { padding: 40px 20px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">Nash</a>
-      <div class="nav-links" id="navLinks">
-        <a href="#projects">Projects</a>
-        <a href="#hobbies">Hobbies</a>
-        <a href="#about">About</a>
-        <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
-      </div>
-      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+<nav>
+  <div class="logo">What The Nash!</div>
+  <div class="links">
+    <a href="#hobbies">Hobbies</a>
+    <a href="projects.html">Projects</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <model-viewer
-        src="assets/Face.glb"
-        auto-rotate
-        camera-controls
-        rotation-per-second="30deg"
-        interaction-prompt="none"
-        shadow-intensity="0"
-        style="background: transparent;"
-      ></model-viewer>
-      <h1>Hey, I'm Nash</h1>
-      <p class="subtitle">Builder of things. Explorer of ideas.<br>Always making, always learning.</p>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <model-viewer
+    src="assets/Face.glb"
+    auto-rotate
+    camera-controls
+    disable-zoom
+    rotation-per-second="30deg"
+    style="--poster-color: transparent;"
+  ></model-viewer>
+  <h1>Hey, I'm Nash</h1>
+  <p>Builder of things. Explorer of ideas. Always making, always learning.</p>
+</section>
 
-  <!-- GRADUATION -->
-  <section id="graduation">
-    <div class="graduation reveal">
-      <div class="grad-icon">🎓</div>
-      <h2>I'm Graduating!</h2>
-      <p class="story">I'm graduating from Atlanta Classical Academy and heading to Auburn University to study Electrical Engineering. I'm incredibly thankful for the people who helped shape me along the way — and excited for what's ahead.</p>
-      <div class="gift-buttons">
-        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn coffee">☕ Buy Me a Coffee</a>
-        <a href="#" class="gift-btn cash">💵 Cash App</a>
-        <a href="#" class="gift-btn wishlist">🎁 Amazon Wishlist</a>
-      </div>
-    </div>
-  </section>
+<!-- GRADUATION -->
+<div class="grad" id="grad">
+  <h2>I'm Graduating! 🎓</h2>
+  <p>After four incredible years of building, breaking, and learning — I'm crossing the stage. If you want to celebrate with me, here are some ways:</p>
+  <div class="grad-buttons">
+    <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">☕ Buy Me a Coffee</a>
+    <a href="#" target="_blank">💸 Cash App</a>
+    <a href="#" target="_blank">🎁 Amazon Wishlist</a>
+  </div>
+</div>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <p class="section-label">What I'm Building</p>
-      <h2>Projects</h2>
-      <div class="projects-grid">
+<!-- HOBBIES -->
+<section class="hobbies" id="hobbies">
+  <h2 class="section-title">My Hobbies</h2>
+  <p class="current-hobby">Currently into: Film Photography 📷</p>
+  <div class="bubble-container" id="bubbleContainer"></div>
+</section>
 
-        <a href="https://github.com/GR3ATB0B/diy-graphing-calculator" target="_blank" class="project-card reveal">
-          <h3>DIY Graphing Calculator</h3>
-          <p class="desc">A graphing calculator built from the ground up — custom PCB, firmware, and UI.</p>
-          <div class="progress-bar"><div class="progress-fill" style="width: 15%"></div></div>
-          <span class="progress-label">15% complete</span>
-        </a>
+<!-- PROJECTS TEASER -->
+<section class="projects-teaser">
+  <h2 class="section-title">I'm always building something.</h2>
+  <p>From graphing calculators to AI bots to robotic arms — I love making things work.</p>
+  <a href="projects.html" class="btn-primary">Check out my projects →</a>
+</section>
 
-        <a href="https://github.com/GR3ATB0B/Memeiverse" target="_blank" class="project-card reveal">
-          <h3>Memeiverse</h3>
-          <p class="desc">A social platform for memes — built for the culture, by the culture.</p>
-          <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
-          <span class="progress-label">60% complete</span>
-        </a>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <h2 class="section-title">About Me</h2>
+  <p>I'm Nash — a maker, tinkerer, and lifelong learner. I love diving deep into new hobbies, building projects from scratch, and figuring out how things work. Whether it's code, circuits, or a campfire, I'm always exploring.</p>
+  <div class="stats">25+ projects · 18 hobbies · ∞ curiosity</div>
+  <div class="social-links">
+    <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+    <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">Buy Me a Coffee</a>
+  </div>
+</section>
 
-        <a href="projects/bob.html" class="project-card reveal">
-          <h3>B.O.B.</h3>
-          <p class="desc">My personal AI assistant that learns and grows alongside me.</p>
-          <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
-          <span class="progress-label">Ongoing</span>
-        </a>
+<!-- FOOTER -->
+<footer>
+  <a href="#hobbies">Hobbies</a>
+  <a href="projects.html">Projects</a>
+  <a href="#about">About</a>
+  <p style="margin-top:16px">© 2026 Nash. Built with curiosity.</p>
+</footer>
 
-        <a href="https://github.com/GR3ATB0B/esp32-web-controller" target="_blank" class="project-card reveal">
-          <h3>ESP32 Web Controller</h3>
-          <p class="desc">A clean web interface for controlling ESP32 microcontrollers over WiFi.</p>
-          <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-          <span class="progress-label">Complete ✓</span>
-        </a>
+<script>
+// Hobby bubbles
+const hobbies = [
+  { name: "Film Photography", page: "hobbies/photography.html", current: true },
+  { name: "Music Production", page: "hobbies/music.html" },
+  { name: "Music Theory", page: "hobbies/music.html" },
+  { name: "Arduino & Electronics", page: "hobbies/electronics.html" },
+  { name: "Python & Coding", page: "hobbies/coding.html" },
+  { name: "AI", page: "hobbies/ai.html" },
+  { name: "RC Vehicles", page: "hobbies/rc.html" },
+  { name: "Forging & Metal Casting", page: "hobbies/forging.html" },
+  { name: "3D Printing", page: "hobbies/3d-printing.html" },
+  { name: "Goodwill Hunting", page: "hobbies/thrifting.html" },
+  { name: "Camping", page: "hobbies/camping.html" },
+  { name: "LEGO", page: "hobbies/lego.html" },
+  { name: "Minecraft", page: "hobbies/minecraft.html" },
+  { name: "Weightlifting", page: "hobbies/weightlifting.html" },
+  { name: "Reading", page: "hobbies/reading.html" },
+  { name: "Fly Fishing", page: "hobbies/fly-fishing.html" },
+  { name: "Magic Tricks", page: "hobbies/magic.html" },
+  { name: "Math", page: "hobbies/math.html" }
+];
 
-        <a href="https://github.com/GR3ATB0B/chord-engine" target="_blank" class="project-card reveal">
-          <h3>Chord Engine</h3>
-          <p class="desc">A music theory engine that generates and analyzes chord progressions.</p>
-          <div class="progress-bar"><div class="progress-fill" style="width: 30%"></div></div>
-          <span class="progress-label">In progress</span>
-        </a>
+const container = document.getElementById('bubbleContainer');
+const cw = container.offsetWidth;
+const ch = container.offsetHeight;
+const sizes = [90, 100, 110, 85, 95, 105, 88, 102, 92, 98, 108, 86, 96, 100, 94, 104, 88, 106];
+const anims = ['float1', 'float2', 'float3'];
+const placed = [];
 
-        <a href="https://github.com/GR3ATB0B/NFC-Wallet" target="_blank" class="project-card reveal">
-          <h3>NFC Wallet</h3>
-          <p class="desc">A custom NFC-based wallet for tap-to-pay without the bulk.</p>
-          <div class="progress-bar"><div class="progress-fill" style="width: 5%"></div></div>
-          <span class="progress-label">5% complete</span>
-        </a>
+hobbies.forEach((h, i) => {
+  const size = sizes[i % sizes.length];
+  const el = document.createElement('a');
+  el.href = h.page;
+  el.className = 'bubble' + (h.current ? ' current' : '');
+  el.textContent = h.name;
+  el.style.width = size + 'px';
+  el.style.height = size + 'px';
 
-      </div>
-    </div>
-  </section>
+  // place without overlap
+  let x, y, attempts = 0;
+  do {
+    x = Math.random() * (cw - size);
+    y = Math.random() * (ch - size);
+    attempts++;
+  } while (attempts < 200 && placed.some(p => {
+    const dx = (x + size/2) - (p.x + p.s/2);
+    const dy = (y + size/2) - (p.y + p.s/2);
+    return Math.sqrt(dx*dx + dy*dy) < (size/2 + p.s/2 + 8);
+  }));
+  placed.push({ x, y, s: size });
 
-  <!-- HOBBIES -->
-  <section id="hobbies" class="hobby-section">
-    <div class="container">
-      <p class="section-label">The Hobby Cycle</p>
-      <h2>What I'm Into</h2>
-      <p class="hobby-intro">I rotate through hobbies like seasons. Click a slice to explore.</p>
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  el.style.animation = `${anims[i % 3]} ${8 + (i % 5) * 2}s ease-in-out infinite`;
+  el.style.animationDelay = `${-(i * 0.7)}s`;
+  container.appendChild(el);
+});
 
-      <div class="hobby-wheel-container">
-        <svg viewBox="0 0 500 500" id="hobbyWheel"></svg>
-        <div class="hobby-tooltip" id="hobbyTooltip"></div>
-      </div>
-
-      <p class="hobby-current-label">Currently obsessed with: <strong>Film Photography 📷</strong></p>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about reveal">
-      <div class="about-grid">
-        <div class="about-photo">
-          <div class="photo-placeholder-inner">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>Photo coming soon</span>
-          </div>
-        </div>
-        <div class="about-text">
-          <p class="section-label">About Me</p>
-          <h2>Nash</h2>
-          <p>I'm a maker, tinkerer, and lifelong learner from Atlanta. I love building things — from circuits to code to campfires. Heading to Auburn University for Electrical Engineering this fall.</p>
-          <p>When I'm not soldering or coding, you can find me shooting film, casting metal, or hunting through Goodwill for hidden gems.</p>
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-number">25+</div>
-              <div class="stat-label">Projects</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">18</div>
-              <div class="stat-label">Hobbies</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">∞</div>
-              <div class="stat-label">Curiosity</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="gift-buttons" style="margin-bottom: 2.5rem;">
-        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" class="gift-btn coffee">☕ Buy Me a Coffee</a>
-        <a href="#" class="gift-btn cash">💵 Cash App</a>
-        <a href="#" class="gift-btn wishlist">🎁 Amazon Wishlist</a>
-      </div>
-      <div class="footer-links">
-        <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
-        <a href="https://instagram.com" target="_blank">Instagram</a>
-        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">Buy Me a Coffee</a>
-      </div>
-      <p class="footer-copy">© 2026 Nash. Built with curiosity and caffeine.</p>
-    </div>
-  </footer>
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <script>
-    // === NAV HAMBURGER ===
-    const hamburger = document.getElementById('navHamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('mobile-open');
-      hamburger.classList.toggle('active');
-    });
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        navLinks.classList.remove('mobile-open');
-        hamburger.classList.remove('active');
-      });
-    });
-
-    // === GSAP Animations ===
-    gsap.registerPlugin(ScrollTrigger);
-
-    const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    heroTL
-      .to('.hero model-viewer', { opacity: 1, scale: 1, duration: 1.2 }, 0.2)
-      .to('.hero h1', { opacity: 1, y: 0, duration: 0.9 }, 0.6)
-      .to('.hero .subtitle', { opacity: 1, y: 0, duration: 0.9 }, 0.9);
-
-    gsap.utils.toArray('.projects-grid .reveal').forEach((el, i) => {
-      gsap.to(el, {
-        opacity: 1, y: 0, duration: 0.7,
-        delay: i * 0.1,
-        scrollTrigger: { trigger: el, start: 'top 88%' }
-      });
-    });
-
-    gsap.utils.toArray('.reveal:not(.project-card)').forEach(el => {
-      gsap.to(el, {
-        opacity: 1, y: 0, duration: 0.8,
-        scrollTrigger: { trigger: el, start: 'top 85%' }
-      });
-    });
-
-    gsap.from('.stat-number', {
-      textContent: 0,
-      duration: 1.5,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: '.stats', start: 'top 85%' }
-    });
-
-    // === HOBBY WHEEL ===
-    const hobbies = [
-      { name: 'Film Photography', short: 'Film Photo', url: 'hobbies/photography.html', current: true, color: '#5a9a82' },
-      { name: 'Music Production', short: 'Music Prod', url: 'hobbies/music.html', color: '#d4a574' },
-      { name: 'Music Theory', short: 'Music Theory', url: 'hobbies/music.html', color: '#7eb8c9' },
-      { name: 'Arduino / Electronics', short: 'Electronics', url: 'hobbies/electronics.html', color: '#c4956a' },
-      { name: 'Python / Coding', short: 'Coding', url: 'hobbies/coding.html', color: '#8b7ba8' },
-      { name: 'AI', short: 'AI', url: 'hobbies/ai.html', color: '#e8937a' },
-      { name: 'RC', short: 'RC', url: 'hobbies/rc.html', color: '#6b8f71' },
-      { name: 'Forging & Metal', short: 'Metalwork', url: 'hobbies/forging.html', color: '#9a7b5b' },
-      { name: '3D Printing', short: '3D Printing', url: 'hobbies/3d-printing.html', color: '#7ab8a0' },
-      { name: 'Goodwill Hunting', short: 'Thrifting', url: 'hobbies/thrifting.html', color: '#b08880' },
-      { name: 'Camping', short: 'Camping', url: 'hobbies/camping.html', color: '#8ba07a' },
-      { name: 'LEGO', short: 'LEGO', url: 'hobbies/lego.html', color: '#d4a574' },
-      { name: 'Minecraft', short: 'Minecraft', url: 'hobbies/minecraft.html', color: '#7db89a' },
-      { name: 'Weightlifting', short: 'Lifting', url: 'hobbies/weightlifting.html', color: '#a08060' },
-      { name: 'Reading', short: 'Reading', url: 'hobbies/reading.html', color: '#9a8ab0' },
-      { name: 'Fly Fishing', short: 'Fly Fishing', url: 'hobbies/fly-fishing.html', color: '#7ab8c0' },
-      { name: 'Magic Tricks', short: 'Magic', url: 'hobbies/magic.html', color: '#c09070' },
-      { name: 'Math', short: 'Math', url: 'hobbies/math.html', color: '#7a9a8a' }
-    ];
-
-    const svg = document.getElementById('hobbyWheel');
-    const tooltip = document.getElementById('hobbyTooltip');
-    const cx = 250, cy = 250, outerR = 230, innerR = 120;
-    const n = hobbies.length;
-    const angleStep = (2 * Math.PI) / n;
-
-    // Create a group for spinning
-    const wheelGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    wheelGroup.setAttribute('class', 'hobby-wheel-spin');
-    svg.appendChild(wheelGroup);
-
-    hobbies.forEach((h, i) => {
-      const a1 = i * angleStep - Math.PI / 2;
-      const a2 = (i + 1) * angleStep - Math.PI / 2;
-
-      const x1o = cx + outerR * Math.cos(a1);
-      const y1o = cy + outerR * Math.sin(a1);
-      const x2o = cx + outerR * Math.cos(a2);
-      const y2o = cy + outerR * Math.sin(a2);
-      const x1i = cx + innerR * Math.cos(a2);
-      const y1i = cy + innerR * Math.sin(a2);
-      const x2i = cx + innerR * Math.cos(a1);
-      const y2i = cy + innerR * Math.sin(a1);
-
-      const d = `M ${x1o} ${y1o} A ${outerR} ${outerR} 0 0 1 ${x2o} ${y2o} L ${x1i} ${y1i} A ${innerR} ${innerR} 0 0 0 ${x2i} ${y2i} Z`;
-
-      const link = document.createElementNS('http://www.w3.org/2000/svg', 'a');
-      link.setAttributeNS('http://www.w3.org/1999/xlink', 'href', h.url);
-
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', d);
-      path.setAttribute('fill', h.color);
-      path.setAttribute('class', 'hobby-slice' + (h.current ? ' current' : ''));
-      path.setAttribute('stroke', '#f5f0eb');
-      path.setAttribute('stroke-width', '2.5');
-
-      path.addEventListener('mouseenter', (e) => {
-        tooltip.textContent = h.name + (h.current ? ' ✨' : '');
-        tooltip.classList.add('visible');
-      });
-      path.addEventListener('mousemove', (e) => {
-        const rect = svg.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        tooltip.style.left = x + 'px';
-        tooltip.style.top = (y - 40) + 'px';
-        tooltip.style.transform = 'translateX(-50%)';
-      });
-      path.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
-
-      link.appendChild(path);
-
-      // Label — radial text reading from OUTSIDE to INSIDE
-      const midA = (a1 + a2) / 2;
-      const labelR = (outerR + innerR) / 2;
-      const lx = cx + labelR * Math.cos(midA);
-      const ly = cy + labelR * Math.sin(midA);
-
-      // Text reads from outer edge toward center
-      // Base rotation points text along the radius toward center
-      let rotDeg = midA * 180 / Math.PI + 90;
-      // For bottom half slices, flip so first letter is still at outside
-      if (midA > 0 && midA < Math.PI) {
-        rotDeg += 180;
-      }
-
-      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      text.setAttribute('x', lx);
-      text.setAttribute('y', ly);
-      text.setAttribute('class', 'hobby-label');
-      text.setAttribute('text-anchor', 'middle');
-      text.setAttribute('dominant-baseline', 'central');
-      text.setAttribute('transform', `rotate(${rotDeg}, ${lx}, ${ly})`);
-      text.textContent = h.short || h.name;
-
-      wheelGroup.appendChild(link);
-      wheelGroup.appendChild(text);
-    });
-
-    // Center circle background (outside spin group so it stays still)
-    const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    centerCircle.setAttribute('cx', cx);
-    centerCircle.setAttribute('cy', cy);
-    centerCircle.setAttribute('r', innerR - 5);
-    centerCircle.setAttribute('fill', '#f5f0eb');
-    svg.appendChild(centerCircle);
-
-    const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    centerText.setAttribute('x', cx);
-    centerText.setAttribute('y', cy - 6);
-    centerText.setAttribute('text-anchor', 'middle');
-    centerText.setAttribute('dominant-baseline', 'middle');
-    centerText.setAttribute('font-family', 'Figtree, sans-serif');
-    centerText.setAttribute('font-size', '28');
-    centerText.setAttribute('font-weight', '800');
-    centerText.setAttribute('fill', '#3a3530');
-    centerText.textContent = '18';
-    svg.appendChild(centerText);
-
-    const centerSub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    centerSub.setAttribute('x', cx);
-    centerSub.setAttribute('y', cy + 16);
-    centerSub.setAttribute('text-anchor', 'middle');
-    centerSub.setAttribute('dominant-baseline', 'middle');
-    centerSub.setAttribute('font-family', 'Figtree, sans-serif');
-    centerSub.setAttribute('font-size', '11');
-    centerSub.setAttribute('font-weight', '500');
-    centerSub.setAttribute('fill', '#9a9490');
-    centerSub.setAttribute('text-transform', 'uppercase');
-    centerSub.setAttribute('letter-spacing', '0.1em');
-    centerSub.textContent = 'HOBBIES';
-    svg.appendChild(centerSub);
-  </script>
-
+// GSAP scroll animations
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.section-title, .grad, .about p, .about .stats, .projects-teaser p, .current-hobby').forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+    opacity: 0, y: 30, duration: 0.7, ease: 'power2.out'
+  });
+});
+</script>
 </body>
 </html>
