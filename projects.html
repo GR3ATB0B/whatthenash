@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — What The Nash!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --cream: #FDF6EE;
+      --tan: #F5E6D3;
+      --sage: #8FAE8B;
+      --sage-dark: #6B8E68;
+      --text: #3D3229;
+      --text-light: #7A6F64;
+      --white: #FFFFFF;
+      --radius: 16px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Figtree', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--sage-dark); text-decoration: none; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,246,238,0.85);
+      backdrop-filter: blur(12px);
+      padding: 16px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    nav .logo { font-weight: 700; font-size: 1.2rem; }
+    nav .logo a { color: var(--text); }
+    nav .links { display: flex; gap: 24px; font-size: 0.95rem; }
+    nav .links a { color: var(--text-light); transition: color 0.2s; }
+    nav .links a:hover { color: var(--sage-dark); }
+
+    .page-header {
+      text-align: center;
+      padding: 140px 24px 40px;
+    }
+    .page-header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+    .page-header p { color: var(--text-light); font-size: 1.1rem; }
+
+    .projects-grid {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px 24px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      border: 2px solid var(--tan);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      border-color: var(--sage);
+    }
+    .project-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .project-card p { color: var(--text-light); font-size: 0.9rem; flex: 1; margin-bottom: 16px; }
+    .project-card .meta {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.82rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.78rem;
+    }
+    .badge.complete { background: var(--sage); color: var(--white); }
+    .badge.wip { background: var(--tan); color: var(--text); }
+    .badge.planned { background: #E8E0D8; color: var(--text-light); }
+    .project-card .link-arrow { color: var(--sage-dark); font-weight: 600; }
+
+    footer {
+      text-align: center; padding: 40px 24px; color: var(--text-light);
+      font-size: 0.85rem; border-top: 1px solid var(--tan);
+      max-width: 960px; margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .page-header h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html">What The Nash!</a></div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#about">About</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>My Projects</h1>
+  <p>Things I've built, am building, or plan to build.</p>
+</div>
+
+<div class="projects-grid" id="grid">
+
+  <a href="https://github.com/GR3ATB0B/diy-graphing-calculator" target="_blank" class="project-card">
+    <h3>DIY Graphing Calculator</h3>
+    <p>Building a graphing calculator from scratch with custom hardware and software.</p>
+    <div class="meta"><span class="badge wip">15%</span><span class="link-arrow">→</span></div>
+  </a>
+
+  <a href="https://github.com/GR3ATB0B/Memeiverse" target="_blank" class="project-card">
+    <h3>Memeiverse</h3>
+    <p>A meme-sharing universe. Social platform for memes, built from the ground up.</p>
+    <div class="meta"><span class="badge wip">60%</span><span class="link-arrow">→</span></div>
+  </a>
+
+  <a href="projects/bob.html" class="project-card">
+    <h3>B.O.B.</h3>
+    <p>My personal AI assistant — always learning, always helping.</p>
+    <div class="meta"><span class="badge wip">In Progress</span><span class="link-arrow">→</span></div>
+  </a>
+
+  <a href="https://github.com/GR3ATB0B/esp32-web-controller" target="_blank" class="project-card">
+    <h3>ESP32 Web Controller</h3>
+    <p>A web-based controller for ESP32 microcontrollers. Control hardware from your browser.</p>
+    <div class="meta"><span class="badge complete">Complete</span><span class="link-arrow">→</span></div>
+  </a>
+
+  <a href="https://github.com/GR3ATB0B/chord-engine" target="_blank" class="project-card">
+    <h3>Chord Engine</h3>
+    <p>Music theory tool for generating and visualizing chord progressions.</p>
+    <div class="meta"><span class="badge wip">In Progress</span><span class="link-arrow">→</span></div>
+  </a>
+
+  <a href="https://github.com/GR3ATB0B/NFC-Wallet" target="_blank" class="project-card">
+    <h3>NFC Wallet</h3>
+    <p>Digital wallet using NFC technology for contactless transactions.</p>
+    <div class="meta"><span class="badge wip">5%</span><span class="link-arrow">→</span></div>
+  </a>
+
+  <a href="projects/project3.html" class="project-card">
+    <h3>Unbeatable Pong</h3>
+    <p>A Pong game with an AI opponent that's impossible to beat. Or is it?</p>
+    <div class="meta"><span class="badge complete">Complete</span><span class="link-arrow">→</span></div>
+  </a>
+
+  <a href="projects/project4.html" class="project-card">
+    <h3>FBI Most Wanted</h3>
+    <p>An interactive lookup tool for the FBI's Most Wanted list.</p>
+    <div class="meta"><span class="badge complete">Complete</span><span class="link-arrow">→</span></div>
+  </a>
+
+  <a href="https://github.com/GR3ATB0B/aca-website" target="_blank" class="project-card">
+    <h3>AP Comp Sci</h3>
+    <p>Website project from AP Computer Science class.</p>
+    <div class="meta"><span class="badge complete">Complete</span><span class="link-arrow">→</span></div>
+  </a>
+
+  <div class="project-card" style="cursor:default">
+    <h3>SkyStream</h3>
+    <p>Coming soon — a streaming project in the works.</p>
+    <div class="meta"><span class="badge planned">Planned</span></div>
+  </div>
+
+  <div class="project-card" style="cursor:default">
+    <h3>Ares II</h3>
+    <p>Coming soon — details to follow.</p>
+    <div class="meta"><span class="badge planned">Planned</span></div>
+  </div>
+
+  <div class="project-card" style="cursor:default">
+    <h3>Robotic Arm</h3>
+    <p>Coming soon — a robotic arm build from scratch.</p>
+    <div class="meta"><span class="badge planned">Planned</span></div>
+  </div>
+
+</div>
+
+<footer>
+  <a href="index.html" style="margin-right:12px">Home</a>
+  <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
+  <p style="margin-top:16px">© 2026 Nash. Built with curiosity.</p>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.project-card').forEach((el, i) => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%' },
+    opacity: 0, y: 24, duration: 0.5, delay: i * 0.05, ease: 'power2.out'
+  });
+});
+</script>
+</body>
+</html>
