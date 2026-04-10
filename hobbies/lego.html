@@ -8,6 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-grid img { width: 100%; border-radius: 12px; border: 1px solid rgba(138,115,85,0.08); }
+    .quote-box { background: #a8d5c2; color: #3a3530; border-radius: 12px; padding: 1.5rem 2rem; margin: 1.5rem 0; font-size: 1.15rem; font-style: italic; font-weight: 500; text-align: center; }
+  </style>
 </head>
 <body>
 
@@ -30,29 +35,21 @@
     <div>
       <p class="section-label">Hobby</p>
       <h1>LEGO 🧱</h1>
-      <p class="subtitle">Building worlds brick by brick — engineering in miniature.</p>
+      <p class="subtitle">Near and dear to my heart.</p>
     </div>
   </section>
 
   <div class="hobby-content">
     <div class="content-card">
-      <h3>About This Hobby</h3>
-      <p>LEGO has been with me since I was a kid. These days I appreciate the engineering side — gear trains, pneumatics, Technic builds. It's the perfect intersection of creativity and mechanical thinking.</p>
+      <h3>The Galaxy Explorer</h3>
+      <p>The <strong>LEGO Galaxy Explorer spaceship</strong> is my favorite set I've ever built. It's a re-release of a classic space LEGO set, and it's absolutely gorgeous — sleek gray, blue, and yellow design. Building it felt like connecting with LEGO history.</p>
     </div>
 
-    <h3 style="margin-bottom: 1.5rem;">Gallery</h3>
-    <div class="placeholder-grid">
-      <div class="placeholder-box">Photo 1</div>
-      <div class="placeholder-box">Photo 2</div>
-      <div class="placeholder-box">Photo 3</div>
-      <div class="placeholder-box">Photo 4</div>
-      <div class="placeholder-box">Photo 5</div>
-      <div class="placeholder-box">Photo 6</div>
-    </div>
+    <div class="quote-box">"Near and dear to my heart — love it so flippin much." 🚀</div>
 
-    <div class="content-card" style="margin-top: 2rem;">
-      <h3>More Details</h3>
-      <p>Content coming soon — check back later!</p>
+    <h3 style="margin-bottom: 1.5rem;">The Set</h3>
+    <div class="gallery-grid">
+      <img src="../images/lego-1.jpg" alt="LEGO Galaxy Explorer spaceship set" loading="lazy">
     </div>
   </div>
 
@@ -71,7 +68,7 @@
   <script>
     gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
     gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
-    gsap.from('.placeholder-box', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
   </script>
 </body>
 </html>
