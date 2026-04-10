@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python / Coding — Nash</title>
+  <title>Python & Coding — Nash</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-grid img { width: 100%; border-radius: 12px; border: 1px solid rgba(138,115,85,0.08); }
+    .caption { text-align: center; color: #6b6560; font-size: 0.9rem; margin-top: 0.5rem; font-style: italic; }
+  </style>
 </head>
 <body>
 
@@ -29,30 +34,24 @@
   <section class="hobby-hero">
     <div>
       <p class="section-label">Hobby</p>
-      <h1>Python / Coding 🐍</h1>
-      <p class="subtitle">Writing code that solves problems and scratches creative itches.</p>
+      <h1>Python & Coding 💻</h1>
+      <p class="subtitle">Always had a knack for it — started before I could spell "algorithm."</p>
     </div>
   </section>
 
   <div class="hobby-content">
     <div class="content-card">
-      <h3>About This Hobby</h3>
-      <p>Python was my gateway into programming. From automating boring stuff to building full projects, coding is how I bring ideas to life. There's nothing like the feeling of getting something to finally work after hours of debugging.</p>
+      <h3>About</h3>
+      <p>Coding has been part of my life for as long as I can remember. I've always had a natural affinity for computers and programming — it's just how my brain works. Python is my go-to for quick projects, data analysis, and automation, but I'm comfortable across multiple languages.</p>
+      <p>Check out my work on <a href="https://github.com/GR3ATB0B" target="_blank"><strong>GitHub →</strong></a></p>
     </div>
 
-    <h3 style="margin-bottom: 1.5rem;">Gallery</h3>
-    <div class="placeholder-grid">
-      <div class="placeholder-box">Photo 1</div>
-      <div class="placeholder-box">Photo 2</div>
-      <div class="placeholder-box">Photo 3</div>
-      <div class="placeholder-box">Photo 4</div>
-      <div class="placeholder-box">Photo 5</div>
-      <div class="placeholder-box">Photo 6</div>
-    </div>
-
-    <div class="content-card" style="margin-top: 2rem;">
-      <h3>More Details</h3>
-      <p>Content coming soon — check back later!</p>
+    <h3 style="margin-bottom: 1.5rem;">Where It All Started</h3>
+    <div class="gallery-grid">
+      <div>
+        <img src="../images/coding-1.jpg" alt="Young Nash at a library computer, circa 2008-2010" loading="lazy">
+        <p class="caption">Me at a library computer, ~2008-2010. Some things never change. 😄</p>
+      </div>
     </div>
   </div>
 
@@ -71,7 +70,7 @@
   <script>
     gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
     gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
-    gsap.from('.placeholder-box', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
   </script>
 </body>
 </html>
