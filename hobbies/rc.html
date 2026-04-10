@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RC — Nash</title>
+  <title>RC Vehicles — Nash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; border: 1px solid rgba(138,115,85,0.08); }
+    .fun-fact { background: #a8d5c2; color: #3a3530; border-radius: 12px; padding: 1.2rem 1.5rem; margin: 1rem 0; font-weight: 500; }
+  </style>
 </head>
 <body>
 
@@ -15,39 +23,39 @@
         <a href="/">← Home</a>
         <a href="/#projects">Projects</a>
         <a href="/#hobbies">Hobbies</a>
+        <a href="/#about">About</a>
       </div>
-      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
   <section class="hobby-hero">
     <div>
       <p class="section-label">Hobby</p>
-      <h1>RC ✈️</h1>
-      <p class="subtitle">Aircraft, cars, boats, and FPV drones — if it moves, I fly it.</p>
+      <h1>RC Vehicles 🏎️</h1>
+      <p class="subtitle">Speed, crashes, and the occasional rocket explosion.</p>
     </div>
   </section>
 
   <div class="hobby-content">
     <div class="content-card">
-      <h3>Flying with Grandpa</h3>
-      <p>Some of my best memories are at the RC field with my grandpa. He taught me to fly, and now we build and crash planes together. It's our thing.</p>
+      <h3>About</h3>
+      <p>I love building and driving <strong>RC cars and trucks</strong>. There's something awesome about tearing apart a short course truck, upgrading the electronics, and pushing it to its limits. I also dabble in model rockets — with mixed results.</p>
+    </div>
+
+    <div class="fun-fact">🚀 <strong>Fun Fact:</strong> My first rocket just straight up blew up. I have the video to prove it.</div>
+
+    <h3 style="margin-bottom: 1.5rem;">Gallery</h3>
+    <div class="gallery-grid">
+      <img src="../images/rc-1.jpg" alt="Old RC short course truck with exposed chassis" loading="lazy">
+      <img src="../images/rc-2.jpg" alt="RC vehicle" loading="lazy">
     </div>
 
     <div class="content-card">
-      <h3>FPV Drones</h3>
-      <p>First-person-view flying is the closest thing to actually being a bird. Building custom quads, tuning PIDs, and chasing that perfect flight.</p>
-    </div>
-
-    <div class="content-card">
-      <h3>The Fleet</h3>
-      <p>Photos of my RC aircraft, cars, boats, and drones coming soon.</p>
-      <div class="placeholder-grid">
-        <div class="placeholder-box">RC Plane</div>
-        <div class="placeholder-box">FPV Quad</div>
-        <div class="placeholder-box">RC Car</div>
-        <div class="placeholder-box">RC Boat</div>
-      </div>
+      <h3>More Coming Soon</h3>
+      <p>More RC car pics and that legendary rocket explosion video coming soon!</p>
     </div>
   </div>
 
@@ -65,7 +73,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>
     gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
-    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.4, stagger: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
   </script>
 </body>
 </html>
