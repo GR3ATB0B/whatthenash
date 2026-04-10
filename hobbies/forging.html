@@ -8,6 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; border: 1px solid rgba(138,115,85,0.08); }
+    .story-box { background: #ede8e2; border-left: 4px solid #7ab8a0; border-radius: 0 12px 12px 0; padding: 1.2rem 1.5rem; margin: 1rem 0; }
+    .story-box p { color: #3a3530; margin: 0; }
+  </style>
 </head>
 <body>
 
@@ -29,30 +35,26 @@
   <section class="hobby-hero">
     <div>
       <p class="section-label">Hobby</p>
-      <h1>Forging & Metal Casting 🔥</h1>
-      <p class="subtitle">Shaping metal with heat, hammers, and patience.</p>
+      <h1>Forging & Metal Casting 🔨</h1>
+      <p class="subtitle">Rebar, aluminum, and a healthy respect for molten metal.</p>
     </div>
   </section>
 
   <div class="hobby-content">
     <div class="content-card">
-      <h3>About This Hobby</h3>
-      <p>There's something primal about working with molten metal. From forging blades to casting aluminum, metalwork connects you to centuries of craft. It's loud, hot, and incredibly satisfying.</p>
+      <h3>About</h3>
+      <p>I do <strong>rebar work and aluminum casting</strong> in my backyard. I've got a propane forge on cinder blocks, a bench vise on a wooden post, and enough tools to make it work. It's raw, hands-on making at its finest.</p>
     </div>
 
-    <h3 style="margin-bottom: 1.5rem;">Gallery</h3>
-    <div class="placeholder-grid">
-      <div class="placeholder-box">Photo 1</div>
-      <div class="placeholder-box">Photo 2</div>
-      <div class="placeholder-box">Photo 3</div>
-      <div class="placeholder-box">Photo 4</div>
-      <div class="placeholder-box">Photo 5</div>
-      <div class="placeholder-box">Photo 6</div>
+    <div class="story-box">
+      <p>⚠️ <strong>The Aluminum Incident:</strong> I once dropped molten aluminum on myself. My <strong>Carhartt jacket and Levi jeans</strong> saved me from serious burns. Lesson learned: always wear the right gear. Those brands earned a customer for life.</p>
     </div>
 
-    <div class="content-card" style="margin-top: 2rem;">
-      <h3>More Details</h3>
-      <p>Content coming soon — check back later!</p>
+    <h3 style="margin-bottom: 1.5rem;">The Setup</h3>
+    <div class="gallery-grid">
+      <img src="../images/forging-1.jpg" alt="Backyard forge setup with vise and propane forge" loading="lazy">
+      <img src="../images/forging-2.jpg" alt="Forging project" loading="lazy">
+      <img src="../images/forging-3.jpg" alt="Metal casting work" loading="lazy">
     </div>
   </div>
 
@@ -71,7 +73,7 @@
   <script>
     gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
     gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
-    gsap.from('.placeholder-box', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
   </script>
 </body>
 </html>
