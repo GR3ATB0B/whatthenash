@@ -8,6 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; border: 1px solid rgba(138,115,85,0.08); }
+    .fun-fact { background: #a8d5c2; color: #3a3530; border-radius: 12px; padding: 1.2rem 1.5rem; margin: 1rem 0; font-weight: 500; }
+  </style>
 </head>
 <body>
 
@@ -29,30 +34,28 @@
   <section class="hobby-hero">
     <div>
       <p class="section-label">Hobby</p>
-      <h1>Camping & Outdoors ⛺</h1>
-      <p class="subtitle">Getting outside, building fires, and sleeping under the stars.</p>
+      <h1>Camping & Outdoors 🏕️</h1>
+      <p class="subtitle">Getting off the grid with the boys.</p>
     </div>
   </section>
 
   <div class="hobby-content">
     <div class="content-card">
-      <h3>About This Hobby</h3>
-      <p>Nothing resets the brain like a few days in the woods. Camping is where I unplug, build fires, cook over coals, and remember that the world is bigger than a screen. Georgia has some incredible spots.</p>
+      <h3>The Crew</h3>
+      <p>I go camping regularly with my boys — <strong>Silas, Paxton, Roman, and Zach</strong>. There's nothing like disconnecting from everything and just being out in nature with good people.</p>
     </div>
+
+    <div class="content-card">
+      <h3>Ham Radio</h3>
+      <p>I have my <strong>ham radio license</strong> and love using it outdoors. It's the perfect intersection of electronics and the great outdoors — communication without cell towers.</p>
+    </div>
+
+    <div class="fun-fact">🍃 <strong>Fun Fact:</strong> I once broke my Chacos while camping and made a replacement strap out of a leaf. Improvise, adapt, overcome.</div>
 
     <h3 style="margin-bottom: 1.5rem;">Gallery</h3>
-    <div class="placeholder-grid">
-      <div class="placeholder-box">Photo 1</div>
-      <div class="placeholder-box">Photo 2</div>
-      <div class="placeholder-box">Photo 3</div>
-      <div class="placeholder-box">Photo 4</div>
-      <div class="placeholder-box">Photo 5</div>
-      <div class="placeholder-box">Photo 6</div>
-    </div>
-
-    <div class="content-card" style="margin-top: 2rem;">
-      <h3>More Details</h3>
-      <p>Content coming soon — check back later!</p>
+    <div class="gallery-grid">
+      <img src="../images/camping-1.jpg" alt="Camping trip" loading="lazy">
+      <img src="../images/camping-2.jpg" alt="Outdoors with the crew" loading="lazy">
     </div>
   </div>
 
@@ -71,7 +74,7 @@
   <script>
     gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
     gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
-    gsap.from('.placeholder-box', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
   </script>
 </body>
 </html>
