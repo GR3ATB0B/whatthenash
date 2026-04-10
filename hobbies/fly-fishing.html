@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-grid img { width: 100%; border-radius: 12px; border: 1px solid rgba(138,115,85,0.08); }
+  </style>
 </head>
 <body>
 
@@ -30,29 +34,19 @@
     <div>
       <p class="section-label">Hobby</p>
       <h1>Fly Fishing 🎣</h1>
-      <p class="subtitle">The art of patience, casting, and reading the water.</p>
+      <p class="subtitle">Patience, precision, and the perfect cast.</p>
     </div>
   </section>
 
   <div class="hobby-content">
     <div class="content-card">
-      <h3>About This Hobby</h3>
-      <p>Fly fishing is meditation with a purpose. Learning to read the water, tie flies, and make the perfect cast — it's endlessly challenging. Plus you end up in some of the most beautiful places on earth.</p>
+      <h3>About</h3>
+      <p>I fish with a <strong>7-foot rod</strong> — it's the perfect balance of control and reach for the kind of fishing I do. Fly fishing is one of those hobbies that forces you to slow down and be present. It's meditative in the best way.</p>
     </div>
 
-    <h3 style="margin-bottom: 1.5rem;">Gallery</h3>
-    <div class="placeholder-grid">
-      <div class="placeholder-box">Photo 1</div>
-      <div class="placeholder-box">Photo 2</div>
-      <div class="placeholder-box">Photo 3</div>
-      <div class="placeholder-box">Photo 4</div>
-      <div class="placeholder-box">Photo 5</div>
-      <div class="placeholder-box">Photo 6</div>
-    </div>
-
-    <div class="content-card" style="margin-top: 2rem;">
-      <h3>More Details</h3>
-      <p>Content coming soon — check back later!</p>
+    <h3 style="margin-bottom: 1.5rem;">The Fly Poster</h3>
+    <div class="gallery-grid">
+      <img src="../images/flyfishing-1.jpg" alt="Framed fly fishing lures poster with hand-tied flies" loading="lazy">
     </div>
   </div>
 
@@ -71,7 +65,7 @@
   <script>
     gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
     gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
-    gsap.from('.placeholder-box', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
   </script>
 </body>
 </html>
