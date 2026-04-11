@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; border: 1px solid rgba(138,115,85,0.08); }
+  </style>
 </head>
 <body>
 
@@ -41,9 +45,10 @@
       <p>I use a <strong>normal deck of cards</strong> — no gimmicks, no special props. Just sleight of hand and misdirection.</p>
     </div>
 
-    <div class="content-card">
-      <h3>Gallery Coming Soon</h3>
-      <p>Performance photos and trick breakdowns coming soon!</p>
+    <h3 style="margin-bottom: 1.5rem;">Card Night with the Cousins</h3>
+    <div class="gallery-grid">
+      <img src="../images/magic-1.jpg" alt="Nash and cousins learning card tricks together" loading="lazy">
+      <img src="../images/magic-2.jpg" alt="Cousins practicing magic tricks with multiple decks of cards" loading="lazy">
     </div>
   </div>
 
