@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; border: 1px solid rgba(138,115,85,0.08); }
+  </style>
 </head>
 <body>
 
@@ -42,8 +46,13 @@
     </div>
 
     <div class="content-card">
-      <h3>More Coming Soon</h3>
-      <p>Setup photos and project breakdowns coming soon!</p>
+      <h3>The Workbench</h3>
+      <p>My desk is beautiful chaos — a vintage <strong>CRT TV</strong>, arcade buttons, PCBs everywhere, component trays, microcontrollers scattered around. It's the essence of ADHD creativity: destruction and creation side by side.</p>
+    </div>
+
+    <h3 style="margin-bottom: 1.5rem;">The Setup</h3>
+    <div class="gallery-grid">
+      <img src="../images/electronics-desk.jpg" alt="Nash's electronics workbench with CRT TV, arcade buttons, PCBs, and microcontrollers" loading="lazy">
     </div>
   </div>
 
