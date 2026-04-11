@@ -198,7 +198,7 @@
   <div class="hero-content">
     <p class="section-label">Say Hello</p>
     <h1>Reach Nash</h1>
-    <p class="subtitle">Got a question, idea, or just want to say hi? Drop a message and I'll get back to you.</p>
+    <p class="subtitle">Got a question, idea, or just want to say hi? Send me an email and I'll get back to you.</p>
   </div>
 </section>
 
@@ -212,15 +212,20 @@
 
     <div id="formFeedback" class="form-feedback"></div>
 
-    <form id="reachForm" action="https://YOUR_WORKER.workers.dev/messages" method="POST">
+    <form id="reachForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
       <div class="form-group">
         <label for="name">Your Name</label>
         <input type="text" id="name" name="name" placeholder="What should I call you?" required maxlength="100">
       </div>
       <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="_replyto" placeholder="your@email.com" required maxlength="100">
+      </div>
+      <div class="form-group">
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="What's on your mind?" required maxlength="2000"></textarea>
       </div>
+      <input type="hidden" name="_subject" value="New message from whatthenash.com">
       <button type="submit" class="send-btn" id="sendBtn">
         Send It ✉️
       </button>
@@ -240,7 +245,7 @@
 </footer>
 
 <script>
-// Progressive enhancement — form works without JS (server can handle POST),
+// Progressive enhancement — form works without JS (Formspree handles POST),
 // but with JS we use fetch for a smoother experience.
 (function() {
   const form = document.getElementById('reachForm');
@@ -250,10 +255,7 @@
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const name = form.name.value.trim();
-    const message = form.message.value.trim();
-
-    if (!name || !message) return;
+    const formData = new FormData(form);
 
     btn.disabled = true;
     btn.textContent = 'Sending…';
@@ -263,17 +265,16 @@
     try {
       const res = await fetch(form.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, message })
+        body: formData,
+        headers: { 'Accept': 'application/json' }
       });
 
-      const data = await res.json();
-
-      if (res.ok && data.ok) {
-        feedback.textContent = '✅ Message sent! Nash will see it soon.';
+      if (res.ok) {
+        feedback.textContent = '✅ Message sent! Nash will get back to you soon.';
         feedback.className = 'form-feedback success';
         form.reset();
       } else {
+        const data = await res.json();
         feedback.textContent = data.error || 'Something went wrong. Try again?';
         feedback.className = 'form-feedback error';
       }
