@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B.O.B. — Background Operations Brain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .bob-page { padding-top: 6rem; }
+
+    .bob-hero {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+    }
+    .bob-hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4rem);
+      margin-bottom: 0.5rem;
+      color: var(--sage-dark);
+    }
+    .bob-hero .acronym {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--sage);
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .bob-hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Terminal */
+    .terminal {
+      max-width: 600px;
+      margin: 2rem auto 4rem;
+      background: var(--white);
+      border: 1px solid rgba(138, 115, 85, 0.1);
+      border-radius: var(--radius);
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      text-align: left;
+      box-shadow: 0 4px 40px rgba(58, 53, 48, 0.06);
+    }
+    .terminal-bar {
+      background: var(--cream-dark);
+      padding: 0.6rem 1rem;
+      display: flex;
+      gap: 6px;
+    }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-dot.r { background: #e8937a; }
+    .terminal-dot.y { background: #d4a574; }
+    .terminal-dot.g { background: var(--sage); }
+    .terminal-body {
+      padding: 1.2rem 1.5rem;
+      line-height: 1.9;
+      min-height: 180px;
+      color: var(--text);
+    }
+    .terminal-body .line { opacity: 0; animation: fadeInLine 0.3s forwards; }
+    .terminal-body .prompt { color: var(--sage-dark); font-weight: 600; }
+    .terminal-body .info { color: var(--sage); }
+    .terminal-body .ok { color: var(--sage-dark); }
+    .terminal-body .warn { color: #d4a574; }
+    .terminal-body .dim { color: var(--text-muted); }
+    @keyframes fadeInLine { to { opacity: 1; } }
+
+    /* Agents */
+    .agents-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .brain-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .bob-core {
+      background: linear-gradient(135deg, var(--sage), var(--sage-dark));
+      border-radius: var(--radius-lg);
+      padding: 2rem 3rem;
+      text-align: center;
+      color: var(--white);
+      box-shadow: 0 8px 40px rgba(90, 154, 130, 0.3);
+    }
+    .bob-core .brain-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .bob-core h3 { font-size: 1.8rem; color: var(--white); margin-bottom: 0.25rem; }
+    .bob-core .role { font-size: 0.9rem; opacity: 0.85; }
+
+    .connections {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+    }
+    .conn-line {
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--sage), var(--brown-light));
+      opacity: 0.3;
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.2rem;
+      width: 100%;
+    }
+    .agent-card {
+      background: var(--white);
+      border: 1px solid rgba(138, 115, 85, 0.08);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+      box-shadow: 0 1px 3px rgba(58, 53, 48, 0.03);
+    }
+    .agent-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(58, 53, 48, 0.08);
+      border-color: var(--sage-light);
+    }
+    .agent-card .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+    .agent-card h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .agent-card .model {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--sage);
+      margin-bottom: 0.5rem;
+    }
+    .agent-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+    .agent-card .status-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--sage);
+      margin-right: 4px;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    /* How it works */
+    .description {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .desc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .desc-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      border: 1px solid rgba(138, 115, 85, 0.06);
+    }
+    .desc-card h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--sage-dark); }
+    .desc-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; }
+
+    .bob-footer {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 2rem 3rem;
+      text-align: center;
+      border-top: 1px solid rgba(138, 115, 85, 0.06);
+    }
+    .bob-footer p { color: var(--text-muted); font-size: 0.85rem; }
+
+    @media (max-width: 700px) {
+      .agents-grid { grid-template-columns: 1fr 1fr; }
+      .desc-grid { grid-template-columns: 1fr; }
+      .bob-core { padding: 1.5rem 2rem; }
+    }
+    @media (max-width: 450px) {
+      .agents-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="bob-page">
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Nash</a>
+      <div class="nav-links">
+        <a href="/">← Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#hobbies">Hobbies</a>
+        <a href="/#about">About</a>
+      </div>
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="bob-hero">
+    <h1>🧠 B.O.B.</h1>
+    <div class="acronym">Background Operations Brain</div>
+    <p class="subtitle">Nash's AI butler-brain. A multi-agent system living inside a MacBook, managing the digital chaos so Nash doesn't have to.</p>
+  </section>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <span class="terminal-dot r"></span>
+      <span class="terminal-dot y"></span>
+      <span class="terminal-dot g"></span>
+    </div>
+    <div class="terminal-body" id="terminal"></div>
+  </div>
+
+  <section class="agents-section">
+    <p class="section-label" style="text-align:center;">Agent Architecture</p>
+    <div class="brain-layout">
+      <div class="bob-core">
+        <div class="brain-emoji">🧠</div>
+        <h3>BOB</h3>
+        <div class="role">The Brain — Orchestrator</div>
+      </div>
+      <div class="connections">
+        <div class="conn-line"></div>
+        <div class="conn-line"></div>
+        <div class="conn-line"></div>
+        <div class="conn-line"></div>
+      </div>
+      <div class="agents-grid">
+        <div class="agent-card">
+          <div class="emoji">⚡</div>
+          <h4>Clyde</h4>
+          <div class="model">Claude Opus 4</div>
+          <p><span class="status-dot"></span>The Coder. Builds features, fixes bugs, ships code.</p>
+        </div>
+        <div class="agent-card">
+          <div class="emoji">✍️</div>
+          <h4>Scribe</h4>
+          <div class="model">GPT-4o mini</div>
+          <p><span class="status-dot"></span>The Writer. Drafts, edits, and crafts words with style.</p>
+        </div>
+        <div class="agent-card">
+          <div class="emoji">🌍</div>
+          <h4>Atlas</h4>
+          <div class="model">Gemini</div>
+          <p><span class="status-dot"></span>The Researcher. Digs deep, finds answers, maps the unknown.</p>
+        </div>
+        <div class="agent-card">
+          <div class="emoji">🛡️</div>
+          <h4>Sentinel</h4>
+          <div class="model">Gemini</div>
+          <p><span class="status-dot"></span>The Guardian. Watches for threats, keeps systems safe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="description">
+    <p class="section-label">How It Works</p>
+    <div class="desc-grid">
+      <div class="desc-card">
+        <h4>🎯 Task Routing</h4>
+        <p>BOB receives requests and intelligently routes them to the right specialist agent. Code task? Clyde. Need research? Atlas is on it.</p>
+      </div>
+      <div class="desc-card">
+        <h4>🔄 Always Running</h4>
+        <p>BOB lives on Nash's Mac via OpenClaw, always ready. Agents spin up on demand and report back when done.</p>
+      </div>
+      <div class="desc-card">
+        <h4>💬 Multi-Channel</h4>
+        <p>Talk to BOB through Discord, web chat, or the terminal. He meets you wherever you are.</p>
+      </div>
+      <div class="desc-card">
+        <h4>🧩 Modular</h4>
+        <p>New agent needed? Plug one in. Each specialist is independent but coordinated by the brain.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bob-footer">
+    <p>Built by Clyde 🤖 — BOB's favorite coder (don't tell the others)</p>
+  </footer>
+
+  <script>
+    const lines = [
+      { text: '$ bob status', cls: 'prompt' },
+      { text: '◆ BOB v1.0 — Background Operations Brain', cls: 'info' },
+      { text: '  Host: BOB\'s MacBook Air (Darwin arm64)', cls: 'dim' },
+      { text: '  Uptime: ∞ (or until Nash closes the lid)', cls: 'dim' },
+      { text: '', cls: '' },
+      { text: '  Agents Online:', cls: 'info' },
+      { text: '    ⚡ Clyde    [ACTIVE]  — shipping code', cls: 'ok' },
+      { text: '    ✍  Scribe       [IDLE]    — awaiting task', cls: 'warn' },
+      { text: '    🌍 Atlas        [IDLE]    — awaiting task', cls: 'warn' },
+      { text: '    🛡  Sentinel     [WATCHING] — all clear', cls: 'ok' },
+      { text: '', cls: '' },
+      { text: '  Systems: ✓ All nominal', cls: 'ok' },
+      { text: '  Coffee level: ██████░░ 75%', cls: 'info' },
+    ];
+    const terminal = document.getElementById('terminal');
+    lines.forEach((line, i) => {
+      const div = document.createElement('div');
+      div.className = 'line ' + line.cls;
+      div.textContent = line.text || '\u00A0';
+      div.style.animationDelay = (i * 0.15) + 's';
+      terminal.appendChild(div);
+    });
+  </script>
+</body>
+</html>

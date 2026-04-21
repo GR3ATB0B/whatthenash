@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FBI Most Wanted — What The Nash!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0f;
+      color: #e0e0e0;
+      font-family: 'Space Grotesk', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header a {
+      color: #7b5ea7;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .header a:hover { color: #a78bfa; }
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Search */
+    .search-wrap {
+      max-width: 600px;
+      margin: 0 auto 1.25rem;
+      padding: 0 1rem;
+      position: relative;
+    }
+    .search-icon {
+      position: absolute;
+      left: 1.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #555;
+      pointer-events: none;
+      font-size: 1.1rem;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 0.8rem 2.8rem 0.8rem 3rem;
+      border-radius: 10px;
+      border: 2px solid #1e1e2e;
+      background: #12121a;
+      color: #e0e0e0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-wrap input:focus { border-color: #6366f1; }
+    .search-wrap input::placeholder { color: #555; }
+    .clear-btn {
+      position: absolute;
+      right: 1.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #555;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: none;
+      font-family: 'Space Grotesk', sans-serif;
+      transition: color 0.2s;
+    }
+    .clear-btn:hover { color: #e0e0e0; }
+    .clear-btn.visible { display: block; }
+
+    /* Category Filters */
+    .filters {
+      max-width: 900px;
+      margin: 0 auto 1.25rem;
+      padding: 0 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    .filters button {
+      background: #12121a;
+      color: #888;
+      border: 1px solid #1e1e2e;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filters button:hover {
+      border-color: #6366f1;
+      color: #c4b5fd;
+    }
+    .filters button.active {
+      background: linear-gradient(135deg, #6366f1, #7c3aed);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* Toolbar row: result count + lucky button */
+    .toolbar {
+      max-width: 1200px;
+      margin: 0 auto 1rem;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .result-count {
+      font-size: 0.85rem;
+      color: #555;
+    }
+    .result-count span { color: #a78bfa; font-weight: 600; }
+    .lucky-btn {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: #fff;
+      border: none;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .lucky-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+    .lucky-btn:active { transform: scale(0.97); }
+
+    /* Grid */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* Cards */
+    .card {
+      background: #12121a;
+      border: 1px solid #1e1e2e;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #6366f1;
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.15);
+    }
+    .card.highlight {
+      border-color: #f59e0b;
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.35);
+      animation: pulse-glow 1.5s ease-out;
+    }
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5); }
+      70% { box-shadow: 0 0 30px 10px rgba(245, 158, 11, 0.15); }
+      100% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.35); }
+    }
+    .card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      background: #1e1e2e;
+    }
+    .card-body { padding: 1rem; }
+    .card-body .name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      color: #fff;
+    }
+    .card-body .subjects {
+      font-size: 0.82rem;
+      color: #7b5ea7;
+      line-height: 1.4;
+      margin-bottom: 0.35rem;
+    }
+    .card-body .meta {
+      font-size: 0.75rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .card-body .reward {
+      margin-top: 0.4rem;
+      font-size: 0.78rem;
+      color: #34d399;
+      font-weight: 600;
+    }
+    .danger-badge {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.6rem;
+      background: #ef4444;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+    }
+
+    /* Skeleton cards */
+    .skeleton {
+      background: #12121a;
+      border: 1px solid #1e1e2e;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .skeleton .skel-img {
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(90deg, #1e1e2e 25%, #2a2a3a 50%, #1e1e2e 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    .skeleton .skel-body { padding: 1rem; }
+    .skeleton .skel-line {
+      height: 0.85rem;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #1e1e2e 25%, #2a2a3a 50%, #1e1e2e 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      margin-bottom: 0.5rem;
+    }
+    .skeleton .skel-line:last-child { width: 60%; }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      color: #555;
+      grid-column: 1 / -1;
+      font-size: 1.1rem;
+    }
+    .no-results .emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+    /* Pagination */
+    .pagination {
+      text-align: center;
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .pagination button {
+      background: linear-gradient(135deg, #6366f1, #7c3aed);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s, opacity 0.2s;
+    }
+    .pagination button:hover { transform: translateY(-2px); }
+    .pagination button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .page-num {
+      color: #555;
+      font-size: 0.85rem;
+      min-width: 5rem;
+      text-align: center;
+    }
+    .page-num span { color: #a78bfa; font-weight: 600; }
+
+    @media (max-width: 600px) {
+      .header h1 { font-size: 1.15rem; }
+      .toolbar { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="../index.html">← Back to Home</a>
+    <h1>FBI Most Wanted</h1>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-box" placeholder="Search by name or crime...">
+    <button class="clear-btn" id="clear-btn" title="Clear search">✕</button>
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="active" data-cat="">All</button>
+    <button data-cat="ten">Top Ten</button>
+    <button data-cat="fugitives">Fugitives</button>
+    <button data-cat="terrorism">Terrorism</button>
+    <button data-cat="kidnappings">Kidnappings</button>
+    <button data-cat="missing">Missing</button>
+    <button data-cat="seeking">Seeking Info</button>
+    <button data-cat="parental">Parental</button>
+  </div>
+
+  <div class="toolbar">
+    <div class="result-count" id="result-count"></div>
+    <button class="lucky-btn" id="lucky-btn">🎲 I'm Feeling Lucky</button>
+  </div>
+
+  <div class="container" id="wanted-list"></div>
+
+  <div class="pagination">
+    <button id="prev-btn" disabled>← Previous</button>
+    <div class="page-num">Page <span id="page-display">1</span></div>
+    <button id="next-btn">Next →</button>
+  </div>
+
+  <script>
+    let currentPage = 1;
+    let searchQuery = "";
+    let activeCategory = "";
+    let totalResults = 0;
+    let debounceTimer;
+
+    const container = document.getElementById("wanted-list");
+    const searchBox = document.getElementById("search-box");
+    const clearBtn = document.getElementById("clear-btn");
+    const resultCount = document.getElementById("result-count");
+    const pageDisplay = document.getElementById("page-display");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    // Skeleton loader
+    function showSkeletons(count = 8) {
+      container.innerHTML = Array.from({ length: count }, () => `
+        <div class="skeleton">
+          <div class="skel-img"></div>
+          <div class="skel-body">
+            <div class="skel-line"></div>
+            <div class="skel-line"></div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Build card HTML
+    function buildCard(person) {
+      const imgSrc = person.images?.[0]?.large || person.images?.[0]?.thumb || '';
+      const subjects = person.subjects ? person.subjects.join(", ") : "";
+      const metaParts = [person.race, person.nationality, person.sex].filter(Boolean);
+      const meta = metaParts.join(" · ");
+      const danger = person.warning_message;
+      const reward = person.reward_text;
+
+      return `
+        <div class="card" onclick="window.open('${person.url}','_blank')">
+          ${danger ? '<div class="danger-badge">⚠ Dangerous</div>' : ''}
+          <img src="${imgSrc}" alt="${person.title}" loading="lazy" onerror="this.style.display='none'">
+          <div class="card-body">
+            <div class="name">${person.title}</div>
+            ${subjects ? `<div class="subjects">${subjects}</div>` : ''}
+            ${meta ? `<div class="meta">${meta}</div>` : ''}
+            ${reward ? `<div class="reward">💰 ${reward}</div>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    async function fetchWanted() {
+      showSkeletons();
+      resultCount.textContent = '';
+
+      try {
+        let url = `https://api.fbi.gov/wanted/v1/list?page=${currentPage}`;
+        if (searchQuery) url += `&title=${encodeURIComponent(searchQuery)}`;
+        if (activeCategory) url += `&poster_classification=${activeCategory}`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+        totalResults = data.total || 0;
+
+        resultCount.innerHTML = `Showing <span>${data.items?.length || 0}</span> of <span>${totalResults.toLocaleString()}</span> results`;
+        pageDisplay.textContent = currentPage;
+
+        if (!data.items || data.items.length === 0) {
+          container.innerHTML = '<div class="no-results"><div class="emoji">🕵️</div>No results found. Try a different search or category.</div>';
+          prevBtn.disabled = true;
+          nextBtn.disabled = true;
+          return;
+        }
+
+        container.innerHTML = data.items.map(buildCard).join('');
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = data.items.length < 20;
+      } catch (error) {
+        container.innerHTML = '<div class="no-results"><div class="emoji">💥</div>Error loading data. Try again.</div>';
+        resultCount.textContent = '';
+      }
+    }
+
+    // Search
+    searchBox.addEventListener("input", e => {
+      clearBtn.classList.toggle('visible', e.target.value.length > 0);
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        searchQuery = e.target.value;
+        currentPage = 1;
+        fetchWanted();
+      }, 400);
+    });
+
+    clearBtn.addEventListener("click", () => {
+      searchBox.value = '';
+      clearBtn.classList.remove('visible');
+      searchQuery = '';
+      currentPage = 1;
+      fetchWanted();
+    });
+
+    // Category filters
+    document.getElementById("filters").addEventListener("click", e => {
+      if (e.target.tagName !== 'BUTTON') return;
+      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      activeCategory = e.target.dataset.cat;
+      currentPage = 1;
+      fetchWanted();
+    });
+
+    // Pagination
+    prevBtn.addEventListener("click", () => {
+      if (currentPage > 1) { currentPage--; fetchWanted(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    });
+    nextBtn.addEventListener("click", () => {
+      currentPage++; fetchWanted(); window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // I'm Feeling Lucky
+    document.getElementById("lucky-btn").addEventListener("click", async () => {
+      const randomPage = Math.floor(Math.random() * 50) + 1;
+      currentPage = randomPage;
+      await fetchWanted();
+      const cards = container.querySelectorAll('.card');
+      if (cards.length > 0) {
+        const lucky = cards[Math.floor(Math.random() * cards.length)];
+        lucky.classList.add('highlight');
+        lucky.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => lucky.classList.remove('highlight'), 3000);
+      }
+    });
+
+    fetchWanted();
+  </script>
+</body>
+</html>

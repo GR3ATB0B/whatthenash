@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Physics Playground</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #111;
+    }
+    #canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js"></script>
+  <script>
+    const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint } = Matter;
+
+    const canvas = document.getElementById('canvas');
+    const engine = Engine.create();
+    const world = engine.world;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const render = Render.create({
+      canvas: canvas,
+      engine: engine,
+      options: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        wireframes: false,
+        background: '#111'
+      }
+    });
+
+    Render.run(render);
+    const runner = Runner.create();
+    Runner.run(runner, engine);
+
+    // Walls
+    const ground = Bodies.rectangle(window.innerWidth/2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true });
+    const leftWall = Bodies.rectangle(-50, window.innerHeight/2, 100, window.innerHeight, { isStatic: true });
+    const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight/2, 100, window.innerHeight, { isStatic: true });
+    const ceiling = Bodies.rectangle(window.innerWidth/2, -50, window.innerWidth, 100, { isStatic: true });
+    Composite.add(world, [ground, leftWall, rightWall, ceiling]);
+
+    // Add mouse control
+    const mouse = Mouse.create(render.canvas);
+    const mouseConstraint = MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: { stiffness: 0.2, render: { visible: false } }
+    });
+    Composite.add(world, mouseConstraint);
+
+    // Spawn objects on click
+    canvas.addEventListener('click', (event) => {
+      const x = event.clientX;
+      const y = event.clientY;
+      if (Math.random() > 0.5) {
+        const box = Bodies.rectangle(x, y, 40, 40, { restitution: 0.7 });
+        Composite.add(world, box);
+      } else {
+        const circle = Bodies.circle(x, y, 20, { restitution: 0.9 });
+        Composite.add(world, circle);
+      }
+    });
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      Render.lookAt(render, {
+        min: { x: 0, y: 0 },
+        max: { x: window.innerWidth, y: window.innerHeight }
+      });
+    });
+  </script>
+</body>
+</html>

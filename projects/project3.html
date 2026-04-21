@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unbeatable Pong — What The Nash!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0f;
+      color: #e0e0e0;
+      font-family: 'Space Grotesk', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .header {
+      width: 100%;
+      max-width: 820px;
+      padding: 1.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header a {
+      color: #7b5ea7;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .header a:hover { color: #a78bfa; }
+    .header h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .scoreboard {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .scoreboard span { color: #a78bfa; }
+    .game-wrap {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #1e1e2e;
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.15);
+    }
+    canvas { display: block; }
+    .controls {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+    .controls button {
+      background: linear-gradient(135deg, #6366f1, #7c3aed);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .controls button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+    .hint {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: #555;
+    }
+    .mobile-controls {
+      display: none;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .mobile-controls button {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #1e1e2e;
+      border: 2px solid #6366f1;
+      color: #a78bfa;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    @media (max-width: 840px) {
+      canvas { width: 100%; height: auto; }
+      .mobile-controls { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="../index.html">← Back to Home</a>
+    <h1>Unbeatable Pong</h1>
+  </div>
+
+  <div class="scoreboard">
+    <div>You: <span id="player-score">0</span></div>
+    <div>AI: <span id="ai-score">0</span></div>
+  </div>
+
+  <div class="game-wrap">
+    <canvas id="pongCanvas" width="800" height="500"></canvas>
+  </div>
+
+  <div class="controls">
+    <button onclick="resetGame()">New Game</button>
+  </div>
+  <p class="hint">Use ↑ ↓ arrow keys to move your paddle</p>
+
+  <div class="mobile-controls">
+    <button id="mob-up">▲</button>
+    <button id="mob-down">▼</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("pongCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const paddleWidth = 12, paddleHeight = 100;
+    let leftPaddleY, rightPaddleY;
+    const paddleSpeed = 8;
+    const ballSize = 12;
+    let ballX, ballY, ballSpeedX, ballSpeedY;
+    let playerScore = 0, aiScore = 0;
+    let upPressed = false, downPressed = false;
+
+    function resetBall() {
+      ballX = canvas.width / 2 - ballSize / 2;
+      ballY = canvas.height / 2 - ballSize / 2;
+      ballSpeedX = (Math.random() > 0.5 ? 1 : -1) * 4;
+      ballSpeedY = (Math.random() * 2 - 1) * 4;
+    }
+
+    function resetGame() {
+      playerScore = 0; aiScore = 0;
+      leftPaddleY = canvas.height / 2 - paddleHeight / 2;
+      rightPaddleY = canvas.height / 2 - paddleHeight / 2;
+      updateScoreboard();
+      resetBall();
+    }
+
+    function updateScoreboard() {
+      document.getElementById("player-score").textContent = playerScore;
+      document.getElementById("ai-score").textContent = aiScore;
+    }
+
+    function drawPaddle(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.roundRect(x, y, paddleWidth, paddleHeight, 6);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    function drawBall() {
+      ctx.fillStyle = "#a78bfa";
+      ctx.shadowColor = "#a78bfa";
+      ctx.shadowBlur = 16;
+      ctx.beginPath();
+      ctx.arc(ballX + ballSize/2, ballY + ballSize/2, ballSize/2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    function drawCenter() {
+      ctx.setLineDash([8, 8]);
+      ctx.strokeStyle = "#1e1e2e";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2, 0);
+      ctx.lineTo(canvas.width / 2, canvas.height);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "ArrowUp") { upPressed = true; e.preventDefault(); }
+      if (e.key === "ArrowDown") { downPressed = true; e.preventDefault(); }
+    });
+    document.addEventListener("keyup", e => {
+      if (e.key === "ArrowUp") upPressed = false;
+      if (e.key === "ArrowDown") downPressed = false;
+    });
+
+    // Mobile
+    const mobUp = document.getElementById("mob-up");
+    const mobDown = document.getElementById("mob-down");
+    mobUp.addEventListener("touchstart", e => { e.preventDefault(); upPressed = true; });
+    mobUp.addEventListener("touchend", () => upPressed = false);
+    mobDown.addEventListener("touchstart", e => { e.preventDefault(); downPressed = true; });
+    mobDown.addEventListener("touchend", () => downPressed = false);
+
+    function gameLoop() {
+      ctx.fillStyle = "#0a0a0f";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      drawCenter();
+
+      if (upPressed && leftPaddleY > 0) leftPaddleY -= paddleSpeed;
+      if (downPressed && leftPaddleY + paddleHeight < canvas.height) leftPaddleY += paddleSpeed;
+
+      const aiSpeed = 5;
+      if (ballY + ballSize / 2 > rightPaddleY + paddleHeight / 2) rightPaddleY += aiSpeed;
+      else rightPaddleY -= aiSpeed;
+
+      ballX += ballSpeedX;
+      ballY += ballSpeedY;
+
+      if (ballY <= 0 || ballY + ballSize >= canvas.height) ballSpeedY *= -1;
+
+      if (ballX <= paddleWidth + 10 && ballY + ballSize >= leftPaddleY && ballY <= leftPaddleY + paddleHeight) {
+        ballSpeedX *= -1;
+        ballX = paddleWidth + 10;
+      }
+
+      if (ballX + ballSize >= canvas.width - paddleWidth - 10 && ballY + ballSize >= rightPaddleY && ballY <= rightPaddleY + paddleHeight) {
+        ballSpeedX *= -1;
+        ballX = canvas.width - paddleWidth - 10 - ballSize;
+      }
+
+      if (ballX < 0) { aiScore++; updateScoreboard(); resetBall(); }
+      if (ballX > canvas.width) { playerScore++; updateScoreboard(); resetBall(); }
+
+      drawPaddle(10, leftPaddleY, "#6366f1");
+      drawPaddle(canvas.width - paddleWidth - 10, rightPaddleY, "#7c3aed");
+      drawBall();
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    resetGame();
+    gameLoop();
+  </script>
+</body>
+</html>

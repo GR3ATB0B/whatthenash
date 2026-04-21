@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House Point Counter — Nash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; border: 1px solid rgba(138,115,85,0.08); }
+    .tech-tag { display: inline-block; background: #ede8e2; border-radius: 50px; padding: 0.3rem 0.9rem; font-size: 0.85rem; font-weight: 600; color: #5a9a82; margin: 0.2rem; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Nash</a>
+      <div class="nav-links">
+        <a href="/">← Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#hobbies">Hobbies</a>
+        <a href="/#about">About</a>
+      </div>
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Project</p>
+      <h1>House Point Counter 🏠</h1>
+      <p class="subtitle">Automating school spirit with OCR and a Raspberry Pi.</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
+    <div class="content-card">
+      <h3>The Story</h3>
+      <p>During my senior year, I was <strong>Mr. Holt's TA</strong> at Atlanta Classical Academy. The middle school runs a <strong>house point system</strong> (think Harry Potter vibes), and I was in charge of counting house points.</p>
+      <p>So naturally, I built a machine to do it for me.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>How It Works</h3>
+      <p>The House Point Counter uses <strong>OCR (Optical Character Recognition)</strong> to automatically read and tally house point scores. It runs on a <strong>Raspberry Pi</strong> and processes scoring sheets to keep an accurate, real-time count.</p>
+      <div style="margin-top: 1rem;">
+        <span class="tech-tag">Raspberry Pi</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">OCR</span>
+        <span class="tech-tag">Computer Vision</span>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 1.5rem;">Gallery</h3>
+    <div class="gallery-grid">
+      <img src="../images/housepoint-1.jpg" alt="Raspberry Pi setup for House Point Counter" loading="lazy">
+      <img src="../images/housepoint-2.jpg" alt="House Point Counter system" loading="lazy">
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">Buy Me a Coffee</a>
+      </div>
+      <p class="footer-copy">© 2026 Nash</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
+  </script>
+</body>
+</html>
