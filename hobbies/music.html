@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music — Nash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Nash</a>
+      <div class="nav-links">
+        <a href="/">← Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#hobbies">Hobbies</a>
+        <a href="/#about">About</a>
+      </div>
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Hobby</p>
+      <h1>Music 🎵</h1>
+      <p class="subtitle">Production, theory, and everything in between.</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
+    <div class="content-card">
+      <h3>Music Production</h3>
+      <p>I produce music — creating beats, layering sounds, and building tracks from scratch. It's one of those hobbies where you can completely lose yourself in the creative process.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>Music Theory</h3>
+      <p>Understanding the <em>why</em> behind music makes creating it so much more intentional. I study music theory to deepen my understanding of harmony, rhythm, and composition.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>Songs Coming Soon</h3>
+      <p>I produce beats and tracks with friends — it's all about the creative process. Audio player coming soon! 🎧</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">Buy Me a Coffee</a>
+      </div>
+      <p class="footer-copy">© 2026 Nash</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+  </script>
+</body>
+</html>

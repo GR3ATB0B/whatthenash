@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading — Nash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Nash</a>
+      <div class="nav-links">
+        <a href="/">← Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#hobbies">Hobbies</a>
+        <a href="/#about">About</a>
+      </div>
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Hobby</p>
+      <h1>Reading 📚</h1>
+      <p class="subtitle">Always learning, always reading.</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
+    <div class="content-card">
+      <h3>About</h3>
+      <p>I'm a classical education kid — four years at <strong>Atlanta Classical Academy</strong> means I've read everything from Homer to Hamlet, Plato to Flannery O'Connor. 60+ books and counting, plus primary sources, the Bible, and more. Reading shaped how I think about everything.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>The ACA Reading List</h3>
+      <p>Every book I read at Atlanta Classical Academy:</p>
+      <div style="columns:2;column-gap:2rem;font-size:0.9rem;line-height:1.8;color:#6b6560;">
+        The Scarlet Letter &bull;
+        Sir Gawain and the Green Knight &bull;
+        Song of Myself &bull;
+        Julius Caesar &bull;
+        A Short Account of the Destruction of the Indies &bull;
+        Confessions of Saint Augustine &bull;
+        The Trial and Death of Socrates &bull;
+        Tales of Ancient Egypt &bull;
+        Two Lives of Charlemagne &bull;
+        To Kill a Mockingbird &bull;
+        Mendelssohn on the Roof &bull;
+        Twelfth Night &bull;
+        Hamlet &bull;
+        Their Eyes Were Watching God &bull;
+        The Sea-Wolf &bull;
+        The Complete Stories of Flannery O'Connor &bull;
+        The Remains of the Day &bull;
+        Self-Reliance and Other Essays &bull;
+        The Wind in the Willows &bull;
+        Infinite Powers &bull;
+        The Bridge of San Luis Rey &bull;
+        Man's Search for Meaning &bull;
+        The Prince and the Pauper &bull;
+        Paradise Lost &bull;
+        Tom Sawyer &bull;
+        The Call of the Wild &bull;
+        The Awakening &bull;
+        Winesburg, Ohio &bull;
+        The Canterbury Tales &bull;
+        Homer (Iliad & Odyssey) &bull;
+        The Giver &bull;
+        Don Quixote &bull;
+        The Secret Garden &bull;
+        Animal Farm &bull;
+        All Quiet on the Western Front &bull;
+        The Worldly Philosophers &bull;
+        The Fall &bull;
+        Economics in One Lesson &bull;
+        Lord of the Flies &bull;
+        The Scarlet Pimpernel &bull;
+        Frankenstein &bull;
+        The Great Gatsby &bull;
+        Old Yeller &bull;
+        The Hobbit &bull;
+        Cyrano de Bergerac &bull;
+        The Comedy of Errors &bull;
+        Much Ado About Nothing &bull;
+        Pride and Prejudice &bull;
+        Plutarch's Greek Lives &bull;
+        Plutarch's Roman Lives &bull;
+        Realms of Gold &bull;
+        Bad Days in History &bull;
+        All the King's Men &bull;
+        Brave New World &bull;
+        The Abolition of Man &bull;
+        Ancient Greece (Thomas R. Martin) &bull;
+        Sophocles &bull;
+        A Short History of the United States &bull;
+        A Midsummer Night's Dream &bull;
+        American Heritage (Hillsdale Reader) &bull;
+        The Aeneid &bull;
+        Nicomachean Ethics &bull;
+        The Republic of Plato &bull;
+        Early History of Rome &bull;
+        Jews, God, and History &bull;
+        Democracy in America &bull;
+        On Bullshit
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>Beyond the Classroom</h3>
+      <p>Plus the entire <strong>Harry Potter</strong> series, most of the <strong>How to Train Your Dragon</strong> books, <strong>the Bible</strong>, and a stack of primary source documents. Reading never stops.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">Buy Me a Coffee</a>
+      </div>
+      <p class="footer-copy">© 2026 Nash</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+  </script>
+</body>
+</html>

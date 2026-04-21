@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI — Nash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Nash</a>
+      <div class="nav-links">
+        <a href="/">← Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#hobbies">Hobbies</a>
+        <a href="/#about">About</a>
+      </div>
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Hobby</p>
+      <h1>Artificial Intelligence 🤖</h1>
+      <p class="subtitle">Building intelligent systems and mastering the art of the prompt.</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
+    <div class="content-card">
+      <h3>Meet BOB</h3>
+      <p><strong>BOB</strong> is my personal AI assistant — built on <strong>OpenClaw</strong>, an open-source AI agent framework. BOB runs on my MacBook Air and helps me with everything from managing projects to automating tasks. He's always on, always learning, and honestly pretty fun to talk to.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>Prompt Engineering</h3>
+      <p>I've gotten really good at <strong>prompt engineering</strong> — the art of communicating with AI models to get exactly the output you need. It's a mix of precision, creativity, and understanding how these models think. Whether it's generating code, analyzing data, or building complex multi-step workflows, I know how to get the most out of AI.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>More Coming Soon</h3>
+      <p>Photos and project examples coming soon — check back later!</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
+        <a href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank">Buy Me a Coffee</a>
+      </div>
+      <p class="footer-copy">© 2026 Nash</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+  </script>
+</body>
+</html>
