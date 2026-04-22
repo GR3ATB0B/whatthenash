@@ -216,3 +216,38 @@ const navEl    = document.getElementById('nav');
     },
   });
 })();
+
+/* ---------- Beat 06 — Graduation reveal + stat counters ---------- */
+(function setupAbout() {
+  const section = document.querySelector('#about');
+  if (!section) return;
+
+  const reveals = section.querySelectorAll('.reveal');
+  const counters = section.querySelectorAll('[data-count]');
+
+  if (prefersReducedMotion) {
+    reveals.forEach(r => { r.style.opacity = '1'; r.style.transform = 'none'; });
+    counters.forEach(c => { c.textContent = c.dataset.count + '+'; });
+    return;
+  }
+
+  gsap.to(reveals, {
+    opacity: 1,
+    y: 0,
+    duration: 0.9,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: section, start: 'top 80%' },
+  });
+
+  counters.forEach(el => {
+    const target = Number(el.dataset.count);
+    gsap.to(el, {
+      innerText: target,
+      duration: 1.4,
+      ease: 'power2.out',
+      snap: { innerText: 1 },
+      onUpdate() { el.textContent = Math.round(Number(el.innerText)) + '+'; },
+      scrollTrigger: { trigger: section, start: 'top 70%' },
+    });
+  });
+})();
