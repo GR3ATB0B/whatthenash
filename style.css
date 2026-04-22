@@ -440,3 +440,57 @@ section { padding: var(--sp-9) 0; }
 @media (prefers-reduced-motion: reduce) {
   .hobby-bubble.floating { animation: none; }
 }
+
+/* =======================================================
+   projects.html
+   ======================================================= */
+
+.projects-hero {
+  padding: 160px var(--sp-5) var(--sp-7);
+  text-align: left;
+  max-width: 900px; margin: 0 auto;
+}
+.projects-hero .eyebrow { margin-bottom: var(--sp-3); }
+.projects-hero p { color: var(--ink-muted); max-width: 520px; margin-top: var(--sp-4); font-size: 1.05rem; }
+
+.filter-chips {
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  max-width: 1200px; margin: 0 auto var(--sp-7); padding: 0 var(--sp-5);
+}
+.chip {
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.85rem; font-weight: 500;
+  cursor: pointer;
+  transition: all var(--dur-micro) var(--ease-out);
+}
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--canvas); border-color: var(--ink); }
+.chip:hover { border-color: var(--ink); }
+
+.projects-grid {
+  max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-5) var(--sp-10);
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--sp-4);
+}
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-5);
+  color: var(--ink);
+  box-shadow: var(--sh-rest);
+  transition: transform var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) var(--ease-out);
+  display: flex; flex-direction: column;
+  min-height: 260px;
+}
+.project-card:hover { transform: translateY(-6px); box-shadow: var(--sh-hover); }
+.project-card-image {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--border), var(--canvas));
+  border-radius: var(--r-sm);
+  margin-bottom: var(--sp-4);
+}
+.project-card h3 { margin-bottom: var(--sp-2); }
+.project-card .desc { color: var(--ink-muted); font-size: 0.9rem; margin-bottom: var(--sp-4); flex: 1; }
+.project-card[hidden] { display: none; }
