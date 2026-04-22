@@ -187,3 +187,32 @@ const navEl    = document.getElementById('nav');
     onLeaveBack: () => bubbles.forEach(el => el.classList.remove('floating')),
   });
 })();
+
+/* ---------- Beat 05 — Horizontal rail ---------- */
+(function setupRail() {
+  const section = document.querySelector('#rail');
+  const inner   = document.querySelector('#rail-inner');
+  if (!section || !inner) return;
+
+  if (prefersReducedMotion) {
+    // Allow normal overflow scroll
+    section.style.overflowX = 'auto';
+    inner.style.transform = 'none';
+    return;
+  }
+
+  const travel = () => inner.scrollWidth - window.innerWidth;
+
+  gsap.to(inner, {
+    x: () => -travel(),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: () => `+=${travel()}`,
+      scrub: true,
+      pin: true,
+      invalidateOnRefresh: true,
+    },
+  });
+})();
