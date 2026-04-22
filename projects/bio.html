@@ -4,120 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nash Vogeltanz — Bio</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #0a0a0f;
-      color: #c8c8d0;
-      font-family: 'Space Grotesk', sans-serif;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
-    a { color: #a78bfa; text-decoration: none; transition: color 0.2s; }
-    a:hover { color: #c4b5fd; }
-    .header {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 1.5rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .header a { color: #7b5ea7; font-weight: 500; }
-    .hero {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 1rem 1rem;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #6366f1, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.25rem;
-    }
-    .hero .subtitle {
-      color: #7b5ea7;
-      font-size: 1.05rem;
-      font-weight: 500;
-    }
-    .timer {
-      text-align: center;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
-      color: #6366f1;
-      font-weight: 500;
-    }
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 1rem 3rem;
-    }
-    .section {
-      background: #12121a;
-      border: 1px solid #1e1e2e;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-    .section h2 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #a78bfa;
-      margin-bottom: 0.75rem;
-    }
-    .section p { margin-bottom: 0.75rem; }
-    .section p:last-child { margin-bottom: 0; }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .tag {
-      background: #1e1e2e;
-      color: #a78bfa;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 500;
-    }
-    .fun-fact {
-      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(124,58,237,0.1));
-      border: 1px solid #6366f1;
-    }
-    .links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
-    .links a {
-      background: linear-gradient(135deg, #6366f1, #7c3aed);
-      color: white;
-      padding: 0.5rem 1.2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: transform 0.15s;
-    }
-    .links a:hover { transform: translateY(-2px); color: white; }
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: #333;
-      font-size: 0.8rem;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="header">
-    <a href="../index.html">← Back to Home</a>
+
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <model-viewer src="/assets/Face.glb" auto-rotate disable-zoom class="nav-head" alt="Nash"></model-viewer>
+      <span>Nash</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/#hobbies">Hobbies</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/reach.html">Reach</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</nav>
+
 
   <div class="hero">
     <h1>Nash Vogeltanz</h1>
@@ -172,8 +85,6 @@
     </div>
   </div>
 
-  <footer>&copy; 2026 Nash Vogeltanz</footer>
-
   <script>
     const birthDate = new Date('2007-08-24T00:00:00');
     function updateTimer() {
@@ -190,5 +101,17 @@
     updateTimer();
     setInterval(updateTimer, 1000);
   </script>
+
+  <footer class="footer">
+  <div class="footer-links">
+    <a href="/projects.html">Projects</a>
+    <a href="/#hobbies">Hobbies</a>
+    <a href="/#about">About</a>
+    <a href="/reach.html">Reach</a>
+    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+</footer>
+  <script type="module" src="/shared.js"></script>
 </body>
 </html>

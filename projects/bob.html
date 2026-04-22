@@ -3,210 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B.O.B. — Background Operations Brain</title>
+  <title>B.O.B. — Nash</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css">
-  <style>
-    .bob-page { padding-top: 6rem; }
-
-    .bob-hero {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 3rem 2rem 2rem;
-      text-align: center;
-    }
-    .bob-hero h1 {
-      font-size: clamp(2.8rem, 6vw, 4rem);
-      margin-bottom: 0.5rem;
-      color: var(--sage-dark);
-    }
-    .bob-hero .acronym {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--sage);
-      letter-spacing: 3px;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
-    .bob-hero .subtitle {
-      font-size: 1.1rem;
-      color: var(--text-light);
-      max-width: 520px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    /* Terminal */
-    .terminal {
-      max-width: 600px;
-      margin: 2rem auto 4rem;
-      background: var(--white);
-      border: 1px solid rgba(138, 115, 85, 0.1);
-      border-radius: var(--radius);
-      overflow: hidden;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      text-align: left;
-      box-shadow: 0 4px 40px rgba(58, 53, 48, 0.06);
-    }
-    .terminal-bar {
-      background: var(--cream-dark);
-      padding: 0.6rem 1rem;
-      display: flex;
-      gap: 6px;
-    }
-    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .terminal-dot.r { background: #e8937a; }
-    .terminal-dot.y { background: #d4a574; }
-    .terminal-dot.g { background: var(--sage); }
-    .terminal-body {
-      padding: 1.2rem 1.5rem;
-      line-height: 1.9;
-      min-height: 180px;
-      color: var(--text);
-    }
-    .terminal-body .line { opacity: 0; animation: fadeInLine 0.3s forwards; }
-    .terminal-body .prompt { color: var(--sage-dark); font-weight: 600; }
-    .terminal-body .info { color: var(--sage); }
-    .terminal-body .ok { color: var(--sage-dark); }
-    .terminal-body .warn { color: #d4a574; }
-    .terminal-body .dim { color: var(--text-muted); }
-    @keyframes fadeInLine { to { opacity: 1; } }
-
-    /* Agents */
-    .agents-section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 4rem;
-    }
-
-    .brain-layout {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .bob-core {
-      background: linear-gradient(135deg, var(--sage), var(--sage-dark));
-      border-radius: var(--radius-lg);
-      padding: 2rem 3rem;
-      text-align: center;
-      color: var(--white);
-      box-shadow: 0 8px 40px rgba(90, 154, 130, 0.3);
-    }
-    .bob-core .brain-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    .bob-core h3 { font-size: 1.8rem; color: var(--white); margin-bottom: 0.25rem; }
-    .bob-core .role { font-size: 0.9rem; opacity: 0.85; }
-
-    .connections {
-      display: flex;
-      justify-content: center;
-      gap: 3px;
-    }
-    .conn-line {
-      width: 2px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--sage), var(--brown-light));
-      opacity: 0.3;
-    }
-
-    .agents-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.2rem;
-      width: 100%;
-    }
-    .agent-card {
-      background: var(--white);
-      border: 1px solid rgba(138, 115, 85, 0.08);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s;
-      box-shadow: 0 1px 3px rgba(58, 53, 48, 0.03);
-    }
-    .agent-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(58, 53, 48, 0.08);
-      border-color: var(--sage-light);
-    }
-    .agent-card .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
-    .agent-card h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
-    .agent-card .model {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--sage);
-      margin-bottom: 0.5rem;
-    }
-    .agent-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
-    .agent-card .status-dot {
-      display: inline-block;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--sage);
-      margin-right: 4px;
-      animation: blink 2s infinite;
-    }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-    /* How it works */
-    .description {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 4rem;
-    }
-    .desc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-    .desc-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 2rem;
-      border: 1px solid rgba(138, 115, 85, 0.06);
-    }
-    .desc-card h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--sage-dark); }
-    .desc-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; }
-
-    .bob-footer {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem 2rem 3rem;
-      text-align: center;
-      border-top: 1px solid rgba(138, 115, 85, 0.06);
-    }
-    .bob-footer p { color: var(--text-muted); font-size: 0.85rem; }
-
-    @media (max-width: 700px) {
-      .agents-grid { grid-template-columns: 1fr 1fr; }
-      .desc-grid { grid-template-columns: 1fr; }
-      .bob-core { padding: 1.5rem 2rem; }
-    }
-    @media (max-width: 450px) {
-      .agents-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body class="bob-page">
 
   <nav class="nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">Nash</a>
-      <div class="nav-links">
-        <a href="/">← Home</a>
-        <a href="/#projects">Projects</a>
-        <a href="/#hobbies">Hobbies</a>
-        <a href="/#about">About</a>
-      </div>
-      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <model-viewer src="/assets/Face.glb" auto-rotate disable-zoom class="nav-head" alt="Nash"></model-viewer>
+      <span>Nash</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/#hobbies">Hobbies</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/reach.html">Reach</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
 
   <section class="bob-hero">
     <h1>🧠 B.O.B.</h1>
@@ -288,10 +112,6 @@
     </div>
   </section>
 
-  <footer class="bob-footer">
-    <p>Built by Clyde 🤖 — BOB's favorite coder (don't tell the others)</p>
-  </footer>
-
   <script>
     const lines = [
       { text: '$ bob status', cls: 'prompt' },
@@ -317,5 +137,17 @@
       terminal.appendChild(div);
     });
   </script>
+
+  <footer class="footer">
+  <div class="footer-links">
+    <a href="/projects.html">Projects</a>
+    <a href="/#hobbies">Hobbies</a>
+    <a href="/#about">About</a>
+    <a href="/reach.html">Reach</a>
+    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+</footer>
+  <script type="module" src="/shared.js"></script>
 </body>
 </html>
