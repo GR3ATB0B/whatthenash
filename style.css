@@ -423,3 +423,20 @@ section { padding: var(--sp-9) 0; }
   .graduation { padding: var(--sp-7) var(--sp-5); margin: 0 var(--sp-4) var(--sp-7); }
   .stats { gap: var(--sp-6); }
 }
+
+/* idle float (applied after explosion settles) */
+.hobby-bubble.floating { animation: hobby-float 9s ease-in-out infinite; }
+.hobby-bubble.floating:nth-child(3n)  { animation-duration: 11s; animation-delay: -1s; }
+.hobby-bubble.floating:nth-child(3n+1){ animation-duration: 13s; animation-delay: -3s; }
+.hobby-bubble.floating:nth-child(3n+2){ animation-duration: 10s; animation-delay: -6s; }
+
+@keyframes hobby-float {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(12px, -14px); }
+  50%      { transform: translate(-8px, -10px); }
+  75%      { transform: translate(10px, 12px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hobby-bubble.floating { animation: none; }
+}
