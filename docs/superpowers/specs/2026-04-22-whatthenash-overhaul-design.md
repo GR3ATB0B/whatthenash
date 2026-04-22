@@ -129,7 +129,14 @@ Single continuous vertical scroll. Total height ≈ 5× viewport.
 - Vertical scroll drives horizontal translation of a card rail.
 - Eyebrow: "02 / WHAT I'VE BUILT"
 - Display L: "25 projects." + Instrument Serif italic "scroll sideways →"
-- Rail content: 6–8 featured projects as full cards (image, title, one-line desc, status badge). Final card: "See all 25 →" linking to `projects.html`.
+- Rail content: 6 featured projects as full cards (image, title, one-line desc, status badge). Final card: "See all 25 →" linking to `projects.html`.
+- **Featured order (confirmed by Nash):**
+  1. **Banana / Peel 1** — Nash's current company / iOS app. Lead project. Needs a new project detail page (`projects/banana.html`) — content to be provided by Nash in a later session.
+  2. **BOB** — existing `projects/bob.html`.
+  3. **Skystream** — existing `projects/skystream.html`.
+  4. **ARES II** — existing `projects/ares-ii.html`. Robotic arm, in-progress, visually distinct.
+  5. **House Point Counter** — existing `projects/house-point-counter.html`.
+  6. **See all 25 →** — terminal card linking to `projects.html`.
 - Each card: hover → lift 6px + shadow deepen. Click → routes to `projects/<slug>.html`.
 
 ### Beat 06 — About + Graduation
@@ -168,6 +175,7 @@ Minimal contact page. No form (spam avoidance).
 
 - Hero is a split: left column editorial headline "Let's talk. / about anything." + short paragraph. Right column: channel cards (Email, GitHub, Instagram, Buy Me a Coffee).
 - Each channel card is a `<a>` with title, subtitle, `→` arrow. Hover lifts card.
+- Email channel points to `NashVogeltanz@icloud.com`.
 - Channel cards drift in with soft parallax stagger on scroll into view.
 - Shared nav + footer.
 
@@ -280,7 +288,8 @@ Same as today: push to `main` on `github.com/GR3ATB0B/my-website`, GitHub Pages 
 - Graduation card copy + CTAs
 - "Currently into: Banana Co / Peel" active-hobby concept (implemented via `current: true` on bubble data)
 - Footer copyright phrasing "built with curiosity"
-- Wordmark "Nash" (replaces "What The Nash!" in nav for cleaner look — kept in `<title>`)
+- Wordmark **"Nash"** (replaces "What The Nash!" in nav for cleaner look — kept in `<title>`)
+- Banana emoji 🍌 favicon (existing inline SVG)
 
 **Replaced:**
 - Current bubble-only hobbies section → Head-explosion moment terminating in bubble cluster
@@ -293,8 +302,8 @@ Same as today: push to `main` on `github.com/GR3ATB0B/my-website`, GitHub Pages 
 
 1. **CustomEase licensing.** GSAP CustomEase is in the free bonus plugins bundle. If a license concern arises, fall back to `expo.out`.
 2. **Model-viewer in nav.** `model-viewer` at 32px has some overhead. If perf suffers on mobile, swap the nav logo to a static rasterized PNG of the head once the morph completes — the full `model-viewer` only lives in the hero during the morph.
-3. **Favicon.** Current favicon is a banana emoji SVG. Keep or update to a Nash-face icon? Default: keep.
-4. **Reach-page email.** Spec shows `nash@whatthenash.com` — confirm the real address before implementation.
+3. **Banana / Peel 1 project page.** Currently has no detail page. Either (a) Nash writes `projects/banana.html` content in a separate session and the rail card links to it, or (b) the card links externally (App Store / landing page). Default: (a). Placeholder content in the card until the page ships.
+4. **Banana as hobby AND project.** The "Banana Co" hobby bubble exists today and is `current: true`. Keep it in the hobby cluster AND feature as project #1 — it's both a hobby and a company, which is on-brand.
 
 ## Success Criteria
 
