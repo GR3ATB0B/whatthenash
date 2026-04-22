@@ -16,3 +16,30 @@
 export const prefersReducedMotion =
   typeof window !== 'undefined' &&
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---- Lenis smooth scroll (shared across all pages) ---- */
+(function initLenis() {
+  if (prefersReducedMotion) return;
+  if (typeof Lenis === 'undefined') return; // pages without lenis CDN simply use native scroll
+
+  const lenis = new Lenis({
+    lerp: 0.1,
+    smoothWheel: true,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Tell ScrollTrigger to use Lenis
+  if (typeof ScrollTrigger !== 'undefined') {
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // Expose for debugging
+  window.__lenis = lenis;
+})();
