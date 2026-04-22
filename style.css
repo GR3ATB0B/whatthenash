@@ -70,3 +70,55 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     scroll-behavior: auto !important;
   }
 }
+
+/* =======================================================
+   Typography
+   ======================================================= */
+
+h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.03em; color: var(--ink); }
+
+.display-xl { font-size: clamp(3rem, 7vw, 5rem);    font-weight: 800; letter-spacing: -0.04em; line-height: 1.02; }
+.display-l  { font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+.heading    { font-size: clamp(1.3rem, 2.5vw, 1.5rem); font-weight: 700; letter-spacing: -0.02em; }
+
+.body-l { font-size: 1.05rem; line-height: 1.75; color: var(--ink-muted); }
+.body   { font-size: 1rem;    line-height: 1.65; color: var(--ink-muted); }
+
+.serif-italic {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--sage);
+}
+
+.caption {
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+/* =======================================================
+   Layout
+   ======================================================= */
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-5); }
+
+main { display: block; }
+section { padding: var(--sp-9) 0; }
+
+.reveal { opacity: 0; transform: translateY(30px); }
+
+@media (max-width: 768px) {
+  section { padding: var(--sp-8) 0; }
+  .container { padding: 0 var(--sp-4); }
+}
