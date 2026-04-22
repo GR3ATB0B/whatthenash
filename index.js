@@ -46,3 +46,49 @@ const navEl    = document.getElementById('nav');
   // Initial state
   gsap.set(navEl, { opacity: 0, y: -8 });
 })();
+
+/* ---------- Beat 03 — Manifesto pin + parallax + reveal ---------- */
+(function setupManifesto() {
+  const section = document.querySelector('#manifesto');
+  if (!section) return;
+
+  const reveals = section.querySelectorAll('.reveal');
+  if (prefersReducedMotion) {
+    reveals.forEach(r => { r.style.opacity = '1'; r.style.transform = 'none'; });
+    return;
+  }
+
+  // Pin the section briefly so the reveal gets to play
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top top',
+    end: '+=80%',
+    pin: true,
+    pinSpacing: true,
+  });
+
+  // Line-by-line reveal on entry
+  gsap.to(reveals, {
+    opacity: 1,
+    y: 0,
+    duration: 0.9,
+    stagger: 0.18,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: section, start: 'top 80%' },
+  });
+
+  // Parallax blobs — each element moves a fraction of scroll distance
+  section.querySelectorAll('[data-parallax]').forEach(el => {
+    const speed = parseFloat(el.dataset.parallax);
+    gsap.to(el, {
+      y: () => window.innerHeight * speed * -0.5,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  });
+})();
