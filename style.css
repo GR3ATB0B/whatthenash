@@ -290,3 +290,136 @@ section { padding: var(--sp-9) 0; }
   border-radius: 999px;
   text-transform: uppercase; letter-spacing: 0.06em;
 }
+
+/* =======================================================
+   index.html — scroll narrative
+   ======================================================= */
+
+/* Beat 01 — Hero */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: var(--sp-9) var(--sp-5) var(--sp-7);
+  position: relative;
+}
+.hero-head {
+  width: 360px; height: 360px;
+  margin-bottom: var(--sp-6);
+  --poster-color: transparent;
+}
+.hero .eyebrow { margin-bottom: var(--sp-4); }
+.hero h1 { margin-bottom: var(--sp-3); }
+.hero-subtitle { font-size: clamp(1.2rem, 2.2vw, 1.5rem); color: var(--ink-muted); max-width: 540px; }
+.hero-scroll-hint {
+  position: absolute; bottom: var(--sp-6); left: 50%; transform: translateX(-50%);
+  font-size: 0.72rem; color: var(--ink-faint); letter-spacing: 0.18em;
+}
+
+/* Beat 03 — Manifesto */
+.manifesto {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+}
+.manifesto-inner { max-width: 900px; padding: 0 var(--sp-5); position: relative; z-index: 2; }
+.manifesto h2 { margin-top: var(--sp-4); }
+.manifesto-bg { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.manifesto-bg .blob {
+  position: absolute; border-radius: var(--r-md);
+}
+.manifesto-bg .blob-sage  { top: 20%;  right: 10%; width: 140px; height: 140px; background: var(--sage); opacity: 0.18; border-radius: 50%; }
+.manifesto-bg .blob-warm  { bottom: 15%; left: 8%;  width: 110px; height: 160px; background: var(--warm); opacity: 0.22; }
+.manifesto-bg .blob-cream { top: 45%;  right: 30%; width: 90px;  height: 90px;  background: var(--border); opacity: 0.6; }
+
+/* Beat 04 — Explosion + bubble cluster */
+.explosion {
+  min-height: 110vh;
+  position: relative;
+}
+.explosion-stage {
+  position: relative;
+  width: 100%; max-width: 1100px; margin: 0 auto;
+  height: 720px;
+}
+#explosion-head {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 250px; height: 250px;
+  --poster-color: transparent;
+}
+.hobby-bubble {
+  position: absolute;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  color: var(--ink);
+  font-weight: 600; font-size: 0.82rem;
+  text-align: center; padding: var(--sp-2); line-height: 1.2;
+  text-decoration: none;
+  transition: transform var(--dur-micro) var(--ease-out),
+              box-shadow var(--dur-micro) var(--ease-out),
+              border-color var(--dur-micro) var(--ease-out);
+  transform: scale(0);
+}
+.hobby-bubble.current {
+  background: var(--sage); color: var(--surface); border-color: #4e6f4b; font-weight: 700;
+}
+.hobby-bubble:hover {
+  transform: scale(1.12) !important;
+  box-shadow: var(--sh-float);
+  border-color: var(--sage);
+}
+
+/* Beat 05 — Horizontal rail */
+.rail-pin { height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.rail-inner { display: flex; gap: var(--sp-5); padding-left: var(--sp-6); will-change: transform; }
+.rail-card {
+  flex: 0 0 380px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-6);
+  box-shadow: var(--sh-rest);
+  transition: transform var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) var(--ease-out);
+}
+.rail-card:hover { transform: translateY(-6px); box-shadow: var(--sh-hover); }
+.rail-card-image {
+  aspect-ratio: 4/3;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, var(--border), var(--canvas));
+  margin-bottom: var(--sp-4);
+}
+.rail-card h3 { margin-bottom: var(--sp-2); }
+.rail-card .desc { color: var(--ink-muted); font-size: 0.9rem; margin-bottom: var(--sp-4); min-height: 2.6em; }
+
+/* Beat 06 — About + graduation */
+.about-section { padding: var(--sp-9) 0; }
+.graduation {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-9) var(--sp-7);
+  text-align: center;
+  max-width: 780px; margin: 0 auto var(--sp-8);
+  box-shadow: var(--sh-rest);
+}
+.graduation-icon { font-size: 3rem; margin-bottom: var(--sp-4); }
+.graduation-story { max-width: 560px; margin: 0 auto var(--sp-7); color: var(--ink-muted); font-size: 1.05rem; }
+.graduation-ctas { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; }
+.stats {
+  display: flex; gap: var(--sp-9); justify-content: center;
+  padding-top: var(--sp-6); border-top: 1px solid var(--border);
+  max-width: 780px; margin: 0 auto;
+}
+.stat-num { font-size: 2.8rem; font-weight: 800; color: var(--sage); line-height: 1; letter-spacing: -0.03em; }
+.stat-lbl { font-size: 0.78rem; color: var(--ink-faint); margin-top: var(--sp-2); text-transform: uppercase; letter-spacing: 0.08em; }
+
+@media (max-width: 768px) {
+  .hero-head { width: 260px; height: 260px; }
+  #explosion-head { width: 160px; height: 160px; }
+  .explosion-stage { height: 560px; }
+  .rail-card { flex: 0 0 280px; }
+  .graduation { padding: var(--sp-7) var(--sp-5); margin: 0 var(--sp-4) var(--sp-7); }
+  .stats { gap: var(--sp-6); }
+}
