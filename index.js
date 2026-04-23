@@ -113,8 +113,8 @@ const navEl    = document.getElementById('nav');
 
   // Build bubbles
   const sizeScale = W < 500 ? 0.7 : 1;
-  const sizes = [90, 100, 110, 85, 95, 105, 88, 102, 92, 98, 108, 86, 96, 100, 94, 104, 88, 106]
-                  .slice(0, HOBBIES.length).map(s => Math.round(s * sizeScale));
+  const sizePool = [90, 100, 110, 85, 95, 105, 88, 102, 92, 98, 108, 86, 96, 100, 94, 104, 88, 106];
+  const sizes = HOBBIES.map((_, i) => Math.round(sizePool[i % sizePool.length] * sizeScale));
 
   const positions = layoutBubbles(sizes, W, H);
 
