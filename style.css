@@ -525,3 +525,150 @@ section { padding: var(--sp-9) 0; }
 @media (max-width: 768px) {
   .reach { grid-template-columns: 1fr; gap: var(--sp-7); padding-top: 140px; }
 }
+
+/* =======================================================
+   Subpage template — hobby + project detail pages
+   ======================================================= */
+
+.hobby-page { background: var(--canvas); }
+
+.hobby-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 160px var(--sp-5) var(--sp-7);
+  text-align: left;
+}
+.hobby-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  margin-bottom: var(--sp-3);
+}
+.hobby-hero .subtitle {
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  color: var(--ink-muted);
+  max-width: 600px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* section-label (old name) = eyebrow */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--sage);
+  margin-bottom: var(--sp-3);
+  display: block;
+}
+
+.hobby-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--sp-5) var(--sp-10);
+}
+
+.content-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-6);
+  margin-bottom: var(--sp-5);
+  box-shadow: var(--sh-rest);
+  transition: transform var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) var(--ease-out);
+}
+.content-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-hover);
+}
+.content-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--sp-4);
+}
+.content-card p {
+  color: var(--ink-muted);
+  margin-bottom: var(--sp-4);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+.content-card p:last-child { margin-bottom: 0; }
+.content-card strong { color: var(--ink); font-weight: 600; }
+.content-card a { color: var(--sage); border-bottom: 1px solid var(--sage-soft); }
+.content-card a:hover { border-bottom-color: var(--sage); }
+
+.gear-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.gear-list li {
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+.gear-list li:last-child { border-bottom: none; }
+.gear-list strong { color: var(--ink); font-weight: 600; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-8);
+}
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--sh-rest);
+  transition: transform var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) var(--ease-out);
+}
+.gallery-grid img:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-hover);
+}
+
+/* Headings between cards / galleries */
+.hobby-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--sage);
+  margin: var(--sp-7) 0 var(--sp-5);
+}
+.content-card h3 {
+  text-transform: none;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 var(--sp-4);
+  font-size: 1.25rem;
+}
+
+/* Generic back-link row used on a couple of project pages */
+.header {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px var(--sp-5) 0;
+}
+.header a {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  transition: color var(--dur-micro) var(--ease-out);
+}
+.header a:hover { color: var(--ink); }
+.header h1 { margin-top: var(--sp-4); }
+
+@media (max-width: 768px) {
+  .hobby-hero { padding: 140px var(--sp-4) var(--sp-5); }
+  .hobby-content { padding: 0 var(--sp-4) var(--sp-8); }
+  .content-card { padding: var(--sp-5); }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .header { padding: 120px var(--sp-4) 0; }
+}
