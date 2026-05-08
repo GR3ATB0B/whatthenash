@@ -1,16 +1,11 @@
 // data/projects.js
 export const PROJECTS = [
-  { slug: 'banana',              name: 'Banana / Peel 1',     desc: 'iOS app, launching soon.',            tags: ['software'],           status: 'progress', progress: 40 },
-  { slug: 'bob',                 name: 'BOB',                  desc: 'Discord bot with personality.',       tags: ['software', 'ai'],     status: 'complete' },
-  { slug: 'skystream',           name: 'Skystream',            desc: 'Weather API + visualizer.',           tags: ['software'],           status: 'complete' },
-  { slug: 'ares-ii',             name: 'ARES II',              desc: 'Robotic arm — precision tool.',       tags: ['hardware'],           status: 'progress', progress: 65 },
-  { slug: 'house-point-counter', name: 'House Point Counter',  desc: 'Hardware + dashboard.',               tags: ['hardware'],           status: 'complete' },
-  // Additional projects below use the existing project page stubs. Nash can fill in real data later.
-  { slug: 'project1', name: 'Project 1', desc: 'TBD.', tags: ['hardware'], status: 'progress', progress: 20 },
-  { slug: 'project2', name: 'Project 2', desc: 'TBD.', tags: ['software'], status: 'progress', progress: 50 },
-  { slug: 'project3', name: 'Project 3', desc: 'TBD.', tags: ['ai'],       status: 'progress', progress: 30 },
-  { slug: 'project4', name: 'Project 4', desc: 'TBD.', tags: ['hardware'], status: 'complete' },
-  { slug: 'project5', name: 'Project 5', desc: 'TBD.', tags: ['software'], status: 'complete' },
+  { slug: 'banana',              name: 'Banana / Peel 1',     desc: 'My company. Peel 1 is the Android launcher for Click Communicator — AAC made simple.',  tags: ['software', 'accessibility'], status: 'progress', progress: 40 },
+  { slug: 'bob',                 name: 'BOB',                 desc: 'My personal AI agent on Claude. Multi-agent system that runs my digital life.',         tags: ['software', 'ai'],            status: 'progress', progress: 80 },
+  { slug: 'claude-approver',     name: 'Claude Approver',     desc: 'ESP32 BLE device that plays a jingle and lights up when Claude finishes a task.',       tags: ['hardware', 'ai'],            status: 'progress', progress: 70 },
+  { slug: 'skystream',           name: 'Skystream',           desc: 'Water-harvesting system. Pulls drinking water out of the air using MOF303.',            tags: ['hardware'],                  status: 'complete' },
+  { slug: 'ares-ii',             name: 'ARES II',             desc: 'Ionic-thruster airplane. Thousands of volts, zero moving parts. Built at Georgia GHP.', tags: ['hardware'],                  status: 'complete' },
+  { slug: 'house-point-counter', name: 'House Point Counter', desc: 'Hardware + dashboard for tracking school house points in real time.',                  tags: ['hardware', 'software'],      status: 'complete' },
 ];
 
 export const CATEGORY_MATCHES = {

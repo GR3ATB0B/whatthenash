@@ -14,9 +14,38 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
-  <link rel="stylesheet" href="/style.css?v=20260423">
+  <link rel="stylesheet" href="/style.css?v=20260507">
 </head>
 <body>
+
+<div class="grad-banner" id="grad-banner" role="region" aria-label="Graduation announcement" hidden>
+  <a class="grad-banner-link-full" href="/graduation.html">
+    <span class="grad-banner-icon" aria-hidden="true">🎓</span>
+    <span class="grad-banner-text">I'm graduating this May — celebrate with me</span>
+    <span class="grad-banner-arrow" aria-hidden="true">→</span>
+  </a>
+  <button class="grad-banner-close" id="grad-banner-close" aria-label="Dismiss graduation banner">×</button>
+</div>
+
+<div class="grad-modal" id="grad-modal" role="dialog" aria-modal="true" aria-labelledby="grad-modal-title" hidden>
+  <div class="grad-modal-backdrop" data-grad-dismiss></div>
+  <div class="grad-modal-card">
+    <button class="grad-modal-close" id="grad-modal-close" aria-label="Close" data-grad-dismiss>×</button>
+    <div class="grad-modal-icon" aria-hidden="true">🎓</div>
+    <div class="eyebrow" style="margin-bottom: var(--sp-3);">Atlanta Classical '26 → Auburn '30</div>
+    <h2 id="grad-modal-title" class="display-l">I'm Graduating This May!</h2>
+    <p class="grad-modal-story">
+      Senior at Atlanta Classical Academy, headed to Auburn in the fall. Want to celebrate with me? Pick your weapon:
+    </p>
+    <div class="grad-modal-ctas">
+      <a class="btn btn-sage" href="/graduation.html">🎓 See My Graduation Page</a>
+      <a class="btn btn-ghost" href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
+      <a class="btn btn-ghost" href="https://cash.app/$NashVtanz" target="_blank" rel="noopener">💸 Cash App</a>
+      <a class="btn btn-ghost" href="https://www.amazon.com/hz/wishlist/ls/1F0O3WNAW3M46?ref_=wl_share" target="_blank" rel="noopener">🎁 Amazon Wishlist</a>
+    </div>
+    <button class="grad-modal-skip" data-grad-dismiss>No thanks, just browsing</button>
+  </div>
+</div>
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
@@ -52,6 +81,24 @@
     <p class="hero-subtitle"><span class="serif-italic">builder of things. explorer of ideas.</span></p>
     <div class="hero-scroll-hint">↓ SCROLL</div>
   </section>
+  <section class="grad-feature" id="grad-feature">
+    <div class="container">
+      <div class="grad-feature-card">
+        <div class="graduation-icon" aria-hidden="true">🎓</div>
+        <div class="eyebrow" style="margin-bottom: var(--sp-3);">Atlanta Classical '26 → Auburn '30</div>
+        <h2 class="display-l">I'm Graduating This May</h2>
+        <p class="graduation-story">
+          I'm a senior at Atlanta Classical Academy, headed to Auburn in the fall. If you got one of my graduation cards or just want to celebrate with me — there are a few easy ways.
+        </p>
+        <div class="graduation-ctas">
+          <a class="btn btn-ghost" href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
+          <a class="btn btn-ghost" href="https://cash.app/$NashVtanz" target="_blank" rel="noopener">💸 Cash App</a>
+          <a class="btn btn-ghost" href="https://www.amazon.com/hz/wishlist/ls/1F0O3WNAW3M46?ref_=wl_share" target="_blank" rel="noopener">🎁 Amazon Wishlist</a>
+        </div>
+        <a class="grad-feature-cta" href="/graduation.html">See My Graduation Page →</a>
+      </div>
+    </div>
+  </section>
   <section class="manifesto" id="manifesto">
     <div class="manifesto-bg" aria-hidden="true">
       <div class="blob blob-sage"  data-parallax="0.3"></div>
@@ -61,7 +108,7 @@
     <div class="manifesto-inner container">
       <div class="eyebrow">01 / What I do</div>
       <h2 class="display-xl reveal">I build things.</h2>
-      <h2 class="display-xl serif-italic reveal" style="margin-top: var(--sp-2);">because I can't help it.</h2>
+      <h2 class="display-xl serif-italic reveal" style="margin-top: var(--sp-2);">because it's how my brain works.</h2>
     </div>
   </section>
   <section class="explosion" id="explosion">
@@ -89,67 +136,58 @@
       <div style="flex: 0 0 auto; width: 30vw; max-width: 420px; padding-right: var(--sp-5);">
         <div class="eyebrow">03 / What I've built</div>
         <h2 class="display-l" style="margin-top: var(--sp-3);">
-          25 projects. <span class="serif-italic">scroll sideways →</span>
+          The projects. <span class="serif-italic">scroll sideways →</span>
         </h2>
       </div>
       <a class="rail-card" href="/projects/banana.html">
         <div class="rail-card-image" style="background: linear-gradient(135deg, var(--warm), #f4d9b2);"></div>
         <h3 class="heading">Banana / Peel 1</h3>
-        <p class="desc">The company I'm building. iOS app — launching soon.</p>
+        <p class="desc">My company. Peel 1 is the Android launcher for Click Communicator — AAC made simple.</p>
         <span class="badge-complete" style="background: var(--warm); color: var(--ink);">IN PROGRESS</span>
       </a>
       <a class="rail-card" href="/projects/bob.html">
         <div class="rail-card-image" style="background: linear-gradient(135deg, var(--sage), #a8d5c2);"></div>
         <h3 class="heading">BOB</h3>
-        <p class="desc">Discord bot with personality.</p>
-        <span class="badge-complete">COMPLETE</span>
+        <p class="desc">My personal AI agent on Claude. Multi-agent system that runs my digital life.</p>
+        <span class="badge-complete">IN USE</span>
+      </a>
+      <a class="rail-card" href="/projects/claude-approver.html">
+        <div class="rail-card-image" style="background: linear-gradient(135deg, #5b6a8a, var(--sage));"></div>
+        <h3 class="heading">Claude Approver</h3>
+        <p class="desc">ESP32 BLE device that plays a jingle and lights up when Claude finishes a task.</p>
+        <span class="badge-complete" style="background: var(--warm); color: var(--ink);">IN PROGRESS</span>
       </a>
       <a class="rail-card" href="/projects/skystream.html">
         <div class="rail-card-image" style="background: linear-gradient(135deg, #B09A7A, var(--warm));"></div>
         <h3 class="heading">Skystream</h3>
-        <p class="desc">Weather API + visualizer.</p>
-        <span class="badge-complete">COMPLETE</span>
+        <p class="desc">Water-harvesting system. Pulls drinking water out of the air using MOF303.</p>
+        <span class="badge-complete">AWARD-WINNING</span>
       </a>
       <a class="rail-card" href="/projects/ares-ii.html">
         <div class="rail-card-image" style="background: linear-gradient(135deg, var(--border), #c8c8c8);"></div>
         <h3 class="heading">ARES II</h3>
-        <p class="desc">Robotic arm — precision tool.</p>
-        <div class="progress" style="margin-top: var(--sp-3);"><div class="progress-fill" style="width: 65%;"></div></div>
-        <div class="progress-label">65% · in progress</div>
+        <p class="desc">Ionic-thruster airplane. Thousands of volts, zero moving parts. Built at Georgia GHP.</p>
+        <span class="badge-complete">COMPLETE</span>
       </a>
       <a class="rail-card" href="/projects/house-point-counter.html">
         <div class="rail-card-image" style="background: linear-gradient(135deg, var(--sage), var(--warm));"></div>
         <h3 class="heading">House Point Counter</h3>
-        <p class="desc">Hardware + dashboard.</p>
+        <p class="desc">Hardware + dashboard for tracking school house points in real time.</p>
         <span class="badge-complete">COMPLETE</span>
       </a>
       <a class="rail-card" href="/projects.html" style="display: flex; align-items: center; justify-content: center; text-align: center;">
         <div>
           <div class="eyebrow">See everything</div>
-          <div class="display-l" style="margin-top: var(--sp-3); font-size: 2rem;">All 25 projects →</div>
+          <div class="display-l" style="margin-top: var(--sp-3); font-size: 2rem;">All projects →</div>
         </div>
       </a>
     </div>
   </section>
   <section class="about-section" id="about">
     <div class="container">
-      <div class="graduation reveal">
-        <div class="graduation-icon">🎓</div>
-        <div class="eyebrow" style="margin-bottom: var(--sp-3);">Atlanta Classical '26 → Auburn '30</div>
-        <h2 class="display-l">I'm Graduating This May</h2>
-        <p class="graduation-story">
-          I'm a senior at Atlanta Classical Academy, graduating this May — then headed to Auburn in the fall. If you want to celebrate with me, here are some ways:
-        </p>
-        <div class="graduation-ctas">
-          <a class="btn btn-primary" href="https://buymeacoffee.com/qydtpyrqtfz" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
-          <a class="btn btn-ghost"   href="https://cash.app/$NashVtanz" target="_blank" rel="noopener">💸 Cash App</a>
-          <a class="btn btn-ghost"   href="https://www.amazon.com/hz/wishlist/ls/1F0O3WNAW3M46?ref_=wl_share" target="_blank" rel="noopener">🎁 Amazon Wishlist</a>
-        </div>
-      </div>
-
       <div class="stats">
         <div>
-          <div class="stat-num" data-count="25">0</div>
+          <div class="stat-num" data-count="6">0</div>
           <div class="stat-lbl">Projects</div>
         </div>
         <div>

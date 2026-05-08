@@ -9,14 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
-  <link rel="stylesheet" href="/style.css?v=20260423">
+  <link rel="stylesheet" href="/style.css?v=20260507">
 </head>
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <span>Nash</span>
-      </a>
+      <a href="/" class="nav-logo"><span>Nash</span></a>
       <ul class="nav-links">
         <li><a href="/projects.html">Projects</a></li>
         <li><a href="/#hobbies">Hobbies</a></li>
@@ -29,17 +27,53 @@
     </div>
   </nav>
 
-  <main class="container" style="padding-top: 160px; padding-bottom: 120px; max-width: 760px;">
-    <div class="caption" style="margin-bottom: var(--sp-3);">← <a href="/projects.html">Projects</a></div>
-    <h1 class="display-l">Banana <span class="serif-italic">/ Peel 1</span></h1>
-    <p class="body-l" style="margin-top: var(--sp-5); max-width: 600px;">
-      The company I'm building. Peel 1 is the first app — iOS, launching soon. More details coming.
-    </p>
-    <div style="margin-top: var(--sp-7); padding: var(--sp-7); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); text-align: center;">
-      <div style="font-size: 2.5rem;">🍌</div>
-      <p class="body" style="margin-top: var(--sp-4);">Work in progress. Check back soon.</p>
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Project · In Progress</p>
+      <h1>Banana 🍌</h1>
+      <p class="subtitle">My company. Building tools that make life easier for the people who need them most.</p>
     </div>
-  </main>
+  </section>
+
+  <div class="hobby-content">
+    <div class="content-card">
+      <h3>Peel 1 — The First App</h3>
+      <p><strong>Peel 1</strong> is an <strong>Android launcher built for Click Communicator</strong>. Click Communicator is an AAC (Augmentative and Alternative Communication) device that helps non-verbal people speak — and Peel 1 is the launcher that wraps the whole experience.</p>
+      <p>Instead of a generic Android home screen, users get a clean, focused launcher that puts their communication tools front-and-center, locks down distractions, and makes the device feel purpose-built.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>What It Does</h3>
+      <ul style="margin-left: 1.2rem; line-height: 1.8;">
+        <li>Custom Android launcher (replaces the default home screen)</li>
+        <li>Designed around AAC workflows — fewer taps to speak</li>
+        <li>Locks the device into a focused communication mode</li>
+        <li>Configurable by caregivers, simple for users</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <h3>The Bigger Picture</h3>
+      <p>Banana is the company. Peel 1 is the first thing it ships, but the long-term goal is a whole family of accessibility-first tools — software and hardware — that take the friction out of assistive tech.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>Tech</h3>
+      <div style="margin-top: 0.5rem;">
+        <span class="tech-tag">Android</span>
+        <span class="tech-tag">Kotlin</span>
+        <span class="tech-tag">Click Communicator</span>
+        <span class="tech-tag">Accessibility</span>
+        <span class="tech-tag">AAC</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.15 });
+  </script>
 
   <footer class="footer">
     <div class="footer-links">

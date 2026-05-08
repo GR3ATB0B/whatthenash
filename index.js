@@ -230,3 +230,61 @@ const heroHead = document.querySelector('.hero-head');
     });
   });
 })();
+
+/* ---------- Graduation banner + first-visit modal ---------- */
+(function setupGraduation() {
+  const KEY_MODAL  = 'grad:modal-dismissed:v1';
+  const KEY_BANNER = 'grad:banner-dismissed:v1';
+  const banner = document.getElementById('grad-banner');
+  const modal  = document.getElementById('grad-modal');
+  if (!banner || !modal) return;
+
+  const showBanner = () => {
+    if (localStorage.getItem(KEY_BANNER) === '1') return;
+    banner.hidden = false;
+    document.body.classList.add('has-grad-banner');
+    requestAnimationFrame(() => {
+      const h = banner.getBoundingClientRect().height;
+      if (h) document.documentElement.style.setProperty('--grad-banner-height', `${Math.ceil(h)}px`);
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    });
+  };
+
+  const hideBanner = () => {
+    banner.hidden = true;
+    document.body.classList.remove('has-grad-banner');
+    localStorage.setItem(KEY_BANNER, '1');
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  };
+
+  const closeModal = () => {
+    modal.hidden = true;
+    document.body.classList.remove('grad-modal-open');
+    localStorage.setItem(KEY_MODAL, '1');
+    showBanner();
+  };
+
+  document.getElementById('grad-banner-close').addEventListener('click', hideBanner);
+
+  modal.querySelectorAll('[data-grad-dismiss]').forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+  modal.querySelectorAll('a[href]').forEach(a => {
+    a.addEventListener('click', () => {
+      localStorage.setItem(KEY_MODAL, '1');
+      setTimeout(() => { modal.hidden = true; document.body.classList.remove('grad-modal-open'); showBanner(); }, 50);
+    });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+
+  if (localStorage.getItem(KEY_MODAL) === '1') {
+    showBanner();
+  } else {
+    setTimeout(() => {
+      modal.hidden = false;
+      document.body.classList.add('grad-modal-open');
+    }, 600);
+  }
+})();

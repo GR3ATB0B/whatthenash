@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Approver — Nash</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🛎️%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="/style.css?v=20260507">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo"><span>Nash</span></a>
+      <ul class="nav-links">
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/#hobbies">Hobbies</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/reach.html">Reach</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Project · In Progress</p>
+      <h1>Claude Approver 🛎️</h1>
+      <p class="subtitle">A little hardware bell that tells me when Claude is done thinking.</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
+    <div class="content-card">
+      <h3>The Problem</h3>
+      <p>I run a lot of long Claude Code tasks in the background. Builds, refactors, tests — anything that takes more than a minute. The annoying part is the polling: am I done yet? Did it finish? Did it get stuck?</p>
+      <p>I needed a physical, in-the-room signal. Something I'd notice without staring at a terminal.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>The Build</h3>
+      <p>A tiny <strong>ESP32 XIAO S3</strong> board running custom firmware, paired to my Mac over <strong>Bluetooth Low Energy</strong>. When Claude finishes a task — or wants approval for something risky — the device:</p>
+      <ul style="margin-left: 1.2rem; line-height: 1.9; margin-top: var(--sp-3);">
+        <li>🎵 Plays a jingle (different jingle per event — done, approved, error)</li>
+        <li>💡 Lights up with status colors</li>
+        <li>🔘 Has buttons I can press to approve / reject without reaching for the keyboard</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <h3>The Architecture</h3>
+      <p>It's a small stack but it has more layers than you'd expect.</p>
+      <ul style="margin-left: 1.2rem; line-height: 1.9; margin-top: var(--sp-3);">
+        <li><strong>ESP32 firmware</strong> — Arduino + NimBLE, presents as a BLE HID keyboard plus an HTTP control endpoint over WiFi.</li>
+        <li><strong>Mac menu-bar app</strong> — bridges between Claude and the device. Holds the BLE/HTTP connection.</li>
+        <li><strong>MCP server</strong> — exposes the device to Claude as tools (<code>play_jingle</code>, <code>set_led_status</code>, <code>device_status</code>).</li>
+        <li><strong>HTTP transport</strong> — the path that ended up working reliably after BLE HID output reports turned out to be blocked on macOS.</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <h3>What I Learned</h3>
+      <p>macOS does not let userspace apps write HID output reports to a bonded BLE keyboard — IOKit blocks it for security. I burned an evening proving that, then pivoted the control channel to HTTP over WiFi, which works perfectly. That whole detour ended up being its own little research project.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>Tech</h3>
+      <div style="margin-top: 0.5rem;">
+        <span class="tech-tag">ESP32</span>
+        <span class="tech-tag">NimBLE</span>
+        <span class="tech-tag">Arduino</span>
+        <span class="tech-tag">MCP</span>
+        <span class="tech-tag">macOS</span>
+        <span class="tech-tag">PyObjC</span>
+        <span class="tech-tag">Python</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.15 });
+  </script>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/projects.html">Projects</a>
+      <a href="/#hobbies">Hobbies</a>
+      <a href="/#about">About</a>
+      <a href="/reach.html">Reach</a>
+      <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+  </footer>
+  <script type="module" src="/shared.js"></script>
+</body>
+</html>

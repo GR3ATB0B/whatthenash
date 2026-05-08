@@ -3,150 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B.O.B. — Nash</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
+  <title>BOB — Nash</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧠%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
-  <link rel="stylesheet" href="/style.css?v=20260423">
+  <link rel="stylesheet" href="/style.css?v=20260507">
 </head>
-<body class="bob-page">
+<body>
 
   <nav class="nav">
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">
-      <span>Nash</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="/projects.html">Projects</a></li>
-      <li><a href="/#hobbies">Hobbies</a></li>
-      <li><a href="/#about">About</a></li>
-      <li><a href="/reach.html">Reach</a></li>
-    </ul>
-    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo"><span>Nash</span></a>
+      <ul class="nav-links">
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/#hobbies">Hobbies</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/reach.html">Reach</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Project · In Use Daily</p>
+      <h1>BOB 🧠</h1>
+      <p class="subtitle">My personal AI agent. A multi-agent brain running on Claude inside my Mac, keeping the chaos managed.</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
+    <div class="content-card">
+      <h3>What BOB Is</h3>
+      <p><strong>BOB</strong> stands for <em>Background Operations Brain</em>. He's my personal AI agent — built on top of <strong>Claude</strong> via OpenClaw — and he runs in the background on my MacBook, ready to take on work without me having to babysit him.</p>
+      <p>Think of him as the orchestrator. When I throw a task at him, he routes it to the right specialist agent, waits for the result, and reports back.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>The Agent Team</h3>
+      <p>BOB doesn't do everything himself. He delegates to a roster of specialists, each tuned for a different kind of work:</p>
+      <ul style="margin-left: 1.2rem; line-height: 1.9; margin-top: var(--sp-3);">
+        <li><strong>⚡ Clyde</strong> — The Coder. Builds features, fixes bugs, ships code. Runs on Claude Opus.</li>
+        <li><strong>✍️ Scribe</strong> — The Writer. Drafts, edits, and crafts words with style.</li>
+        <li><strong>🌍 Atlas</strong> — The Researcher. Digs deep, finds answers, maps the unknown.</li>
+        <li><strong>🛡️ Sentinel</strong> — The Guardian. Watches for threats, keeps systems safe.</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <h3>How It Works</h3>
+      <p>BOB lives on my Mac through OpenClaw — always running, always ready. Tasks come in, get routed, and the right specialist spins up to handle it. New agent needed? I plug one in. The architecture is modular by design.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>Tech</h3>
+      <div style="margin-top: 0.5rem;">
+        <span class="tech-tag">Claude</span>
+        <span class="tech-tag">OpenClaw</span>
+        <span class="tech-tag">Multi-Agent</span>
+        <span class="tech-tag">macOS</span>
+        <span class="tech-tag">MCP</span>
+      </div>
+    </div>
   </div>
-</nav>
 
-
-  <section class="bob-hero">
-    <h1>🧠 B.O.B.</h1>
-    <div class="acronym">Background Operations Brain</div>
-    <p class="subtitle">Nash's AI butler-brain. A multi-agent system living inside a MacBook, managing the digital chaos so Nash doesn't have to.</p>
-  </section>
-
-  <div class="terminal">
-    <div class="terminal-bar">
-      <span class="terminal-dot r"></span>
-      <span class="terminal-dot y"></span>
-      <span class="terminal-dot g"></span>
-    </div>
-    <div class="terminal-body" id="terminal"></div>
-  </div>
-
-  <section class="agents-section">
-    <p class="section-label" style="text-align:center;">Agent Architecture</p>
-    <div class="brain-layout">
-      <div class="bob-core">
-        <div class="brain-emoji">🧠</div>
-        <h3>BOB</h3>
-        <div class="role">The Brain — Orchestrator</div>
-      </div>
-      <div class="connections">
-        <div class="conn-line"></div>
-        <div class="conn-line"></div>
-        <div class="conn-line"></div>
-        <div class="conn-line"></div>
-      </div>
-      <div class="agents-grid">
-        <div class="agent-card">
-          <div class="emoji">⚡</div>
-          <h4>Clyde</h4>
-          <div class="model">Claude Opus 4</div>
-          <p><span class="status-dot"></span>The Coder. Builds features, fixes bugs, ships code.</p>
-        </div>
-        <div class="agent-card">
-          <div class="emoji">✍️</div>
-          <h4>Scribe</h4>
-          <div class="model">GPT-4o mini</div>
-          <p><span class="status-dot"></span>The Writer. Drafts, edits, and crafts words with style.</p>
-        </div>
-        <div class="agent-card">
-          <div class="emoji">🌍</div>
-          <h4>Atlas</h4>
-          <div class="model">Gemini</div>
-          <p><span class="status-dot"></span>The Researcher. Digs deep, finds answers, maps the unknown.</p>
-        </div>
-        <div class="agent-card">
-          <div class="emoji">🛡️</div>
-          <h4>Sentinel</h4>
-          <div class="model">Gemini</div>
-          <p><span class="status-dot"></span>The Guardian. Watches for threats, keeps systems safe.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="description">
-    <p class="section-label">How It Works</p>
-    <div class="desc-grid">
-      <div class="desc-card">
-        <h4>🎯 Task Routing</h4>
-        <p>BOB receives requests and intelligently routes them to the right specialist agent. Code task? Clyde. Need research? Atlas is on it.</p>
-      </div>
-      <div class="desc-card">
-        <h4>🔄 Always Running</h4>
-        <p>BOB lives on Nash's Mac via OpenClaw, always ready. Agents spin up on demand and report back when done.</p>
-      </div>
-      <div class="desc-card">
-        <h4>💬 Multi-Channel</h4>
-        <p>Talk to BOB through Discord, web chat, or the terminal. He meets you wherever you are.</p>
-      </div>
-      <div class="desc-card">
-        <h4>🧩 Modular</h4>
-        <p>New agent needed? Plug one in. Each specialist is independent but coordinated by the brain.</p>
-      </div>
-    </div>
-  </section>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>
-    const lines = [
-      { text: '$ bob status', cls: 'prompt' },
-      { text: '◆ BOB v1.0 — Background Operations Brain', cls: 'info' },
-      { text: '  Host: BOB\'s MacBook Air (Darwin arm64)', cls: 'dim' },
-      { text: '  Uptime: ∞ (or until Nash closes the lid)', cls: 'dim' },
-      { text: '', cls: '' },
-      { text: '  Agents Online:', cls: 'info' },
-      { text: '    ⚡ Clyde    [ACTIVE]  — shipping code', cls: 'ok' },
-      { text: '    ✍  Scribe       [IDLE]    — awaiting task', cls: 'warn' },
-      { text: '    🌍 Atlas        [IDLE]    — awaiting task', cls: 'warn' },
-      { text: '    🛡  Sentinel     [WATCHING] — all clear', cls: 'ok' },
-      { text: '', cls: '' },
-      { text: '  Systems: ✓ All nominal', cls: 'ok' },
-      { text: '  Coffee level: ██████░░ 75%', cls: 'info' },
-    ];
-    const terminal = document.getElementById('terminal');
-    lines.forEach((line, i) => {
-      const div = document.createElement('div');
-      div.className = 'line ' + line.cls;
-      div.textContent = line.text || '\u00A0';
-      div.style.animationDelay = (i * 0.15) + 's';
-      terminal.appendChild(div);
-    });
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.15 });
   </script>
 
   <footer class="footer">
-  <div class="footer-links">
-    <a href="/projects.html">Projects</a>
-    <a href="/#hobbies">Hobbies</a>
-    <a href="/#about">About</a>
-    <a href="/reach.html">Reach</a>
-    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
-  </div>
-  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
-</footer>
+    <div class="footer-links">
+      <a href="/projects.html">Projects</a>
+      <a href="/#hobbies">Hobbies</a>
+      <a href="/#about">About</a>
+      <a href="/reach.html">Reach</a>
+      <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+  </footer>
   <script type="module" src="/shared.js"></script>
 </body>
 </html>
