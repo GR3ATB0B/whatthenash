@@ -124,56 +124,72 @@ section { padding: var(--sp-9) 0; }
 }
 
 /* =======================================================
-   Graduation feature card (top of home)
+   Graduation bubble (bottom of home)
    ======================================================= */
 
 .grad-feature {
-  padding: var(--sp-9) var(--sp-5) var(--sp-7);
-  background:
-    radial-gradient(ellipse at 30% 10%, rgba(107,142,104,0.16), transparent 55%),
-    radial-gradient(ellipse at 75% 80%, rgba(212,165,116,0.16), transparent 60%),
-    var(--canvas);
+  padding: var(--sp-7) var(--sp-5) var(--sp-8);
+  background: var(--canvas);
 }
-.grad-feature-card {
-  position: relative;
+.grad-bubble {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  max-width: 520px;
+  margin: 0 auto;
+  padding: var(--sp-4) var(--sp-6);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: var(--sp-8) var(--sp-7);
-  text-align: center;
-  max-width: 780px;
-  margin: 0 auto;
+  border-radius: 999px;
   box-shadow: var(--sh-rest);
-  transition: box-shadow var(--dur-ui) var(--ease-out), transform var(--dur-ui) var(--ease-out);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform var(--dur-ui) var(--ease-out),
+              box-shadow var(--dur-ui) var(--ease-out),
+              border-color var(--dur-ui) var(--ease-out);
 }
-.grad-feature-card:hover { box-shadow: var(--sh-hover); transform: translateY(-2px); }
-.grad-feature-card .graduation-icon {
-  font-size: 3rem; margin-bottom: var(--sp-4);
+.grad-bubble:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-hover);
+  border-color: var(--sage);
 }
-.grad-feature-card .graduation-story {
-  max-width: 580px; margin: 0 auto var(--sp-6);
-  color: var(--ink-muted); font-size: 1.05rem;
+.grad-bubble-icon { font-size: 1.8rem; flex: 0 0 auto; }
+.grad-bubble-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
-.grad-feature-card .graduation-ctas {
-  display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap;
-  margin-bottom: var(--sp-6);
-}
-.grad-feature-cta {
-  display: inline-block;
-  font-size: 0.92rem; font-weight: 700;
-  color: var(--sage);
+.grad-bubble-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding-top: var(--sp-4);
-  border-top: 1px solid var(--border);
-  width: 100%;
-  transition: color var(--dur-micro) var(--ease-out);
+  color: var(--ink-muted);
 }
-.grad-feature-cta:hover { color: var(--ink); }
+.grad-bubble-headline {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.grad-bubble-arrow {
+  font-size: 1.4rem;
+  color: var(--sage);
+  flex: 0 0 auto;
+  transition: transform var(--dur-micro) var(--ease-out),
+              color var(--dur-micro) var(--ease-out);
+}
+.grad-bubble:hover .grad-bubble-arrow {
+  transform: translateX(4px);
+  color: var(--ink);
+}
 
-@media (max-width: 768px) {
-  .grad-feature { padding: var(--sp-8) var(--sp-4) var(--sp-6); }
-  .grad-feature-card { padding: var(--sp-7) var(--sp-5); }
+@media (max-width: 540px) {
+  .grad-bubble {
+    border-radius: var(--r-lg);
+    padding: var(--sp-4) var(--sp-5);
+  }
 }
 
 /* =======================================================
@@ -374,6 +390,67 @@ body.grad-modal-open { overflow: hidden; }
   letter-spacing: 0.08em;
 }
 .grad-option-card:hover .grad-option-cta { color: var(--ink); }
+
+.grad-pray {
+  max-width: 720px;
+  margin: var(--sp-9) auto 0;
+  padding: var(--sp-7) var(--sp-7) var(--sp-8);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  text-align: center;
+  box-shadow: var(--sh-rest);
+}
+.grad-pray-icon { font-size: 2.4rem; margin-bottom: var(--sp-4); }
+.grad-pray-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: var(--sp-2);
+  color: var(--ink);
+}
+.grad-pray-sub {
+  color: var(--ink-muted);
+  margin-bottom: var(--sp-6);
+  font-size: 1rem;
+}
+.grad-pray-list {
+  list-style: none;
+  counter-reset: pray;
+  padding: 0;
+  max-width: 540px;
+  margin: 0 auto;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.grad-pray-list li {
+  counter-increment: pray;
+  position: relative;
+  padding-left: calc(var(--sp-5) + var(--sp-3));
+  color: var(--ink);
+  line-height: 1.55;
+}
+.grad-pray-list li::before {
+  content: counter(pray);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--surface);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 540px) {
+  .grad-pray { padding: var(--sp-6) var(--sp-5); margin-top: var(--sp-7); }
+}
 
 .grad-thanks {
   text-align: center;
@@ -673,9 +750,6 @@ body.grad-modal-open { overflow: hidden; }
   max-width: 780px; margin: 0 auto var(--sp-8);
   box-shadow: var(--sh-rest);
 }
-.graduation-icon { font-size: 3rem; margin-bottom: var(--sp-4); }
-.graduation-story { max-width: 560px; margin: 0 auto var(--sp-7); color: var(--ink-muted); font-size: 1.05rem; }
-.graduation-ctas { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; }
 .stats {
   display: flex; gap: var(--sp-9); justify-content: center;
   padding-top: var(--sp-6); border-top: 1px solid var(--border);
