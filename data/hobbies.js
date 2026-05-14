@@ -1,7 +1,5 @@
 // data/hobbies.js
 export const HOBBIES = [
-  { name: "Product Design",           page: "#",                              current: true  },
-  { name: "Banana Co",                 page: "/projects/banana.html",          current: true  },
   { name: "Photography",               page: "/hobbies/photography.html"                       },
   { name: "Music",                     page: "/hobbies/music.html"                             },
   { name: "Arduino & Electronics",     page: "/hobbies/electronics.html"                       },
@@ -11,11 +9,11 @@ export const HOBBIES = [
   { name: "Forging & Metal Casting",   page: "/hobbies/forging.html"                           },
   { name: "3D Printing",               page: "/hobbies/3d-printing.html"                       },
   { name: "Goodwill Hunting",          page: "/hobbies/thrifting.html"                         },
-  { name: "Camping",                   page: "/hobbies/camping.html"                           },
+  { name: "Camping",                   page: "/hobbies/camping.html",          current: true  },
   { name: "LEGO",                      page: "/hobbies/lego.html"                              },
   { name: "Weightlifting",             page: "/hobbies/weightlifting.html"                     },
   { name: "Reading",                   page: "/hobbies/reading.html"                           },
-  { name: "Fly Fishing",               page: "/hobbies/fly-fishing.html"                       },
+  { name: "Fly Fishing",               page: "/hobbies/fly-fishing.html",      current: true  },
   { name: "Magic Tricks",              page: "/hobbies/magic.html"                             },
   { name: "Math",                      page: "/hobbies/math.html"                              },
   { name: "Spanish & Languages",       page: "/hobbies/spanish-languages.html"                 },
