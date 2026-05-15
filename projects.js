@@ -9,8 +9,14 @@ const grid = document.getElementById('projects-grid');
 
 /* Render cards */
 function renderCards() {
-  grid.innerHTML = PROJECTS.map(p => `
-    <a class="project-card" href="/projects/${p.slug}.html" data-tags="${p.tags.join(' ')}" data-status="${p.status}">
+  grid.innerHTML = PROJECTS.map(p => {
+    const href = p.href || `/projects/${p.slug}.html`;
+    const externalAttrs = p.external ? ' target="_blank" rel="noopener"' : '';
+    const teaserClass = p.teaser ? ' project-card--teaser' : '';
+    const teaserBadge = p.teaser ? `<span class="badge-teaser">✨ New · sneak peek</span>` : '';
+    return `
+    <a class="project-card${teaserClass}" href="${href}"${externalAttrs} data-tags="${p.tags.join(' ')}" data-status="${p.status}">
+      ${teaserBadge}
       <div class="project-card-image"></div>
       <h3 class="heading">${p.name}</h3>
       <p class="desc">${p.desc}</p>
@@ -20,7 +26,8 @@ function renderCards() {
            <div class="progress-label">${p.progress}% · in progress</div>`
       }
     </a>
-  `).join('');
+  `;
+  }).join('');
 }
 
 /* Filter logic */

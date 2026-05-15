@@ -841,6 +841,23 @@ body.grad-modal-open { overflow: hidden; }
 .project-card .desc { color: var(--ink-muted); font-size: 0.9rem; margin-bottom: var(--sp-4); flex: 1; }
 .project-card[hidden] { display: none; }
 
+.project-card--teaser {
+  position: relative;
+  border-color: var(--sage);
+  background: linear-gradient(160deg, #FFFFFF 60%, var(--sage-soft) 100%);
+  box-shadow: 0 6px 24px -8px rgba(78, 111, 75, 0.35), var(--sh-rest);
+}
+.project-card--teaser:hover { box-shadow: 0 14px 36px -10px rgba(78, 111, 75, 0.45), var(--sh-hover); }
+.badge-teaser {
+  position: absolute;
+  top: var(--sp-3); right: var(--sp-3);
+  background: var(--sage); color: #FFFFFF;
+  font-size: 0.7rem; font-weight: 700;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+
 /* =======================================================
    reach.html
    ======================================================= */
