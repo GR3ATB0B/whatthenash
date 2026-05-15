@@ -742,6 +742,37 @@ body.grad-modal-open { overflow: hidden; }
 .rail-card h3 { margin-bottom: var(--sp-2); }
 .rail-card .desc { color: var(--ink-muted); font-size: 0.9rem; margin-bottom: var(--sp-4); min-height: 2.6em; }
 
+.rail-card--teaser {
+  position: relative;
+  border-color: var(--sage);
+  background: linear-gradient(160deg, var(--surface) 55%, var(--sage-soft) 100%);
+  box-shadow: 0 8px 28px -10px rgba(78, 111, 75, 0.35), var(--sh-rest);
+}
+.rail-card--teaser:hover { box-shadow: 0 16px 40px -12px rgba(78, 111, 75, 0.45), var(--sh-hover); }
+
+.shed-teaser-line {
+  margin-top: var(--sp-4);
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+.shed-teaser-link {
+  color: var(--sage);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+  padding-bottom: 1px;
+  transition: opacity var(--dur-ui) var(--ease-out);
+}
+.shed-teaser-link:hover { opacity: 0.7; }
+.shed-teaser-note {
+  display: inline-block;
+  margin-left: var(--sp-2);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
 /* Beat 06 — About + graduation */
 .about-section { padding: var(--sp-9) 0; }
 .graduation {
