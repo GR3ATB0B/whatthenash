@@ -352,9 +352,9 @@ body.grad-modal-open { overflow: hidden; }
 .grad-options { padding: var(--sp-8) var(--sp-5) var(--sp-9); }
 .grad-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--sp-5);
-  max-width: 1100px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 .grad-option-card {
@@ -464,6 +464,9 @@ body.grad-modal-open { overflow: hidden; }
   margin-bottom: var(--sp-5);
 }
 
+@media (max-width: 1100px) {
+  .grad-card-grid { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
+}
 @media (max-width: 880px) {
   .grad-card-grid { grid-template-columns: 1fr; max-width: 480px; }
   .grad-hero-icon { font-size: 3.5rem; }
