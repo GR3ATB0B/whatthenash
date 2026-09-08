@@ -7,27 +7,71 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/neo.css?v=20260709">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="/style.css?v=20260423">
 </head>
 <body>
-<div class="page">
-  <a class="back" href="/">← Home</a>
 
-  <header class="hobby-head">
-    <div class="title-sticker"><h1>Music 🎵</h1></div>
-    <p class="tagline">Theory kid, not an artist.</p>
-  </header>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span>Nash</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/#hobbies">Hobbies</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/reach.html">Reach</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <main class="hobby-content">
-    <div class="content-card">
-      <h3>About</h3>
-      <p>Music theory was a class I had to take in middle school. I thought I was going to hate it — really, really liked it. Same with choir.</p>
-      <p>I'm looking to do more music stuff at Auburn, like making little jingles and little songs. I've never made a full song, and I don't plan on being an artist. I don't even listen to much music besides the radio — no favorite artist or anything. It's just cool to make music.</p>
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Hobby</p>
+      <h1>Music 🎵</h1>
+      <p class="subtitle">Production, theory, and everything in between.</p>
     </div>
-  </main>
+  </section>
 
-  <footer class="neo-footer">© 2026 Nash · whatthenash.com · built with curiosity</footer>
-</div>
+  <div class="hobby-content">
+    <div class="content-card">
+      <h3>Music Production</h3>
+      <p>I produce music — creating beats, layering sounds, and building tracks from scratch. It's one of those hobbies where you can completely lose yourself in the creative process.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>Music Theory</h3>
+      <p>Understanding the <em>why</em> behind music makes creating it so much more intentional. I study music theory to deepen my understanding of harmony, rhythm, and composition.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>Songs Coming Soon</h3>
+      <p>I produce beats and tracks with friends — it's all about the creative process. Audio player coming soon! 🎧</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+  </script>
+
+  <footer class="footer">
+  <div class="footer-links">
+    <a href="/projects.html">Projects</a>
+    <a href="/#hobbies">Hobbies</a>
+    <a href="/#about">About</a>
+    <a href="/reach.html">Reach</a>
+    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+</footer>
+  <script type="module" src="/shared.js"></script>
 </body>
 </html>

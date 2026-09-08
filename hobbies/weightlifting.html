@@ -7,33 +7,77 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/neo.css?v=20260709">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="/style.css?v=20260423">
 </head>
 <body>
-<div class="page">
-  <a class="back" href="/">← Home</a>
 
-  <header class="hobby-head">
-    <div class="title-sticker"><h1>Weightlifting 🏋️</h1></div>
-    <p class="tagline">Started in football, kept going.</p>
-  </header>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span>Nash</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/#hobbies">Hobbies</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/reach.html">Reach</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <main class="hobby-content">
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Hobby</p>
+      <h1>Weightlifting 🏋️</h1>
+      <p class="subtitle">Started in football, now it's a lifestyle.</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
     <div class="content-card">
       <h3>About</h3>
-      <p>I started weightlifting in football and I enjoyed it a lot, surprisingly — I thought I would never like to lift or be an exercise guy. I kept going with it during football and after it.</p>
-      <p>It's fun to get my energy out in a way where I can push and shove things instead of just running, which I've never liked — it doesn't get the same energy out. Weightlifting is more fun for me.</p>
+      <p>Weightlifting started for me in <strong>football</strong> — power cleans, squats, deadlifts, and bench press were the core of our training. But even after football, I kept going. It's become a daily part of my routine.</p>
+      <p>The big four lifts are still my foundation: <strong>power clean, squat, deadlift, and bench press</strong>. I track everything with the <strong>Sporter app</strong>. There's something about moving heavy weight that clears the mind.</p>
     </div>
 
     <div class="content-card">
-      <h3>The numbers</h3>
-      <p>I think my maxes are somewhere on this website. Oh — right here (all in pounds):</p>
-<ul style="list-style:none;padding:0;line-height:2;"><li>🏋️ <strong>Squat:</strong> 475–490 lbs</li><li>💪 <strong>Bench:</strong> ~260 lbs</li><li>⚡ <strong>Power Clean:</strong> 235 lbs</li></ul>
+      <h3>The Numbers</h3>
+      <p>Football maxes (all in pounds):</p>
+      <ul style="list-style:none;padding:0;font-size:1.05rem;line-height:2;">
+        <li>🏋️ <strong>Squat:</strong> 475–490 lbs</li>
+        <li>💪 <strong>Bench:</strong> ~260 lbs</li>
+        <li>⚡ <strong>Power Clean:</strong> 235 lbs</li>
+      </ul>
     </div>
-  </main>
 
-  <footer class="neo-footer">© 2026 Nash · whatthenash.com · built with curiosity</footer>
-</div>
+    <div class="content-card">
+      <h3>The Health Journey</h3>
+      <p>Recently I've been on a bigger health journey beyond just lifting — <strong>zone 2 cardio</strong>, a whole foods diet (if it has a mother, I can eat it), and overall just taking better care of myself. It's not just about the numbers anymore.</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+  </script>
+
+  <footer class="footer">
+  <div class="footer-links">
+    <a href="/projects.html">Projects</a>
+    <a href="/#hobbies">Hobbies</a>
+    <a href="/#about">About</a>
+    <a href="/reach.html">Reach</a>
+    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+</footer>
+  <script type="module" src="/shared.js"></script>
 </body>
 </html>

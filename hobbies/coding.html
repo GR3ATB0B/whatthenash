@@ -7,34 +7,71 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/neo.css?v=20260709">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="/style.css?v=20260423">
 </head>
 <body>
-<div class="page">
-  <a class="back" href="/">← Home</a>
 
-  <header class="hobby-head">
-    <div class="title-sticker"><h1>Python & Coding 💻</h1></div>
-    <p class="tagline">C++ first, everything else after.</p>
-  </header>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span>Nash</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/#hobbies">Hobbies</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/reach.html">Reach</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <main class="hobby-content">
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Hobby</p>
+      <h1>Python & Coding 💻</h1>
+      <p class="subtitle">Always had a knack for it — started before I could spell "algorithm."</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
     <div class="content-card">
       <h3>About</h3>
-      <p>I love <strong>C++</strong> — that's how I learned to start coding, with little Arduino projects. I've taken a bunch of computer science classes, and being able to think through problems in terms of code is nice. It helps me pick up languages I don't know yet.</p>
-      <p>I can still look for bugs myself, which is a nice skill to have — especially while AI isn't fully developed yet.</p>
+      <p>Coding has been part of my life for as long as I can remember. I've always had a natural affinity for computers and programming — it's just how my brain works. Python is my go-to for quick projects, data analysis, and automation, but I'm comfortable across multiple languages.</p>
+      <p>Check out my work on <a href="https://github.com/GR3ATB0B" target="_blank"><strong>GitHub →</strong></a></p>
     </div>
 
-    <h3>Where It All Started</h3>
+    <h3 style="margin-bottom: 1.5rem;">Where It All Started</h3>
     <div class="gallery-grid">
       <div>
         <img src="../images/coding-1.jpg" alt="Young Nash at a library computer, circa 2008-2010" loading="lazy">
         <p class="caption">Me at a library computer, ~2008-2010. Some things never change. 😄</p>
       </div>
-  </main>
+    </div>
+  </div>
 
-  <footer class="neo-footer">© 2026 Nash · whatthenash.com · built with curiosity</footer>
-</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
+  </script>
+
+  <footer class="footer">
+  <div class="footer-links">
+    <a href="/projects.html">Projects</a>
+    <a href="/#hobbies">Hobbies</a>
+    <a href="/#about">About</a>
+    <a href="/reach.html">Reach</a>
+    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+</footer>
+  <script type="module" src="/shared.js"></script>
 </body>
 </html>

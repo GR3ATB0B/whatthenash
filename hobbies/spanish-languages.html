@@ -7,34 +7,75 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/neo.css?v=20260709">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="/style.css?v=20260423">
 </head>
 <body>
-<div class="page">
-  <a class="back" href="/">← Home</a>
 
-  <header class="hobby-head">
-    <div class="title-sticker"><h1>Spanish & Languages 🇪🇸</h1></div>
-    <p class="tagline">Failed Latin, loved Spanish.</p>
-  </header>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span>Nash</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/#hobbies">Hobbies</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/reach.html">Reach</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <main class="hobby-content">
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Hobby</p>
+      <h1>Spanish & Languages 🇪🇸</h1>
+      <p class="subtitle">From classroom to kitchen — putting it to use every day.</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
     <div class="content-card">
       <h3>About</h3>
-      <p>We took Spanish in elementary school — I was crap at it, but I had this really great teacher we called <strong>"Profe"</strong> who taught my whole class really well and got us all loving Spanish. Then middle school was Latin, and I was awful at that. I think I failed every single year — and it was a high school class we took in middle school, so it's on my transcript. Freshman year you could choose, so I switched back to Spanish.</p>
-      <p>I also worked at Chick-fil-A for a while, and a lot of the back-of-house crew was Hispanic, so I'd talk to them in Spanish to get practice. Spanish feels very logical to me — systems and equations, like coding and math. If I want to say this, then this, and then that. I'm dyslexic, and for some reason it clicked really well. I learned a lot about how I learn.</p>
+      <p>I don't just study Spanish — I <strong>use it every day</strong>. Working at Chick-fil-A, I practice my Spanish with the kitchen staff. It's the best kind of immersion — real conversations with real people.</p>
     </div>
 
-    <h3>The Chart</h3>
+    <div class="content-card">
+      <h3>The Spanish Language Flowchart</h3>
+      <p>I created a comprehensive <strong>flowchart mapping the entire Spanish language</strong> — verb conjugations, tenses, moods, WEIRDO triggers for subjunctive, Por vs. Para, and more. It's all on one chart. Idea credit goes to Mr. Garret "Profe" Funarri.</p>
+    </div>
+
+    <h3 style="margin-bottom: 1.5rem;">The Chart</h3>
     <div class="gallery-grid">
       <div>
         <img src="../images/spanish-1.jpg" alt="Complete Spanish language verb conjugation flowchart by Nash Vogeltanz" loading="lazy">
         <p class="caption">My complete Spanish verb conjugation mind map — every tense, mood, and trigger in one place.</p>
       </div>
-  </main>
+    </div>
+  </div>
 
-  <footer class="neo-footer">© 2026 Nash · whatthenash.com · built with curiosity</footer>
-</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
+  </script>
+
+  <footer class="footer">
+  <div class="footer-links">
+    <a href="/projects.html">Projects</a>
+    <a href="/#hobbies">Hobbies</a>
+    <a href="/#about">About</a>
+    <a href="/reach.html">Reach</a>
+    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+</footer>
+  <script type="module" src="/shared.js"></script>
 </body>
 </html>

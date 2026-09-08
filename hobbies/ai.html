@@ -7,27 +7,71 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/neo.css?v=20260709">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="/style.css?v=20260423">
 </head>
 <body>
-<div class="page">
-  <a class="back" href="/">← Home</a>
 
-  <header class="hobby-head">
-    <div class="title-sticker"><h1>Artificial Intelligence 🤖</h1></div>
-    <p class="tagline">Agents, prompting, and making life simpler.</p>
-  </header>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span>Nash</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/#hobbies">Hobbies</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/reach.html">Reach</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <main class="hobby-content">
-    <div class="content-card">
-      <h3>About</h3>
-      <p>I'm kind of an AI crazy guy. I have this thing called <strong>Bob — Background Operations Brain</strong>. It's the idea of a Jarvis-type assistant that helps me manage my smart home, along with some companies behind it.</p>
-      <p>I love agentic AIs. I love prompting and discovering new things to do with AI, making life simpler with it, and building things with it.</p>
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Hobby</p>
+      <h1>Artificial Intelligence 🤖</h1>
+      <p class="subtitle">Building intelligent systems and mastering the art of the prompt.</p>
     </div>
-  </main>
+  </section>
 
-  <footer class="neo-footer">© 2026 Nash · whatthenash.com · built with curiosity</footer>
-</div>
+  <div class="hobby-content">
+    <div class="content-card">
+      <h3>Meet BOB</h3>
+      <p><strong>BOB</strong> is my personal AI assistant — built on <strong>OpenClaw</strong>, an open-source AI agent framework. BOB runs on my MacBook Air and helps me with everything from managing projects to automating tasks. He's always on, always learning, and honestly pretty fun to talk to.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>Prompt Engineering</h3>
+      <p>I've gotten really good at <strong>prompt engineering</strong> — the art of communicating with AI models to get exactly the output you need. It's a mix of precision, creativity, and understanding how these models think. Whether it's generating code, analyzing data, or building complex multi-step workflows, I know how to get the most out of AI.</p>
+    </div>
+
+    <div class="content-card">
+      <h3>More Coming Soon</h3>
+      <p>Photos and project examples coming soon — check back later!</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+  </script>
+
+  <footer class="footer">
+  <div class="footer-links">
+    <a href="/projects.html">Projects</a>
+    <a href="/#hobbies">Hobbies</a>
+    <a href="/#about">About</a>
+    <a href="/reach.html">Reach</a>
+    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+</footer>
+  <script type="module" src="/shared.js"></script>
 </body>
 </html>

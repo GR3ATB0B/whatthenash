@@ -7,40 +7,87 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/neo.css?v=20260709">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="/style.css?v=20260423">
 </head>
 <body>
-<div class="page">
-  <a class="back" href="/">← Home</a>
 
-  <header class="hobby-head">
-    <div class="title-sticker"><h1>Photography 📷</h1></div>
-    <p class="tagline">Finding moments, mostly on film.</p>
-  </header>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span>Nash</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/#hobbies">Hobbies</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/reach.html">Reach</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <main class="hobby-content">
+
+  <section class="hobby-hero">
+    <div>
+      <p class="section-label">Hobby</p>
+      <h1>Photography 📷</h1>
+      <p class="subtitle">A mix of film and digital — capturing the world one frame at a time.</p>
+    </div>
+  </section>
+
+  <div class="hobby-content">
     <div class="content-card">
-      <h3>About</h3>
-      <p>I started on my mom's camera — a Nikon DSLR — then moved to film. I got my grandpa's <strong>35mm Pentax</strong> and started shooting a lot of film.</p>
-      <p>One day at Goodwill I came across <strong>20 rolls of 120 medium-format Kodak film</strong> — the whole package was worth about $400. I've been shooting on it ever since. I love shooting moments and finding moments.</p>
+      <h3>My Setup</h3>
+      <p>I shoot on a <strong>Nikon D7000 DSLR</strong> — a hand-me-down kit from my mom that I've grown to love. I also shoot film with a vintage rangefinder camera and a <strong>SMC Pentax-A 50mm f/1.7</strong> lens. I shoot mostly <strong>Kodak film</strong>, though I also use Fujifilm 200.</p>
+      <p>There's something about film that digital just can't replicate — the grain, the colors, the intentionality of having limited shots.</p>
     </div>
 
-    <h3>Sample Shots</h3>
+    <div class="content-card">
+      <h3>Gear</h3>
+      <ul class="gear-list">
+        <li><strong>Nikon D7000</strong> — Digital DSLR (mom's hand-me-down)</li>
+        <li><strong>Vintage Rangefinder</strong> — Film camera, silver/chrome body</li>
+        <li><strong>SMC Pentax-A 50mm f/1.7</strong> — Manual focus prime lens</li>
+        <li><strong>Kodak film</strong> — 35mm color film (primary stock)</li>
+        <li><strong>Fujifilm 200</strong> — 35mm color film (occasional)</li>
+      </ul>
+    </div>
+
+    <h3 style="margin-bottom: 1.5rem;">Sample Shots</h3>
     <div class="gallery-grid">
       <img src="../images/photo-1.jpg" alt="Photography sample" loading="lazy">
       <img src="../images/photo-2.jpg" alt="Photography sample" loading="lazy">
       <img src="../images/photo-3.jpg" alt="Photography sample" loading="lazy">
     </div>
 
-    <h3>The Gear</h3>
+    <h3 style="margin-bottom: 1.5rem;">The Gear</h3>
     <div class="gallery-grid">
       <img src="../images/gear-1.jpg" alt="Pentax lens and rangefinder camera" loading="lazy">
       <img src="../images/gear-2.jpg" alt="Fujifilm 200 rolls" loading="lazy">
     </div>
-  </main>
+  </div>
 
-  <footer class="neo-footer">© 2026 Nash · whatthenash.com · built with curiosity</footer>
-</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.from('.hobby-hero', { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+    gsap.from('.content-card', { opacity: 0, y: 20, duration: 0.6, delay: 0.5, stagger: 0.2 });
+    gsap.from('.gallery-grid img', { opacity: 0, y: 20, duration: 0.4, delay: 0.3, stagger: 0.08 });
+  </script>
+
+  <footer class="footer">
+  <div class="footer-links">
+    <a href="/projects.html">Projects</a>
+    <a href="/#hobbies">Hobbies</a>
+    <a href="/#about">About</a>
+    <a href="/reach.html">Reach</a>
+    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
+</footer>
+  <script type="module" src="/shared.js"></script>
 </body>
 </html>
