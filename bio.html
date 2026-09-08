@@ -4,16 +4,187 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nash Vogeltanz — Bio</title>
+  <meta name="description" content="Nash Vogeltanz — builder, engineer, leader. Senior at Atlanta Classical Academy, headed to Auburn for Engineering.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
-  <link rel="stylesheet" href="/style.css?v=20260423">
+  <link rel="stylesheet" href="/style.css?v=20260511">
+  <style>
+    body { background: var(--canvas); }
+
+    /* ---------- Blurring photo hero ---------- */
+    .bhero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+    }
+    .bhero-media {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      will-change: filter, transform;
+    }
+    .bhero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 28%;
+      transform: scale(1.05);
+      will-change: transform, filter;
+    }
+    /* white veil that rises to fade the photo into the base canvas */
+    .bhero-veil {
+      position: absolute;
+      inset: 0;
+      background: var(--canvas);
+      opacity: 0;
+      will-change: opacity;
+    }
+    /* legibility scrim behind the name */
+    .bhero-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(10,10,10,0.35) 0%,
+        rgba(10,10,10,0.05) 32%,
+        rgba(10,10,10,0.10) 70%,
+        rgba(10,10,10,0.45) 100%);
+    }
+    .bhero-copy {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 0 clamp(1.5rem, 6vw, 6rem) clamp(3rem, 10vh, 7rem);
+      color: #fff;
+      will-change: opacity, transform;
+    }
+    .bhero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 0.9rem;
+    }
+    .bhero .bhero-name {
+      font-size: clamp(2.8rem, 9vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: #fff;
+      text-shadow: 0 2px 30px rgba(10,10,10,0.45);
+    }
+    .bhero .bhero-epitaph { color: rgba(255,255,255,0.95); }
+    .bhero-epitaph {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1.25rem, 3vw, 2.1rem);
+      color: rgba(255,255,255,0.95);
+      margin-top: 0.6rem;
+      text-shadow: 0 2px 20px rgba(10,10,10,0.4);
+    }
+    .bhero-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 1.5rem;
+      transform: translateX(-50%);
+      z-index: 1;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      animation: bhero-bob 2s ease-in-out infinite;
+    }
+    @keyframes bhero-bob { 0%,100%{transform:translate(-50%,0)} 50%{transform:translate(-50%,6px)} }
+
+    /* ---------- Body ---------- */
+    .bio-body {
+      position: relative;
+      z-index: 1;
+      background: var(--canvas);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(3rem, 8vw, 6rem) 1.5rem 2rem;
+    }
+    .bio-timer {
+      font-size: 0.9rem;
+      color: var(--sage);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 6vw, 4rem);
+    }
+    .bio-lede {
+      font-size: clamp(1.35rem, 3.5vw, 1.9rem);
+      line-height: 1.4;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: clamp(2.5rem, 6vw, 4rem);
+    }
+    .bio-lede strong { color: var(--sage); font-weight: 700; }
+    .bio-body .section {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .bio-body .section h2 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin: 0 0 1rem;
+    }
+    .bio-body .section p {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      margin: 0 0 0.9rem;
+    }
+    .bio-body .section p strong { color: var(--ink); font-weight: 600; }
+    .bio-body .fun-fact {
+      background: var(--sage-soft);
+      border: none;
+      border-radius: var(--r-md);
+      padding: 1.75rem 2rem;
+      margin-top: 2rem;
+    }
+    .bio-body .fun-fact h2 { color: var(--sage); }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.5rem; }
+    .tag {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.4rem 0.95rem;
+    }
+    .links { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+    .links a {
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid var(--sage);
+      padding-bottom: 2px;
+    }
+    .links a:hover { color: var(--sage); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bhero-hint { animation: none; }
+    }
+  </style>
 </head>
 <body>
 
-  <nav class="nav">
+<nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
       <span>Nash</span>
@@ -21,7 +192,7 @@
     <ul class="nav-links">
       <li><a href="/projects.html">Projects</a></li>
       <li><a href="/hobbies.html">Hobbies</a></li>
-      <li><a href="/bio.html">About</a></li>
+      <li><a href="/bio.html" aria-current="page">About</a></li>
       <li><a href="/reach.html">Reach</a></li>
       <li><a href="/support.html">Support</a></li>
     </ul>
@@ -31,78 +202,75 @@
   </div>
 </nav>
 
+<header class="bhero" id="bhero">
+  <div class="bhero-media" id="bheroMedia">
+    <img src="/images/nash-headshot.jpg" alt="Nash Vogeltanz" id="bheroImg">
+    <div class="bhero-scrim" id="bheroScrim"></div>
+    <div class="bhero-veil" id="bheroVeil"></div>
+  </div>
+  <div class="bhero-copy" id="bheroCopy">
+    <p class="bhero-eyebrow">Auburn Engineering · Class of '30</p>
+    <h1 class="bhero-name">Nash Vogeltanz</h1>
+    <p class="bhero-epitaph">Builder · Engineer · Leader</p>
+  </div>
+  <div class="bhero-hint" id="bheroHint">↓ scroll</div>
+</header>
 
-  <div class="hero">
-    <h1>Nash Vogeltanz</h1>
-    <p class="subtitle">Builder · Engineer · Leader</p>
+<main class="bio-body">
+  <p class="bio-timer" id="timer">I've been alive for ...</p>
+
+  <p class="bio-lede">
+    I'm Nash — a builder at heart. I design, print, wire, and ship, and everything I make
+    flows from my <strong>Christian faith</strong> and a habit of turning curiosity into capability.
+  </p>
+
+  <div class="section">
+    <h2>Who I Am</h2>
+    <p>An 18-year-old <strong>Engineering student at Auburn University</strong> — currently in my first semester. Atlanta Classical Academy grad, class of 2026. I design wireless systems with Arduino and ESP32s, 3D-print custom enclosures, experiment with Raspberry Pi, and I'm always learning CAD to bring ideas to life.</p>
+    <p>At the core of everything is my <strong>faith</strong> — my projects, my leadership, and my drive all flow from that foundation. I believe in using my gifts to serve something greater than myself.</p>
   </div>
 
-  <div class="timer" id="timer">I've been alive for ...</div>
-
-  <div class="content">
-    <div class="section">
-      <h2>Who I Am</h2>
-      <p>I'm Nash — an 18-year-old senior at Atlanta Classical Academy, heading to <strong>Auburn University</strong> for Engineering in Fall 2026. I'm a builder at heart: I design wireless systems with Arduino and ESP32s, 3D-print custom enclosures, experiment with Raspberry Pi, and I'm always learning CAD to bring ideas to life.</p>
-      <p>At the core of everything I do is my <strong>Christian faith</strong>. My projects, my leadership, and my drive all flow from that foundation — I believe in using my gifts to serve something greater than myself.</p>
-    </div>
-
-    <div class="section">
-      <h2>What I Do</h2>
-      <p>I'm a <strong>supervisor at Chick-fil-A</strong>, where I use my Spanish daily with the kitchen staff. On the field, I play <strong>center on the football team</strong> — leading by example in the weight room and on game day. I'm also in choir and compete in engineering competitions.</p>
-      <div class="tags">
-        <span class="tag">Arduino</span>
-        <span class="tag">ESP32</span>
-        <span class="tag">Raspberry Pi</span>
-        <span class="tag">3D Printing</span>
-        <span class="tag">CAD</span>
-        <span class="tag">Football</span>
-        <span class="tag">Choir</span>
-        <span class="tag">Spanish</span>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>How I'm Wired</h2>
-      <p>I have ADHD and dyslexia — and they're not obstacles, they're part of what makes me <strong>relentless, resourceful, and wired to think differently</strong>. I've learned to turn limitations into leverage and curiosity into capability. I don't learn the "normal" way, and that's exactly why I solve problems the way I do.</p>
-    </div>
-
-    <div class="section">
-      <h2>When I'm Not Building</h2>
-      <p>You'll find me brewing coffee, tinkering with electronics, flying RC aircraft, fishing, or building something with my grandfather. There's always a project on the bench.</p>
-    </div>
-
-    <div class="section fun-fact">
-      <h2>🧠 Fun Fact</h2>
-      <p>Nash has two pinkie toes that don't touch the ground. It's hereditary. Weird? Yes. Awesome? Also yes.</p>
-    </div>
-
-    <div class="section">
-      <h2>Links</h2>
-      <div class="links">
-        <a href="https://github.com/GR3ATB0B" target="_blank">GitHub</a>
-        <a href="/">whatthenash.com</a>
-      </div>
+  <div class="section">
+    <h2>What I Do</h2>
+    <p>I'm a <strong>supervisor at Chick-fil-A</strong>, where I use my Spanish daily with the kitchen staff. On the field, I play <strong>center on the football team</strong> — leading by example in the weight room and on game day. I'm also in choir and compete in engineering competitions.</p>
+    <div class="tags">
+      <span class="tag">Arduino</span>
+      <span class="tag">ESP32</span>
+      <span class="tag">Raspberry Pi</span>
+      <span class="tag">3D Printing</span>
+      <span class="tag">CAD</span>
+      <span class="tag">Football</span>
+      <span class="tag">Choir</span>
+      <span class="tag">Spanish</span>
     </div>
   </div>
 
-  <script>
-    const birthDate = new Date('2007-08-24T00:00:00');
-    function updateTimer() {
-      const now = new Date();
-      const diff = now - birthDate;
-      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      document.getElementById("timer").textContent =
-        `I've been alive for ${years} years, ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
-    }
-    updateTimer();
-    setInterval(updateTimer, 1000);
-  </script>
+  <div class="section">
+    <h2>How I'm Wired</h2>
+    <p>I have ADHD and dyslexia — and they're not obstacles, they're part of what makes me <strong>relentless, resourceful, and wired to think differently</strong>. I've learned to turn limitations into leverage and curiosity into capability. I don't learn the "normal" way, and that's exactly why I solve problems the way I do.</p>
+  </div>
 
-  <footer class="footer">
+  <div class="section">
+    <h2>When I'm Not Building</h2>
+    <p>You'll find me brewing coffee, tinkering with electronics, flying RC aircraft, fishing, or building something with my grandfather. There's always a project on the bench.</p>
+  </div>
+
+  <div class="section fun-fact">
+    <h2>🧠 Fun Fact</h2>
+    <p>Nash has two pinkie toes that don't touch the ground. It's hereditary. Weird? Yes. Awesome? Also yes.</p>
+  </div>
+
+  <div class="section">
+    <h2>Links</h2>
+    <div class="links">
+      <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
+      <a href="/reach.html">Reach me</a>
+      <a href="/">whatthenash.com</a>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
   <div class="footer-links">
     <a href="/projects.html">Projects</a>
     <a href="/hobbies.html">Hobbies</a>
@@ -113,6 +281,54 @@
   </div>
   <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
 </footer>
-  <script type="module" src="/shared.js"></script>
+
+<script>
+  /* Alive-for timer */
+  const birthDate = new Date('2007-08-24T00:00:00');
+  function updateTimer() {
+    const now = new Date();
+    const diff = now - birthDate;
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    document.getElementById("timer").textContent =
+      `Alive for ${years} years, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds.`;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+
+  /* Scroll-driven blur + white fade of the hero photo */
+  (function heroBlur() {
+    const img   = document.getElementById('bheroImg');
+    const veil  = document.getElementById('bheroVeil');
+    const scrim = document.getElementById('bheroScrim');
+    const copy  = document.getElementById('bheroCopy');
+    const hint  = document.getElementById('bheroHint');
+    if (!img) return;
+    let ticking = false;
+
+    function apply() {
+      const span = Math.max(window.innerHeight * 0.85, 1);
+      const p = Math.min(Math.max(window.scrollY / span, 0), 1);
+      img.style.filter = `blur(${(p * 24).toFixed(2)}px)`;
+      img.style.transform = `scale(${(1.05 + p * 0.12).toFixed(3)})`;
+      veil.style.opacity = p.toFixed(3);
+      scrim.style.opacity = (1 - p).toFixed(3);
+      copy.style.opacity = Math.max(1 - p * 1.35, 0).toFixed(3);
+      copy.style.transform = `translateY(${(p * -50).toFixed(1)}px)`;
+      hint.style.opacity = Math.max(1 - p * 2.5, 0).toFixed(3);
+      ticking = false;
+    }
+    function onScroll() {
+      if (!ticking) { requestAnimationFrame(apply); ticking = true; }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', apply);
+    apply();
+  })();
+</script>
+<script type="module" src="/shared.js"></script>
 </body>
 </html>
