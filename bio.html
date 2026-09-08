@@ -226,7 +226,7 @@
 
   <div class="section">
     <h2>Who I Am</h2>
-    <p>An 18-year-old <strong>Engineering student at Auburn University</strong> — currently in my first semester. Atlanta Classical Academy grad, class of 2026. I design wireless systems with Arduino and ESP32s, 3D-print custom enclosures, experiment with Raspberry Pi, and I'm always learning CAD to bring ideas to life.</p>
+    <p>An <span id="age">19</span>-year-old <strong>Engineering student at Auburn University</strong> — currently in my first semester. Atlanta Classical Academy grad, class of 2026. I design wireless systems with Arduino and ESP32s, 3D-print custom enclosures, experiment with Raspberry Pi, and I'm always learning CAD to bring ideas to life.</p>
     <p>At the core of everything is my <strong>faith</strong> — my projects, my leadership, and my drive all flow from that foundation. I believe in using my gifts to serve something greater than myself.</p>
   </div>
 
@@ -295,6 +295,8 @@
     const seconds = Math.floor((diff / 1000) % 60);
     document.getElementById("timer").textContent =
       `Alive for ${years} years, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds.`;
+    const ageEl = document.getElementById("age");
+    if (ageEl) ageEl.textContent = years;
   }
   updateTimer();
   setInterval(updateTimer, 1000);
