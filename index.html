@@ -60,6 +60,7 @@
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/desk.css">
   <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/panels.css">
 </head>
 <body>
 
@@ -130,22 +131,83 @@
     <span class="sr-only">Hey, I'm Nash. I create, wonder, and rebuild.</span>
   </h1>
   <div class="desk-face" data-face data-reveal aria-label="Nash’s face"></div>
-  <div id="desk-objects" class="desk-objects"></div>
+  <div id="table" class="table" aria-hidden="true"></div>
+  <p class="hero-line" data-reveal aria-hidden="true">
+    <span class="hw hero-i" data-hw="i"></span>
+    <span class="hero-verbs">
+      <span class="hw hero-verb is-on" data-hw="create"></span>
+      <span class="hw hero-verb" data-hw="wonder"></span>
+      <span class="hw hero-verb" data-hw="rebuild"></span>
+    </span>
+  </p>
+  <span class="hw hero-hint jitter" data-hw="arrow-down" aria-hidden="true"></span>
 </main>
+<div id="scroll-space" class="scroll-space" aria-hidden="true"></div>
 
-<!-- Panels: stubs until stage 2 -->
-<section class="panel" data-panel="work" role="dialog" aria-modal="true" aria-labelledby="p-work" hidden>
+<!-- Panels: overlays driven by js/state.js -->
+<section class="panel panel-work" data-panel="work" role="dialog" aria-modal="true" aria-labelledby="p-work" hidden>
   <h2 id="p-work" tabindex="-1"><span class="hw" data-hw="work-caps" aria-hidden="true"></span><span class="sr-only">Work</span></h2>
-  <p>Project cards land here in stage 2.</p>
+  <div class="work-cards"></div>
+  <nav class="work-pager" aria-label="Project pages">
+    <button type="button" class="work-prev"><span class="hw" data-hw="prev-cap" aria-hidden="true"></span><span class="sr-only">Previous projects</span></button>
+    <div class="work-marks"></div>
+    <button type="button" class="work-next"><span class="hw" data-hw="next-cap" aria-hidden="true"></span><span class="sr-only">Next projects</span></button>
+  </nav>
 </section>
-<section class="panel" data-panel="about" role="dialog" aria-modal="true" aria-labelledby="p-about" hidden>
-  <h2 id="p-about" tabindex="-1"><span class="hw" data-hw="lab-notes" aria-hidden="true"></span><span class="sr-only">Lab notes</span></h2>
-  <p>The notebook (with a Hobbies page) lands here in stage 2.</p>
+
+<section class="panel panel-about" data-panel="about" role="dialog" aria-modal="true" aria-labelledby="p-about" hidden>
+  <div class="notebook">
+    <div class="nb-tabs" role="tablist" aria-label="Notebook pages">
+      <button type="button" class="nb-tab" role="tab" data-tab="notes" aria-selected="true"><span class="hw" data-hw="lab-notes" aria-hidden="true"></span><span class="sr-only">Lab notes</span></button>
+      <button type="button" class="nb-tab" role="tab" data-tab="hobbies" aria-selected="false"><span class="hw" data-hw="hobbies-notebook" aria-hidden="true"></span><span class="sr-only">Hobbies</span></button>
+    </div>
+    <article class="nb-page" data-page="notes" role="tabpanel">
+      <h2 id="p-about" tabindex="-1"><span class="hw" data-hw="lab-notes" aria-hidden="true"></span><span class="sr-only">Lab notes</span></h2>
+      <div class="nb-body"></div>
+      <span class="hw nb-sig" data-hw="signature-full" aria-hidden="true"></span>
+    </article>
+    <article class="nb-page" data-page="hobbies" role="tabpanel" hidden>
+      <h2 tabindex="-1"><span class="hw" data-hw="hobbies-notebook" aria-hidden="true"></span><span class="sr-only">Hobbies</span></h2>
+      <div class="nb-body"></div>
+    </article>
+  </div>
 </section>
-<section class="panel" data-panel="contact" role="dialog" aria-modal="true" aria-labelledby="p-contact" hidden>
+
+<section class="panel panel-contact" data-panel="contact" role="dialog" aria-modal="true" aria-labelledby="p-contact" hidden>
   <h2 id="p-contact" tabindex="-1"><span class="hw" data-hw="contact-panel" aria-hidden="true"></span><span class="sr-only">Contact</span></h2>
-  <p>The pager → compose form lands here in stage 2.</p>
+  <div class="pager-stage">
+    <img class="pager-img" src="/img/desk/pager.TODO.svg" alt="" aria-hidden="true">
+    <form class="pager-form" novalidate>
+      <p class="screen-line" aria-hidden="true">&gt; NEW MSG<span class="caret">_</span></p>
+      <div class="field" data-field="name">
+        <label for="c-name">name</label>
+        <input id="c-name" name="name" autocomplete="name" maxlength="100" required aria-describedby="c-name-err">
+        <span class="field-err" id="c-name-err"></span>
+      </div>
+      <div class="field" data-field="email">
+        <label for="c-email">email</label>
+        <input id="c-email" name="email" type="email" autocomplete="email" maxlength="200" required aria-describedby="c-email-err">
+        <span class="field-err" id="c-email-err"></span>
+      </div>
+      <fieldset class="field" data-field="budget">
+        <legend><span class="hw" data-hw="budget" aria-hidden="true"></span><span class="sr-only">Budget</span></legend>
+        <div class="budget-pills"></div>
+        <span class="field-err"></span>
+      </fieldset>
+      <div class="field" data-field="message">
+        <label for="c-msg">message</label>
+        <textarea id="c-msg" name="message" rows="5" maxlength="4000" required aria-describedby="c-msg-err"></textarea>
+        <span class="field-err" id="c-msg-err"></span>
+      </div>
+      <div class="hp" aria-hidden="true"><label for="c-web">website</label><input id="c-web" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="ts-box"></div>
+      <button type="submit" class="send" data-rough="999"><span class="hw" data-hw="send" aria-hidden="true"></span><span class="sr-only">Send</span></button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+      <span class="hw sent-mark" data-hw="sent" aria-hidden="true"></span>
+    </form>
+  </div>
 </section>
+
 <section class="panel" data-panel="terminal" role="dialog" aria-modal="true" aria-labelledby="p-term" hidden>
   <h2 id="p-term" tabindex="-1">terminal</h2>
   <p>The CRT terminal lands here in stage 4.</p>

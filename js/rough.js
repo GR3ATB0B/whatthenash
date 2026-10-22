@@ -69,3 +69,17 @@ export function attachRough(el, { radius = 999, wobble = 1.6 } = {}) {
   if ('ResizeObserver' in window) new ResizeObserver(draw).observe(el);
   return svg;
 }
+
+/* a loose, not-quite-closed pencil circle centred in a size×size box */
+export function roughCircle(size, seed, wobble = 1.2) {
+  const rnd = mulberry32(seed);
+  const c = size / 2, r = size / 2 - 2, n = 10, start = rnd() * Math.PI * 2;
+  let d = '';
+  for (let k = 0; k <= n + 1; k++) {
+    const a = start + (k / n) * Math.PI * 2;
+    const rr = r + (rnd() - .5) * 2 * wobble;
+    const x = c + Math.cos(a) * rr, y = c + Math.sin(a) * rr;
+    d += (k ? ' L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+  }
+  return d;
+}

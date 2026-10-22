@@ -5,4 +5,4 @@ set -e
 PORT="${1:-8000}"
 cd "$(dirname "$0")/.."
 echo "Serving whatthenash.com at http://localhost:${PORT}"
-python3 -m http.server "${PORT}"
+python3 tools/dev-serve.py "${PORT}"

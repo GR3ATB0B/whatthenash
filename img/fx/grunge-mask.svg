@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+  <!-- Mask for screenshots: ragged, dissolving edges. Black = visible. -->
+  <defs>
+    <filter id="rag" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".035 .05" numOctaves="4" seed="8" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="26" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <!-- crumbs: fine noise eats only the soft outer band of the edge -->
+      <feGaussianBlur in="d" stdDeviation="5" result="soft"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="1" seed="3" result="fine"/>
+      <feComposite in="soft" in2="fine" operator="arithmetic" k1="0" k2="2.6" k3="-1.1" k4="-.35" result="crumb"/>
+      <feComponentTransfer in="crumb"><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect x="18" y="16" width="364" height="268" fill="#000" filter="url(#rag)"/>
+</svg>
