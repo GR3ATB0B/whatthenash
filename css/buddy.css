@@ -30,10 +30,6 @@
 .buddy:hover .buddy-sprite { translate: 0 -2px; }
 .buddy:focus-visible .buddy-sprite { outline: 2.5px dashed var(--signal); outline-offset: 6px; border-radius: 10px; }
 .buddy.is-controlled { cursor: default; }
-.buddy.is-controlled .buddy-sprite::after {   /* tiny "you" marker */
-  content: ""; position: absolute; left: 50%; top: -12px; width: 8px; height: 8px; translate: -50% 0;
-  background: var(--signal); border-radius: 50%;
-}
 
 .buddy-hint {
   position: absolute; left: 22px; bottom: 64px;
@@ -47,20 +43,8 @@
 .buddy-hint-keys { display: block; margin-top: 4px; font: 500 11px var(--font-mono); color: var(--ink-soft); }
 .buddy.show-hint .buddy-hint { opacity: 1; translate: 0 0; }
 
-.buddy-pad {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 36;
-  display: flex; gap: 10px; align-items: center;
-  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  touch-action: none; user-select: none;
-}
-.buddy-pad[hidden] { display: none; }
-.buddy-pad button {
-  font-size: 34px; min-width: 64px; min-height: 56px; border: 2px solid var(--ink); border-radius: 14px;
-  background: var(--paper); display: grid; place-items: center;
-}
-.buddy-pad button:active { background: var(--sticky); }
-.buddy-pad .pad-jump { margin-left: auto; min-width: 120px; }
+/* while steering on a touch screen, the page stops scrolling so drags steer him instead */
+html.buddy-touch, html.buddy-touch body { touch-action: none; overscroll-behavior: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .buddy, .buddy-hint { transition: none; }

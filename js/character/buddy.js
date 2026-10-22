@@ -32,20 +32,12 @@ export function initBuddy() {
     </div>`;
   document.body.append(el);
 
-  const pad = document.createElement('div');
-  pad.className = 'buddy-pad';
-  pad.hidden = true;
-  pad.innerHTML = `
-    <button type="button" data-k="left" aria-label="Walk left"><span class="hw" style="--a:url(/img/lettering/arrow-left-a.svg);--b:url(/img/lettering/arrow-left-a.svg);--ar:153/68"></span></button>
-    <button type="button" data-k="right" aria-label="Walk right"><span class="hw" style="--a:url(/img/lettering/arrow-right-a.svg);--b:url(/img/lettering/arrow-right-a.svg);--ar:172/70"></span></button>
-    <button type="button" data-k="jump" class="pad-jump" aria-label="Jump"><span class="hw" style="--a:url(/img/lettering/key-space-a.svg);--b:url(/img/lettering/key-space-a.svg);--ar:365/94"></span></button>`;
-  document.body.append(pad);
-
   const sprite = el.querySelector('.buddy-sprite');
+  const coarse = matchMedia('(pointer: coarse)').matches;
+  if (coarse) el.querySelector('.buddy-hint-keys').textContent = COPY.character.touchControls;
   const s = createState(64, innerHeight);
   const input = { left: false, right: false, jump: false, jumpPressed: false };
   let controlled = false, acc = 0, last = 0, walked = 0, hintTimer = 0;
-  const coarse = matchMedia('(pointer: coarse)').matches;
 
   initWorld();
 
@@ -55,7 +47,7 @@ export function initBuddy() {
     window.__buddyControl = true;
     el.classList.add('is-controlled');
     el.classList.remove('show-hint');
-    if (coarse) pad.hidden = false;
+    if (coarse) document.documentElement.classList.add('buddy-touch');
     el.focus({ preventScroll: true });
   }
   function release() {
@@ -64,10 +56,11 @@ export function initBuddy() {
     window.__buddyControl = false;
     Object.assign(input, { left: false, right: false, jump: false });
     el.classList.remove('is-controlled');
-    pad.hidden = true;
+    document.documentElement.classList.remove('buddy-touch');
   }
 
-  el.addEventListener('click', take);
+  // tapping him again on a touch screen lets go (there's no Esc key)
+  el.addEventListener('click', () => (controlled && coarse ? release() : take()));
   el.addEventListener('keydown', e => {
     if (!controlled && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); take(); }
   });
@@ -77,7 +70,9 @@ export function initBuddy() {
   el.addEventListener('blur', () => el.classList.remove('show-hint'));
 
   addEventListener('pointerdown', e => {
-    if (controlled && !el.contains(e.target) && !pad.contains(e.target)) release();
+    if (!controlled || el.contains(e.target)) return;
+    if (e.pointerType === 'touch') return touchSteer(e);
+    release();
   });
 
   const typing = t => t.closest?.('input, textarea, select, [contenteditable]');
@@ -96,16 +91,19 @@ export function initBuddy() {
   }, true);
   addEventListener('blur', () => Object.assign(input, { left: false, right: false, jump: false }));
 
-  pad.addEventListener('pointerdown', e => {
-    const b = e.target.closest('[data-k]'); if (!b) return;
-    e.preventDefault();
-    const k = b.dataset.k;
-    if (k === 'jump') { input.jumpPressed = true; input.jump = true; } else input[k] = true;
-    try { b.setPointerCapture(e.pointerId); } catch { /* fine without capture */ }
-  });
-  const padUp = e => { const b = e.target.closest('[data-k]'); if (b) input[b.dataset.k] = false; };
-  pad.addEventListener('pointerup', padUp);
-  pad.addEventListener('pointercancel', padUp);
+  /* touch: hold to the left/right of him to walk, tap above him to jump */
+  function touchSteer(e) {
+    const above = e.clientY < s.y - PHYS.H;
+    if (above) { input.jumpPressed = true; input.jump = true; }
+    const side = e.clientX < s.x ? 'left' : 'right';
+    if (!above) input[side] = true;
+    const up = ev => {
+      if (ev.pointerId !== e.pointerId) return;
+      input[side] = false; input.jump = false;
+      removeEventListener('pointerup', up); removeEventListener('pointercancel', up);
+    };
+    addEventListener('pointerup', up); addEventListener('pointercancel', up);
+  }
 
   // say hi once the loader's done
   addEventListener('loader:done', () => {
@@ -118,8 +116,7 @@ export function initBuddy() {
     last = now;
     const world = refreshWorld();
     const solid = { solid: (x, y) => !!solidAt(world, x, y) };
-    // the touch pad, when showing, is the floor
-    const bounds = { w: innerWidth, h: innerHeight - (pad.hidden ? 0 : pad.offsetHeight) };
+    const bounds = { w: innerWidth, h: innerHeight };
 
     // ride whatever he's standing on (photos slide, panels scroll)
     if (s.onGround && s.y < bounds.h) {

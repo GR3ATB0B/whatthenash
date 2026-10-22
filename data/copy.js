@@ -19,6 +19,7 @@ export const COPY = {
   character: {
     hint: TODO('click-the-character hint in your own words'),
     controls: 'WASD / arrows to walk, Space to jump', // lettering: wasd / arrows / space
+    touchControls: 'hold left or right of him to walk, tap above to jump, tap him to let go',
   },
 
   menu: ['Work', 'About', 'Hobbies', 'Contact', 'Support'],
