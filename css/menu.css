@@ -1,0 +1,104 @@
+/* css/menu.css — top chrome, drawer, pills, panels */
+
+.chrome {
+  position: fixed; inset: 0 0 auto; z-index: var(--z-chrome);
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px var(--gutter);
+  pointer-events: none;
+}
+.chrome > * { pointer-events: auto; }
+.chrome-sig { color: var(--ink); font-size: 34px; line-height: 1; margin-right: auto; }
+.chrome-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 30px; margin-right: 8px; padding: 6px 8px;
+}
+.chrome-back[hidden] { display: none; }
+.chrome-back:hover { color: var(--signal); }
+.chrome-back + .chrome-sig { display: none; }
+.chrome-back[hidden] + .chrome-sig { display: block; }
+
+.chrome-menu {
+  position: relative; z-index: calc(var(--z-drawer) + 1);
+  display: grid; place-items: center;
+  font-size: 26px; padding: 10px 18px; border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  transition: background-color .15s;
+}
+.chrome-menu > .hw { grid-area: 1 / 1; }
+.chrome-menu:hover { background: var(--sticky); }
+.chrome-menu .when-open { visibility: hidden; }
+.chrome-menu[aria-expanded="true"] .when-open { visibility: visible; }
+.chrome-menu[aria-expanded="true"] .when-closed { visibility: hidden; }
+
+/* ---------- drawer ---------- */
+.scrim {
+  position: fixed; inset: 0; z-index: calc(var(--z-drawer) - 1);
+  background: rgba(30, 26, 22, .28);
+  opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s;
+}
+.scrim.is-open { opacity: 1; visibility: visible; }
+
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: var(--z-drawer);
+  width: min(380px, 100vw);
+  padding: 84px 28px 28px;
+  background: var(--paper);
+  box-shadow: -12px 0 30px rgba(30, 26, 22, .12);
+  transform: translateX(104%);
+  transition: transform .42s cubic-bezier(.2, .9, .25, 1);
+  overflow-y: auto;
+  /* torn left edge */
+  -webkit-mask: linear-gradient(#000, #000) right / calc(100% - 10px) 100% no-repeat,
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 60' preserveAspectRatio='none'%3E%3Cpath d='M10 0 L4 3 L7 8 L2 13 L6 19 L1 25 L5 30 L3 36 L8 41 L2 47 L6 52 L3 57 L6 60 L10 60 Z'/%3E%3C/svg%3E") left / 10px 60px repeat-y;
+          mask: linear-gradient(#000, #000) right / calc(100% - 10px) 100% no-repeat,
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 60' preserveAspectRatio='none'%3E%3Cpath d='M10 0 L4 3 L7 8 L2 13 L6 19 L1 25 L5 30 L3 36 L8 41 L2 47 L6 52 L3 57 L6 60 L10 60 Z'/%3E%3C/svg%3E") left / 10px 60px repeat-y;
+}
+.drawer.is-open { transform: none; }
+
+.drawer-head { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
+.drawer-title { font-size: 38px; }
+
+.meter { position: relative; width: 64px; flex: none; font-size: 88px; }
+.meter-body { height: 1em; display: block; }
+.meter-needle {
+  position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible;
+  --deg: -40deg;
+}
+.meter-needle line, .meter-needle circle {
+  stroke: var(--signal); stroke-width: 3; stroke-linecap: round; fill: var(--signal);
+  transform-origin: 40px 48px;
+  transform: rotate(var(--deg));
+}
+.meter-needle circle { transform: none; fill: var(--ink); stroke: none; }
+
+.pills { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.pill {
+  position: relative;
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 22px; border-radius: 999px;
+  color: var(--ink); text-decoration: none;
+  font-size: 34px;
+  transition: background-color .14s ease, color .14s ease;
+}
+.pill:hover, .pill:focus-visible { background: var(--hover, var(--sticky)); color: var(--hover-ink, var(--ink)); }
+.pill-icon { font-size: 30px; flex: none; }
+.pill .rough { color: var(--ink); }
+
+/* ---------- panels (stubs until stage 2) ---------- */
+.panel {
+  position: fixed; inset: 0; z-index: var(--z-panel);
+  padding: calc(84px + var(--gutter)) var(--gutter) var(--gutter);
+  background: var(--paper);
+  overflow-y: auto;
+}
+.panel[hidden] { display: none; }
+.panel h2 { font-size: clamp(40px, 7vw, 72px); margin: 0 0 16px; line-height: 1; }
+.panel h2:focus { outline: none; }
+.panel p { color: var(--ink-soft); max-width: 60ch; }
+
+html.menu-open, html:has(.panel:not([hidden])) { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer, .scrim, .chrome-menu, .pill { transition: none; }
+}

@@ -1,0 +1,52 @@
+/* css/desk.css — the desk surface and the things on it */
+
+.desk {
+  position: relative; z-index: var(--z-desk);
+  min-height: 100svh;
+  padding: calc(72px + var(--gutter)) var(--gutter) var(--gutter);
+}
+.desk-objects {
+  position: relative;
+  width: 100%; max-width: 1400px; margin: 0 auto;
+  aspect-ratio: 16 / 9;
+}
+.desk-obj {
+  position: absolute;
+  left: var(--x); top: var(--y); width: var(--w); z-index: var(--z);
+  transform: rotate(var(--rot)) translateY(8px) scale(.97);
+  opacity: 0;
+  transition: opacity .5s ease, transform .6s cubic-bezier(.2, .9, .3, 1.2);
+  padding: 0; background: none; border: 0;
+}
+.desk-obj.is-in { opacity: 1; transform: rotate(var(--rot)); }
+.desk-obj img { width: 100%; height: auto; filter: drop-shadow(0 6px 8px rgba(30, 26, 22, .18)); }
+button.desk-obj { cursor: pointer; }
+button.desk-obj:hover img { filter: drop-shadow(0 10px 14px rgba(30, 26, 22, .26)); }
+button.desk-obj:focus-visible { border-radius: 6px; }
+.desk-obj.is-inert { cursor: default; }
+
+.desk-hello {
+  position: relative; z-index: 5;
+  margin: 0 auto 12px; text-align: center;
+  font-size: clamp(36px, 6vw, 72px); line-height: 1;
+  opacity: 0; transition: opacity .6s ease;
+}
+.desk-face {
+  position: absolute; z-index: 4;
+  left: 50%; top: calc(72px + var(--gutter) + clamp(36px, 6vw, 72px) + 24px);
+  width: clamp(150px, 20vw, 280px); aspect-ratio: 393 / 400;
+  transform: translateX(-50%) scale(.96);
+  opacity: 0; transition: opacity .6s ease, transform .6s ease;
+}
+.desk-hello.is-in, .desk-face.is-in { opacity: 1; }
+.desk-face.is-in { transform: translateX(-50%); }
+
+/* Stage-2 placeholders get a dashed hint so they never look "finished" */
+.desk-obj.is-todo img { opacity: .92; }
+
+@media (max-width: 720px) {
+  .desk-objects { aspect-ratio: 3 / 4; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .desk-obj, .desk-hello, .desk-face { transition: none; }
+}

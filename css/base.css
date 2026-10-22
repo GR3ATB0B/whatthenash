@@ -1,0 +1,90 @@
+/* css/base.css — tokens, reset, type, focus, hand-drawn primitives */
+
+:root {
+  /* paper + ink */
+  --paper:      #F3EDE1;
+  --paper-deep: #E8DFCF;
+  --ink:        #1E1A16;
+  --ink-soft:   #5A5047;
+  --pencil:     #8C8276;
+
+  /* accents (hover colours, links) */
+  --mask-green: #2F6B4F;   /* solder mask */
+  --copper:     #C27A3A;
+  --signal:     #E8602C;   /* the orange link */
+  --blueprint:  #9CC3D5;
+  --sticky:     #F2D16B;
+
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+
+  --gutter: clamp(16px, 4vw, 40px);
+  --z-desk: 1; --z-panel: 20; --z-drawer: 40; --z-chrome: 45; --z-loader: 100;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  min-height: 100svh;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1rem/1.55 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+/* faint paper tooth */
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(rgba(30, 26, 22, .045) 1px, transparent 1.2px);
+  background-size: 5px 5px;
+}
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: var(--signal); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Visible focus: a pencil-ish dashed ring, never removed */
+:focus-visible {
+  outline: 2.5px dashed var(--signal);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+/* ---------- handwriting: <span class="hw" data-hw="menu"> ----------
+   Two takes (-a/-b) stacked as masks over currentColor. Take A at rest;
+   hover (or keyboard focus) on the word — or the link/button it sits in —
+   swaps to take B. Single-take drawings (.jitter) tilt a hair instead. */
+.hw {
+  display: inline-block; position: relative; vertical-align: middle;
+  height: 1em; aspect-ratio: var(--ar, 3 / 1);
+  color: inherit;
+}
+.hw::before, .hw::after {
+  content: ""; position: absolute; inset: 0;
+  background: currentColor;
+  -webkit-mask: var(--a) center / contain no-repeat;
+          mask: var(--a) center / contain no-repeat;
+}
+.hw::after {
+  -webkit-mask-image: var(--b); mask-image: var(--b);
+  opacity: 0;
+}
+:is(a, button, [data-swap]):is(:hover, :focus-visible) .boil::before,
+.boil:hover::before { opacity: 0; }
+:is(a, button, [data-swap]):is(:hover, :focus-visible) .boil::after,
+.boil:hover::after { opacity: 1; }
+
+:is(a, button, [data-swap]):is(:hover, :focus-visible) .jitter,
+.jitter:hover { transform: translate(.6px, -.5px) rotate(-1.2deg); }
+
+/* rough SVG outlines drawn by js/rough.js: frame A at rest, frame B on hover */
+.rough { position: absolute; inset: -3px; width: calc(100% + 6px); height: calc(100% + 6px); overflow: visible; pointer-events: none; }
+.rough path { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.rough .f-b { opacity: 0; }
+:is(:hover, :focus-visible) > .rough .f-a { opacity: 0; }
+:is(:hover, :focus-visible) > .rough .f-b { opacity: 1; }

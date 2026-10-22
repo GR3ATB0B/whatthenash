@@ -1,181 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="is-loading">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What The Nash!</title>
+  <meta name="description" content="Nash's desk. Electronics, espresso, and things I'm building.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1/dist/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
-  <link rel="stylesheet" href="/style.css?v=20260511">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/img/face/face-sheet.webp" fetchpriority="high">
+
+  <!-- Critical loader CSS: inline so the first paint is never blank -->
+  <style>
+    html.is-loading body { overflow: hidden; }
+    .loader {
+      position: fixed; inset: 0; z-index: 100;
+      display: grid; place-content: center; justify-items: center; gap: 18px;
+      background: color-mix(in srgb, #F3EDE1 72%, transparent);
+      color: #1E1A16; transition: opacity .45s ease, visibility .45s;
+      animation: loader-failsafe .3s 8.5s forwards; /* even with no JS, never hangs */
+      cursor: progress;
+    }
+    html.is-loaded .loader { opacity: 0; visibility: hidden; pointer-events: none; }
+    @keyframes loader-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+    .loader .hw { display: inline-block; position: relative; height: 1em; aspect-ratio: var(--ar); }
+    .loader .hw::before, .loader .hw::after {
+      content: ""; position: absolute; inset: 0; background: currentColor;
+      -webkit-mask: var(--a) center / contain no-repeat; mask: var(--a) center / contain no-repeat;
+    }
+    .loader .hw::after { -webkit-mask-image: var(--b); mask-image: var(--b); opacity: 0; }
+    /* the figure alternates still/walk poses only while he's actually walking */
+    .loader .ld-fig.walking::before { animation: ld-a .286s steps(1,end) infinite; }
+    .loader .ld-fig.walking::after  { animation: ld-b .286s steps(1,end) infinite; }
+    @keyframes ld-a { 0% { opacity: 1 } 50% { opacity: 0 } }
+    @keyframes ld-b { 0% { opacity: 0 } 50% { opacity: 1 } }
+    .ld-count { font-size: clamp(56px, 12vw, 96px); height: 1em; display: flex; gap: .04em; align-items: flex-end; }
+    .ld-count .ld-dpct { height: .62em; margin-left: .06em; }
+    .ld-track { position: relative; width: min(320px, calc(100vw - 48px)); height: 84px; }
+    .ld-track > .hw { position: absolute; }
+    .ld-strip  { left: 0; bottom: 14px; font-size: 30px; }
+    .ld-socket { right: 0; bottom: 14px; font-size: 54px; }
+    .ld-fig    { left: 0; bottom: 6px; font-size: 64px; will-change: transform; }
+    .ld-plug   { left: 0; bottom: 30px; font-size: 18px; will-change: transform; }
+    .ld-spark  { right: 18px; bottom: 50px; font-size: 34px; opacity: 0; color: #E8602C; }
+    .is-plugged .ld-spark { opacity: 1; transform: scale(1.15); transition: opacity .08s, transform .3s; }
+    .ld-cable  { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .ld-cable path { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
+    .ld-line { margin: 0; font: 500 .9rem/1.4 system-ui, sans-serif; color: #5A5047; max-width: 30ch; text-align: center; }
+    @media (prefers-reduced-motion: reduce) {
+      .loader .ld-fig::before, .loader .ld-fig::after { animation: none !important; }
+      .loader { transition: none; }
+    }
+  </style>
+<!-- inline:loader:start -->
+<style id="loader-frames">.ld-d0{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 47 60%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M29 21 L30 14 L27 10 L19 10 L11 17 L8 26 L6 39 L6 47 L10 53 L19 54 L31 49 L38 42 L41 32 L40 18 L33 8 L25 6 L16 11%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 42 48%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M15 24 L18 21 L22 13 L22 9 L19 6 L12 8 L7 15 L6 26 L10 37 L14 41 L19 41 L28 37 L34 30 L36 24 L34 18 L28 10 L24 8 L24 10%22/%3E%3C/svg%3E");--ar:47/60}.ld-d1{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 63%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 12 L10 57%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 17 51%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 9 L7 6 L8 29 L11 45%22/%3E%3C/svg%3E");--ar:16/63}.ld-d2{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 53 66%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M8 24 L6 21 L8 17 L20 8 L25 6 L28 6 L31 11 L30 19 L27 27 L20 41 L10 57 L9 60 L17 59 L40 50 L47 50%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 54%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M9 15 L6 13 L30 7 L39 6 L41 9 L36 19 L10 48 L23 47 L58 42%22/%3E%3C/svg%3E");--ar:53/66}.ld-d3{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 44 62%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 15 L7 11 L13 7 L20 6 L28 8 L28 13 L25 18 L17 25 L10 27 L19 26 L28 28 L35 33 L38 39 L37 44 L35 48 L27 56 L15 55 L9 51 L8 48%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 58 55%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 16 L11 12 L20 9 L38 6 L43 7 L39 13 L14 31 L37 30 L46 31 L52 34 L51 39 L47 44 L40 48 L31 49 L20 47%22/%3E%3C/svg%3E");--ar:44/62}.ld-d4{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 71%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M13 6 L11 24 L6 41 L12 40 L34 33%22/%3E%3Cpath d=%22M29 21 L28 56 L26 65%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 47 56%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M11 7 L9 6 L11 16 L6 35 L26 28 L41 27%22/%3E%3Cpath d=%22M30 9 L33 50%22/%3E%3C/svg%3E");--ar:40/71}.ld-d5{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 54%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M32 8 L13 17 L7 21 L22 23 L30 26 L34 32 L34 40 L29 45 L22 48 L13 48 L6 46%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 55 53%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M45 6 L49 7 L39 10 L16 12 L11 15 L9 18 L9 28 L22 25 L32 27 L40 31 L42 36 L39 43 L30 46 L16 46 L8 44 L6 41 L7 38%22/%3E%3C/svg%3E");--ar:40/54}.ld-d6{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 41 64%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M31 8 L31 6 L25 12 L14 29 L8 43 L6 51 L9 57 L15 58 L27 55 L34 48 L34 46 L31 43 L24 43 L14 48 L10 52 L9 55%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 39 53%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M23 8 L24 6 L22 7 L15 14 L12 18 L6 30 L6 38 L10 44 L17 46 L29 46 L33 43 L33 39 L31 35 L24 32 L13 36 L8 41 L7 42 L9 43%22/%3E%3C/svg%3E");--ar:41/64}.ld-d7{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 46 65%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 10 L6 9 L29 6 L33 7 L30 17 L18 47 L17 53 L18 58%22/%3E%3Cpath d=%22M12 35 L16 34 L40 33%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 62 55%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 14 L6 13 L20 11 L41 6 L31 34 L28 49%22/%3E%3Cpath d=%22M19 32 L19 31 L31 28 L56 27%22/%3E%3C/svg%3E");--ar:46/65}.ld-d8{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 44 63%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M33 12 L35 7 L30 6 L13 11 L9 16 L12 21 L28 31 L35 40 L35 48 L29 55 L22 57 L14 55 L7 50 L6 42 L9 34 L15 24 L20 19 L38 9%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 53 52%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M38 10 L39 8 L32 8 L18 9 L10 12 L28 24 L35 32 L35 37 L34 41 L23 46 L12 46 L7 43 L6 42 L15 33 L44 12 L47 7 L40 6%22/%3E%3C/svg%3E");--ar:44/63}.ld-d9{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 39 60%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M32 13 L32 8 L30 6 L24 6 L20 8 L12 14 L6 24 L7 26 L10 27 L20 25 L27 19 L33 12 L27 40 L28 50 L30 54%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 39 48%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M33 13 L32 7 L26 6 L12 12 L6 18 L7 20 L10 21 L32 16 L32 24 L26 42%22/%3E%3C/svg%3E");--ar:39/60}.ld-dpct{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 97 82%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M84 14 L90 6 L52 41 L18 64 L7 75%22/%3E%3Cpath d=%22M38 25 L42 18 L41 16 L31 18 L19 28 L18 32 L19 35 L22 38 L29 38 L35 35 L40 30 L42 26 L41 20 L37 16 L32 16%22/%3E%3Cpath d=%22M72 52 L59 58 L54 63 L52 68 L59 67 L64 65 L69 60 L69 56 L66 53%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 73 71%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M25 10 L27 7 L25 7 L11 14 L6 18 L6 20 L10 21 L23 15%22/%3E%3Cpath d=%22M61 10 L66 8 L67 8 L66 10 L55 18 L33 41 L7 64%22/%3E%3Cpath d=%22M57 43 L49 47 L45 51 L48 51 L55 46%22/%3E%3C/svg%3E");--ar:97/82}.ld-fig{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 142 392%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M68 88 L66 87 L65 113 L67 131 L67 147 L70 180 L69 237 L70 267 L67 297 L69 310%22/%3E%3Cpath d=%22M65 309 L67 306 L70 304 L60 324 L30 372 L27 381 L27 386 L44 356 L64 311 L68 305 L73 303 L74 312 L96 353 L105 362 L113 367 L114 367 L112 365%22/%3E%3Cpath d=%22M68 178 L68 176 L45 193 L11 228 L7 231 L6 230%22/%3E%3Cpath d=%22M61 186 L61 186%22/%3E%3Cpath d=%22M63 184 L61 185 L66 185 L87 202 L109 215 L115 223%22/%3E%3Cpath d=%22M84 22 L82 14 L77 8 L69 6 L59 8 L46 18 L40 24 L34 34 L30 44 L28 57 L31 66 L36 77 L45 87 L63 93 L76 95 L92 95 L106 93 L116 88 L124 82 L133 70 L136 63 L136 58 L133 50 L123 31 L117 23 L113 21 L95 14 L86 12 L57 11 L48 14%22/%3E%3Cpath d=%22M64 41 L64 39 L66 41%22/%3E%3Cpath d=%22M88 47 L86 47 L88 48%22/%3E%3Cpath d=%22M62 61 L69 71 L75 75 L84 76 L88 74 L90 71 L94 71%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 131 354%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M69 30 L78 28 L78 26 L77 23 L69 19 L59 20 L42 26 L18 41 L11 49 L6 61 L6 65 L8 71 L15 77 L29 80 L49 81 L79 75 L102 63 L110 56 L112 50 L112 42 L108 37 L101 29 L90 22 L72 14 L57 9 L40 6 L25 6%22/%3E%3Cpath d=%22M42 87 L43 85 L42 89 L42 98 L53 166 L62 241 L75 294%22/%3E%3Cpath d=%22M60 305 L62 301 L64 301 L59 313 L42 343 L65 302 L75 289 L80 286 L80 318 L83 335 L87 346 L90 348 L94 348%22/%3E%3Cpath d=%22M17 195 L11 196 L24 196 L50 194 L125 186%22/%3E%3Cpath d=%22M79 45 L78 44 L78 48%22/%3E%3Cpath d=%22M91 49 L91 48 L92 51%22/%3E%3Cpath d=%22M65 68 L74 68%22/%3E%3C/svg%3E");--ar:142/392}.ld-spark{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 173 142%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M49 38 L50 33 L48 27 L80 62 L92 80 L103 101%22/%3E%3Cpath d=%22M110 19 L114 12 L100 34 L80 61 L30 118%22/%3E%3Cpath d=%22M69 6 L66 8 L64 15 L64 62 L56 119%22/%3E%3Cpath d=%22M10 68 L6 63 L6 62 L23 60 L67 58 L122 60 L167 58%22/%3E%3Cpath d=%22M82 14 L83 49 L80 70 L73 102 L63 136%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 173 142%22 fill=%22none%22 stroke=%22black%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M49 38 L50 33 L48 27 L80 62 L92 80 L103 101%22/%3E%3Cpath d=%22M110 19 L114 12 L100 34 L80 61 L30 118%22/%3E%3Cpath d=%22M69 6 L66 8 L64 15 L64 62 L56 119%22/%3E%3Cpath d=%22M10 68 L6 63 L6 62 L23 60 L67 58 L122 60 L167 58%22/%3E%3Cpath d=%22M82 14 L83 49 L80 70 L73 102 L63 136%22/%3E%3C/svg%3E");--ar:173/142}.ld-plug{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 40%22 fill=%22none%22 stroke=%22black%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 13 L30 11 L33 13 L34 27 L31 30 L5 29 L3 26 L3 15 Z%22/%3E%3Cpath d=%22M34 16 L50 15.5 M34 24 L51 24.5%22/%3E%3Cpath d=%22M12 13 L12 28 M20 12 L21 29%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 40%22 fill=%22none%22 stroke=%22black%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 13 L30 11 L33 13 L34 27 L31 30 L5 29 L3 26 L3 15 Z%22/%3E%3Cpath d=%22M34 16 L50 15.5 M34 24 L51 24.5%22/%3E%3Cpath d=%22M12 13 L12 28 M20 12 L21 29%22/%3E%3C/svg%3E");--ar:60/40}.ld-socket{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 64%22 fill=%22none%22 stroke=%22black%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 4 L44 5 L46 9 L45 58 L41 61 L7 60 L4 56 L4 8 Z%22/%3E%3Cpath d=%22M18 22 L18 31 M32 21 L33 31%22/%3E%3Cpath d=%22M22 44 Q25 40 28 44%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 64%22 fill=%22none%22 stroke=%22black%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 4 L44 5 L46 9 L45 58 L41 61 L7 60 L4 56 L4 8 Z%22/%3E%3Cpath d=%22M18 22 L18 31 M32 21 L33 31%22/%3E%3Cpath d=%22M22 44 Q25 40 28 44%22/%3E%3C/svg%3E");--ar:50/64}.ld-strip{--a:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 70 34%22 fill=%22none%22 stroke=%22black%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 8 L64 6 L67 10 L66 27 L62 30 L5 29 L3 25 L3 11 Z%22/%3E%3Ccircle cx=%2220%22 cy=%2218%22 r=%225%22/%3E%3Ccircle cx=%2240%22 cy=%2217%22 r=%225%22/%3E%3Cpath d=%22M55 14 L58 21%22/%3E%3C/svg%3E");--b:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 70 34%22 fill=%22none%22 stroke=%22black%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 8 L64 6 L67 10 L66 27 L62 30 L5 29 L3 25 L3 11 Z%22/%3E%3Ccircle cx=%2220%22 cy=%2218%22 r=%225%22/%3E%3Ccircle cx=%2240%22 cy=%2217%22 r=%225%22/%3E%3Cpath d=%22M55 14 L58 21%22/%3E%3C/svg%3E");--ar:70/34}</style>
+<!-- inline:loader:end -->
+
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/desk.css">
+  <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
 
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">
-      <span>Nash</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="/projects.html">Projects</a></li>
-      <li><a href="/hobbies.html">Hobbies</a></li>
-      <li><a href="/bio.html">About</a></li>
-      <li><a href="/reach.html">Reach</a></li>
-      <li><a href="/support.html">Support</a></li>
-    </ul>
-    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+<div id="loader" class="loader" role="status" aria-busy="true">
+  <div class="ld-count" aria-hidden="true"></div>
+  <div class="ld-track" aria-hidden="true">
+    <svg class="ld-cable" viewBox="0 0 320 84" preserveAspectRatio="none"><path d=""/></svg>
+    <span class="hw ld-strip"></span>
+    <span class="hw ld-socket"></span>
+    <span class="hw ld-spark"></span>
+    <span class="hw ld-plug"></span>
+    <span class="hw ld-fig"></span>
   </div>
+  <p class="ld-line" data-todo="loader-line">TODO: loader line in my own words</p>
+  <span class="ld-sr sr-only">Loading</span>
+</div>
+
+<header class="chrome">
+  <button id="back-btn" class="chrome-back" type="button" hidden>
+    <span class="hw" data-hw="arrow-back" aria-hidden="true"></span>
+    <span class="hw" data-hw="back" aria-hidden="true"></span>
+    <span class="sr-only">Back to the desk</span>
+  </button>
+
+  <a class="chrome-sig" href="/" aria-label="whatthenash.com home">
+    <span class="hw" data-hw="nash-sig" aria-hidden="true"></span>
+  </a>
+
+  <button id="menu-btn" class="chrome-menu" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Open menu" data-rough="999">
+    <span class="hw when-closed" data-hw="menu" aria-hidden="true"></span>
+    <span class="hw when-open" data-hw="close" aria-hidden="true"></span>
+  </button>
+</header>
+
+<div id="scrim" class="scrim" aria-hidden="true"></div>
+
+<nav id="drawer" class="drawer" aria-label="Main" inert>
+  <div class="drawer-head">
+    <div class="meter" aria-hidden="true">
+      <span class="hw meter-body static" data-hw-src="/img/doodles/multimeter.TODO.svg" data-ar="80/110"></span>
+      <svg class="meter-needle" viewBox="0 0 80 110"><line x1="40" y1="48" x2="40" y2="22"/><circle cx="40" cy="48" r="2.6"/></svg>
+    </div>
+    <span class="hw drawer-title" data-hw="what-the-nash" aria-hidden="true"></span>
+  </div>
+
+  <ul class="pills" role="list">
+    <li><a class="pill" href="#work" data-panel="work" style="--hover: var(--mask-green); --hover-ink: var(--paper)" data-rough="999">
+      <span class="hw pill-icon" data-hw="icon-box" aria-hidden="true"></span>
+      <span class="hw pill-word" data-hw="work" aria-hidden="true"></span><span class="sr-only">Work</span></a></li>
+    <li><a class="pill" href="#about" data-panel="about" style="--hover: var(--blueprint)" data-rough="999">
+      <span class="hw pill-icon" data-hw="icon-notebook" aria-hidden="true"></span>
+      <span class="hw pill-word" data-hw="about" aria-hidden="true"></span><span class="sr-only">About</span></a></li>
+    <li><a class="pill" href="#about/hobbies" data-panel="about" data-page="hobbies" style="--hover: var(--sticky)" data-rough="999">
+      <span class="hw pill-icon" data-hw="icon-spark" aria-hidden="true"></span>
+      <span class="hw pill-word" data-hw="hobbies" aria-hidden="true"></span><span class="sr-only">Hobbies</span></a></li>
+    <li><a class="pill" href="#contact" data-panel="contact" style="--hover: var(--signal); --hover-ink: var(--paper)" data-rough="999">
+      <span class="hw pill-icon" data-hw="icon-hand" aria-hidden="true"></span>
+      <span class="hw pill-word" data-hw="contact" aria-hidden="true"></span><span class="sr-only">Contact</span></a></li>
+    <li><a class="pill" href="/support.html" style="--hover: var(--copper); --hover-ink: var(--paper)" data-rough="999">
+      <span class="hw pill-icon" data-hw="icon-dollar" aria-hidden="true"></span>
+      <span class="hw pill-word" data-hw="support" aria-hidden="true"></span><span class="sr-only">Support</span></a></li>
+  </ul>
 </nav>
 
-<main>
-  <section class="hero" id="hero">
-    <div class="eyebrow">Builder · Always Learning</div>
-    <div class="hero-head" data-face aria-label="Nash’s face"></div>
-    <h1 class="display-xl">Hey, I'm Nash.</h1>
-    <p class="hero-subtitle"><span class="serif-italic">builder of things. explorer of ideas.</span></p>
-    <div class="hero-scroll-hint">↓ SCROLL</div>
-  </section>
-  <section class="manifesto" id="manifesto">
-    <div class="manifesto-bg" aria-hidden="true">
-      <div class="blob blob-sage"  data-parallax="0.3"></div>
-      <div class="blob blob-warm"  data-parallax="0.55"></div>
-      <div class="blob blob-cream" data-parallax="0.75"></div>
-    </div>
-    <div class="manifesto-inner container">
-      <div class="eyebrow">01 / What I do</div>
-      <h2 class="display-xl reveal">I build things.</h2>
-      <h2 class="display-xl serif-italic reveal" style="margin-top: var(--sp-2);">because it's how my brain works.</h2>
-    </div>
-  </section>
-  <section class="explosion" id="explosion">
-    <div class="container" style="text-align:center; padding-top: var(--sp-8);">
-      <div class="eyebrow">02 / Who I am outside of work</div>
-      <h2 class="display-l" style="margin-top: var(--sp-3);">
-        15 hobbies. <span class="serif-italic">always learning.</span>
-      </h2>
-      <p class="shed-teaser-line">
-        or <a href="https://shed.whatthenash.com" target="_blank" rel="noopener" class="shed-teaser-link">wander through the shed in 3D →</a>
-        <span class="shed-teaser-note">new site, in progress</span>
-      </p>
-    </div>
-    <div class="explosion-stage container" id="explosion-stage">
-      <div id="explosion-head" data-face aria-hidden="true"></div>
-      <!-- bubbles injected by JS -->
-    </div>
-  </section>
-  <section class="rail-pin" id="rail">
-    <div class="rail-inner" id="rail-inner">
-      <div style="flex: 0 0 auto; width: 30vw; max-width: 420px; padding-right: var(--sp-5);">
-        <div class="eyebrow">03 / What I've built</div>
-        <h2 class="display-l" style="margin-top: var(--sp-3);">
-          The projects. <span class="serif-italic">scroll sideways →</span>
-        </h2>
-      </div>
-      <a class="rail-card rail-card--teaser" href="https://shed.whatthenash.com" target="_blank" rel="noopener">
-        <span class="badge-teaser">✨ New · sneak peek</span>
-        <div class="rail-card-image" style="background: linear-gradient(135deg, var(--sage), #a8d5c2);"></div>
-        <h3 class="heading">New site: The Shed</h3>
-        <p class="desc">A 3D explorable version of this site. Open the door, look around the cabin, click on the things. Come give it a look.</p>
-        <span class="badge-complete" style="background: var(--sage); color: #fff;">SNEAK PEEK</span>
-      </a>
-      <a class="rail-card" href="/projects/banana.html">
-        <div class="rail-card-image" style="background: linear-gradient(135deg, var(--warm), #f4d9b2);"></div>
-        <h3 class="heading">Banana / Peel 1</h3>
-        <p class="desc">My company. Peel 1 is the Android launcher for Click Communicator — AAC made simple.</p>
-        <span class="badge-complete" style="background: var(--warm); color: var(--ink);">IN PROGRESS</span>
-      </a>
-      <a class="rail-card" href="/projects/bob.html">
-        <div class="rail-card-image" style="background: linear-gradient(135deg, var(--sage), #a8d5c2);"></div>
-        <h3 class="heading">BOB</h3>
-        <p class="desc">My personal AI agent on Claude. Multi-agent system that runs my digital life.</p>
-        <span class="badge-complete">IN USE</span>
-      </a>
-      <a class="rail-card" href="/projects/claude-approver.html">
-        <div class="rail-card-image" style="background: linear-gradient(135deg, #5b6a8a, var(--sage));"></div>
-        <h3 class="heading">Claude Approver</h3>
-        <p class="desc">ESP32 BLE device that plays a jingle and lights up when Claude finishes a task.</p>
-        <span class="badge-complete" style="background: var(--warm); color: var(--ink);">IN PROGRESS</span>
-      </a>
-      <a class="rail-card" href="/projects/skystream.html">
-        <div class="rail-card-image" style="background: linear-gradient(135deg, #B09A7A, var(--warm));"></div>
-        <h3 class="heading">Skystream</h3>
-        <p class="desc">Water-harvesting system. Pulls drinking water out of the air using MOF303.</p>
-        <span class="badge-complete">AWARD-WINNING</span>
-      </a>
-      <a class="rail-card" href="/projects/ares-ii.html">
-        <div class="rail-card-image" style="background: linear-gradient(135deg, var(--border), #c8c8c8);"></div>
-        <h3 class="heading">ARES II</h3>
-        <p class="desc">Ionic-thruster airplane. Thousands of volts, zero moving parts. Built at Georgia GHP.</p>
-        <span class="badge-complete">COMPLETE</span>
-      </a>
-      <a class="rail-card" href="/projects/house-point-counter.html">
-        <div class="rail-card-image" style="background: linear-gradient(135deg, var(--sage), var(--warm));"></div>
-        <h3 class="heading">House Point Counter</h3>
-        <p class="desc">Hardware + dashboard for tracking school house points in real time.</p>
-        <span class="badge-complete">COMPLETE</span>
-      </a>
-      <a class="rail-card" href="/projects.html" style="display: flex; align-items: center; justify-content: center; text-align: center;">
-        <div>
-          <div class="eyebrow">See everything</div>
-          <div class="display-l" style="margin-top: var(--sp-3); font-size: 2rem;">All projects →</div>
-        </div>
-      </a>
-    </div>
-  </section>
-  <section class="about-section" id="about">
-    <div class="container">
-      <div class="stats">
-        <div>
-          <div class="stat-num" data-count="6">0</div>
-          <div class="stat-lbl">Projects</div>
-        </div>
-        <div>
-          <div class="stat-num" data-count="18">0</div>
-          <div class="stat-lbl">Hobbies</div>
-        </div>
-        <div>
-          <div class="stat-num">∞</div>
-          <div class="stat-lbl">Curiosity</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="grad-feature" id="support-feature">
-    <div class="container">
-      <a class="grad-bubble" href="/support.html">
-        <span class="grad-bubble-icon" aria-hidden="true">🍌</span>
-        <span class="grad-bubble-text">
-          <span class="grad-bubble-eyebrow">Like what I build?</span>
-          <span class="grad-bubble-headline">Support the next project</span>
-        </span>
-        <span class="grad-bubble-arrow" aria-hidden="true">→</span>
-      </a>
-    </div>
-  </section>
+<main id="desk" class="desk">
+  <h1 class="desk-hello" data-reveal>
+    <span class="hw" data-hw="hey-im-nash" aria-hidden="true"></span>
+    <span class="sr-only">Hey, I'm Nash. I create, wonder, and rebuild.</span>
+  </h1>
+  <div class="desk-face" data-face data-reveal aria-label="Nash’s face"></div>
+  <div id="desk-objects" class="desk-objects"></div>
 </main>
 
-<footer class="footer">
-  <div class="footer-links">
-    <a href="/projects.html">Projects</a>
-    <a href="/hobbies.html">Hobbies</a>
-    <a href="/bio.html">About</a>
-    <a href="/reach.html">Reach</a>
-    <a href="/support.html">Support</a>
-    <a href="https://github.com/GR3ATB0B" target="_blank" rel="noopener">GitHub</a>
-  </div>
-  <div class="footer-copy">© 2026 Nash · whatthenash.com · built with curiosity</div>
-</footer>
+<!-- Panels: stubs until stage 2 -->
+<section class="panel" data-panel="work" role="dialog" aria-modal="true" aria-labelledby="p-work" hidden>
+  <h2 id="p-work" tabindex="-1"><span class="hw" data-hw="work-caps" aria-hidden="true"></span><span class="sr-only">Work</span></h2>
+  <p>Project cards land here in stage 2.</p>
+</section>
+<section class="panel" data-panel="about" role="dialog" aria-modal="true" aria-labelledby="p-about" hidden>
+  <h2 id="p-about" tabindex="-1"><span class="hw" data-hw="lab-notes" aria-hidden="true"></span><span class="sr-only">Lab notes</span></h2>
+  <p>The notebook (with a Hobbies page) lands here in stage 2.</p>
+</section>
+<section class="panel" data-panel="contact" role="dialog" aria-modal="true" aria-labelledby="p-contact" hidden>
+  <h2 id="p-contact" tabindex="-1"><span class="hw" data-hw="contact-panel" aria-hidden="true"></span><span class="sr-only">Contact</span></h2>
+  <p>The pager → compose form lands here in stage 2.</p>
+</section>
+<section class="panel" data-panel="terminal" role="dialog" aria-modal="true" aria-labelledby="p-term" hidden>
+  <h2 id="p-term" tabindex="-1">terminal</h2>
+  <p>The CRT terminal lands here in stage 4.</p>
+</section>
 
-<script type="module" src="/shared.js"></script>
-<script type="module" src="/index.js"></script>
-<script type="module" src="/js/face.js"></script>
+<script src="/js/loader.js"></script>
+<script type="module" src="/js/main.js"></script>
 </body>
 </html>
