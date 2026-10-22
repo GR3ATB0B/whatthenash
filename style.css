@@ -499,8 +499,8 @@ body.grad-modal-open { overflow: hidden; }
 }
 
 .nav-head {
+  display: inline-block;
   width: 32px; height: 32px;
-  --poster-color: transparent;
 }
 
 .nav-links {
@@ -654,7 +654,6 @@ body.grad-modal-open { overflow: hidden; }
 .hero-head {
   width: 360px; height: 360px;
   margin-bottom: var(--sp-6);
-  --poster-color: transparent;
 }
 .hero .eyebrow { margin-bottom: var(--sp-4); }
 .hero h1 { margin-bottom: var(--sp-3); }
@@ -694,7 +693,6 @@ body.grad-modal-open { overflow: hidden; }
   position: absolute; left: 50%; top: 50%;
   transform: translate(-50%, -50%) scale(0);
   width: 250px; height: 250px;
-  --poster-color: transparent;
 }
 .hobby-bubble {
   position: absolute;

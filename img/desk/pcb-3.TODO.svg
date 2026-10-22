@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" width="220" height="160">
+<!-- PLACEHOLDER: replace with real cut-out photo img/desk/pcb-3.webp -->
+<polygon points="10,13 23,13 37,10 50,8 63,8 77,11 90,8 103,13 117,11 130,10 143,9 157,10 170,13 183,13 197,8 206,10 202,23 211,35 214,48 206,61 212,74 209,86 212,99 206,112 211,125 207,137 210,147 197,148 183,150 170,152 157,150 143,152 130,146 117,151 103,154 90,153 77,151 63,145 50,148 37,145 23,152 7,150 4,137 11,125 7,112 8,99 8,86 9,74 9,61 12,48 9,35 14,23" fill="#efe6d6" stroke="#b9a98f" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="110.0" y="74.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#6d5f4b">TODO photo</text>
+<text x="110.0" y="94.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#6d5f4b">PCB #3</text>
+</svg>

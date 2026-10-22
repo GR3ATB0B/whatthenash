@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 90" width="460" height="90">
+<!-- PLACEHOLDER: replace with real cut-out photo img/desk/soldering-iron.webp -->
+<polygon points="10,11 24,7 38,12 51,8 65,11 79,15 92,12 106,12 120,7 134,8 148,6 161,1 175,12 189,13 202,9 216,18 230,14 244,1 258,13 271,13 285,9 299,7 312,5 326,12 340,15 354,10 368,9 381,12 395,17 409,3 422,13 436,10 447,10 453,22 448,33 452,45 446,57 453,68 450,79 436,76 422,77 409,80 395,77 381,83 368,78 354,83 340,77 326,80 312,84 299,78 285,77 271,78 258,78 244,88 230,76 216,83 202,77 189,77 175,79 161,80 148,76 134,82 120,81 106,77 92,83 79,82 65,78 51,79 38,81 24,80 12,80 12,68 10,57 10,45 14,33 11,22" fill="#efe6d6" stroke="#b9a98f" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="230.0" y="39.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#6d5f4b">TODO photo</text>
+<text x="230.0" y="59.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#6d5f4b">soldering iron</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 150" width="220" height="150">
+<!-- PLACEHOLDER: replace with real cut-out photo img/desk/pager.webp -->
+<polygon points="10,11 23,14 37,8 50,12 63,9 77,6 90,11 103,12 117,6 130,9 143,7 157,13 170,11 183,6 197,6 210,10 207,23 206,36 210,49 214,62 211,75 213,88 205,101 208,114 211,127 210,143 197,137 183,135 170,143 157,140 143,144 130,136 117,142 103,136 90,138 77,143 63,143 50,141 37,143 23,142 15,140 6,127 14,114 13,101 13,88 8,75 20,62 13,49 7,36 7,23" fill="#efe6d6" stroke="#b9a98f" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="110.0" y="69.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#6d5f4b">TODO photo</text>
+<text x="110.0" y="89.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#6d5f4b">pager / tiny CRT</text>
+</svg>

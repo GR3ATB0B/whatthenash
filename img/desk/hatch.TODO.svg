@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+<!-- PLACEHOLDER: replace with real cut-out photo img/desk/hatch.webp -->
+<polygon points="10,6 23,17 36,6 49,8 62,7 75,13 88,5 101,10 114,11 126,9 139,7 152,13 165,15 178,6 191,12 204,7 217,7 229,10 227,23 232,36 234,49 229,61 225,74 231,87 227,100 224,113 229,126 225,139 227,151 235,164 230,177 230,186 217,187 204,194 191,195 178,189 165,183 152,191 139,193 126,185 114,186 101,194 88,187 75,190 62,186 49,191 36,192 23,186 12,190 11,177 6,164 6,151 7,139 13,126 11,113 8,100 7,87 12,74 14,61 5,49 15,36 13,23" fill="#efe6d6" stroke="#b9a98f" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="120.0" y="94.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#6d5f4b">TODO photo</text>
+<text x="120.0" y="114.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#6d5f4b">the shed hatch (drawn?)</text>
+</svg>

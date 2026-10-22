@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 140" width="160" height="140">
+<!-- PLACEHOLDER: replace with real cut-out photo img/desk/espresso-cup.webp -->
+<polygon points="10,12 23,10 35,13 48,8 61,5 74,10 86,13 99,13 112,4 125,1 137,11 154,10 151,22 155,34 151,46 149,58 155,70 145,82 154,94 145,106 151,118 150,126 137,132 125,130 112,127 99,127 86,134 74,132 61,127 48,133 35,126 23,131 13,130 6,118 12,106 14,94 7,82 8,70 8,58 20,46 12,34 8,22" fill="#efe6d6" stroke="#b9a98f" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="80.0" y="64.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#6d5f4b">TODO photo</text>
+<text x="80.0" y="84.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#6d5f4b">cup / basket</text>
+</svg>

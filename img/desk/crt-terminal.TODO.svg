@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" width="320" height="280">
+<!-- PLACEHOLDER: replace with real cut-out photo img/desk/crt-terminal.webp -->
+<polygon points="10,12 24,13 37,14 51,6 65,8 78,13 92,9 105,9 119,8 133,13 146,6 160,9 174,6 187,13 201,15 215,14 228,9 242,10 255,13 269,5 283,10 296,9 314,10 314,23 306,36 315,49 311,62 312,75 309,88 313,101 309,114 312,127 314,140 315,153 309,166 312,179 313,192 309,205 313,218 315,231 308,244 313,257 310,266 296,267 283,266 269,269 255,267 242,267 228,266 215,269 201,267 187,273 174,268 160,270 146,273 133,274 119,271 105,265 92,269 78,268 65,273 51,271 37,271 24,272 14,270 9,257 7,244 10,231 6,218 9,205 12,192 11,179 13,166 12,153 14,140 13,127 6,114 11,101 11,88 7,75 12,62 9,49 13,36 9,23" fill="#efe6d6" stroke="#b9a98f" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="160.0" y="134.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#6d5f4b">TODO photo</text>
+<text x="160.0" y="154.0" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#6d5f4b">small CRT for terminal</text>
+</svg>
