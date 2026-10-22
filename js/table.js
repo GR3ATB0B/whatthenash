@@ -13,7 +13,7 @@ const SWAP_COOLDOWN = 1500;   // ms before the same print can swap again
 /* live print rectangles in viewport coords, for the character to stand on */
 export const tableState = { prints: [] };
 
-export function buildTable(box) {
+export function buildTable(box, { containY = false } = {}) {
   const mobile = matchMedia('(max-width: 720px)').matches;
   const n = Math.min(PHOTOS.length, mobile ? 9 : 16);
   const cards = makeCards(n);
@@ -74,7 +74,9 @@ export function buildTable(box) {
     const rects = new Array(prints.length);
     rank.forEach(([, i], r) => {
       const p = prints[i], q = poses[i];
-      const x = q.x * W - p.bw / 2, y = q.y * H - p.bh / 2;
+      const x = q.x * W - p.bw / 2;
+      // containY: keep the whole print inside the band (top/bottom edges never cross the words)
+      const y = containY ? q.y * Math.max(0, H - p.bh) : q.y * H - p.bh / 2;
       p.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) rotate(${q.rot.toFixed(1)}deg)`;
       p.el.style.zIndex = String(r + 1);
       rects[i] = { x: x + p.bw * .08, y: y + p.bh * .08, w: p.bw * .84, h: p.bh * .84 };

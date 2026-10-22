@@ -4,7 +4,9 @@
 import { phaseFromScroll, wrapScroll, verbAt } from './hero-math.js';
 import { LOOP } from './table-math.js';
 import { buildTable } from './table.js';
+import { inlineLettering, writeOn } from './write-on.js';
 import * as store from './state.js';
+import { CONFIG } from '../data/config.js';
 import { prefersReducedMotion } from '../shared.js';
 
 const SEG_VH = 1.1;        // one verb per ~screen of scrolling
@@ -13,10 +15,39 @@ const DRIFT = 0.018;       // phase units per second while nobody's scrolling, s
 export function initHero() {
   const space = document.getElementById('scroll-space');
   const box = document.getElementById('table');
-  const verbs = [...document.querySelectorAll('.hero-verb')];
+  const verbBox = document.querySelector('.hero-verbs');
   if (!space || !box) return;
 
-  const update = buildTable(box);
+  // optional: confine the photos to the band between the two lines of words
+  const clear = CONFIG.photosClearOfWords;
+  document.documentElement.classList.toggle('words-clear', clear);
+  function fitBand() {
+    if (!clear) return;
+    const hello = document.querySelector('.desk-hello'), line = document.querySelector('.hero-line');
+    box.style.top = `${Math.round(hello.getBoundingClientRect().bottom + 14)}px`;
+    box.style.bottom = `${Math.round(innerHeight - line.getBoundingClientRect().top + 14)}px`;
+  }
+  fitBand();
+  addEventListener('resize', fitBand);
+
+  const update = buildTable(box, { containY: clear });
+
+  // the verbs, inlined so they can be written on stroke by stroke
+  const names = (verbBox?.dataset.verbs || '').split(',');
+  const verbs = [];
+  Promise.all(names.map(n => inlineLettering(`${n}-a`))).then(svgs => svgs.forEach((svg, i) => {
+    svg.classList.add('hero-verb');
+    verbBox.append(svg);
+    verbs[i] = svg;
+    if (prefersReducedMotion) svg.classList.add('is-on');
+  }));
+  let writing = -1;
+  function showVerb(v) {
+    if (!verbs[v] || writing === v) return;
+    writing = v;
+    verbs.forEach((svg, i) => svg.classList.toggle('is-on', i === v));
+    writeOn(verbs[v]);
+  }
 
   if (prefersReducedMotion) {
     document.documentElement.classList.add('hero-static');
@@ -43,10 +74,7 @@ export function initHero() {
     if (!store.get().panel && !document.hidden) drift = (drift + dt * DRIFT) % LOOP;
     update((phase + drift) % LOOP, now);
     const v = verbAt(phase);
-    if (v !== verb) {
-      verb = v;
-      verbs.forEach((el, i) => el.classList.toggle('is-on', i === v));
-    }
+    if (v !== verb || writing !== v) { verb = v; showVerb(v); }
     requestAnimationFrame(frame);
   }
 
