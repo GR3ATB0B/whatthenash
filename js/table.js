@@ -10,6 +10,9 @@ import { track, reveal } from './desk.js';
 const SWAP_COVER = 0.8;       // this buried → swap the photo
 const SWAP_COOLDOWN = 1500;   // ms before the same print can swap again
 
+/* live print rectangles in viewport coords, for the character to stand on */
+export const tableState = { prints: [] };
+
 export function buildTable(box) {
   const mobile = matchMedia('(max-width: 720px)').matches;
   const n = Math.min(PHOTOS.length, mobile ? 9 : 16);
@@ -21,7 +24,7 @@ export function buildTable(box) {
   for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
   const pool = order.slice(n);
 
-  let W = 0, H = 0, base = 0;
+  let W = 0, H = 0, base = 0, ox = 0, oy = 0;
   const prints = cards.map((c, i) => {
     const el = document.createElement('div');
     el.className = 'print' + (c.polaroid ? ' is-polaroid' : '');
@@ -54,11 +57,13 @@ export function buildTable(box) {
 
   function measure() {
     W = box.clientWidth; H = box.clientHeight;
+    const r = box.getBoundingClientRect(); ox = r.left; oy = r.top;
     base = Math.max(96, Math.min(220, Math.min(W, H * 1.4) * (mobile ? 0.26 : 0.16)));
     prints.forEach(size);
   }
   measure();
   addEventListener('resize', measure);
+  tableState.prints = prints;
 
   // warm the cache for photos that will swap in later (after the loader, low priority)
   addEventListener('loader:done', () => setTimeout(() => pool.forEach(i => { const im = new Image(); im.src = PHOTOS[i][0]; }), 1500), { once: true });
@@ -73,6 +78,7 @@ export function buildTable(box) {
       p.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) rotate(${q.rot.toFixed(1)}deg)`;
       p.el.style.zIndex = String(r + 1);
       rects[i] = { x: x + p.bw * .08, y: y + p.bh * .08, w: p.bw * .84, h: p.bh * .84 };
+      p.t = { x: ox + x, y: oy + y, w: p.bw, h: p.bh, rot: q.rot };
     });
     // buried prints become something else
     if (!pool.length) return;

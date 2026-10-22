@@ -61,6 +61,7 @@
   <link rel="stylesheet" href="/css/desk.css">
   <link rel="stylesheet" href="/css/menu.css">
   <link rel="stylesheet" href="/css/panels.css">
+  <link rel="stylesheet" href="/css/buddy.css">
 </head>
 <body>
 
@@ -126,13 +127,13 @@
 </nav>
 
 <main id="desk" class="desk">
-  <h1 class="desk-hello" data-reveal>
+  <h1 class="desk-hello" data-reveal data-solid>
     <span class="hw" data-hw="hey-im-nash" aria-hidden="true"></span>
     <span class="sr-only">Hey, I'm Nash. I create, wonder, and rebuild.</span>
   </h1>
   <div class="desk-face" data-face data-reveal aria-label="Nash’s face"></div>
   <div id="table" class="table" aria-hidden="true"></div>
-  <p class="hero-line" data-reveal aria-hidden="true">
+  <p class="hero-line" data-reveal data-solid aria-hidden="true">
     <span class="hw hero-i" data-hw="i"></span>
     <span class="hero-verbs">
       <span class="hw hero-verb is-on" data-hw="create"></span>
@@ -156,7 +157,7 @@
 </section>
 
 <section class="panel panel-about" data-panel="about" role="dialog" aria-modal="true" aria-labelledby="p-about" hidden>
-  <div class="notebook">
+  <div class="notebook" data-solid>
     <div class="nb-tabs" role="tablist" aria-label="Notebook pages">
       <button type="button" class="nb-tab" role="tab" data-tab="notes" aria-selected="true"><span class="hw" data-hw="lab-notes" aria-hidden="true"></span><span class="sr-only">Lab notes</span></button>
       <button type="button" class="nb-tab" role="tab" data-tab="hobbies" aria-selected="false"><span class="hw" data-hw="hobbies-notebook" aria-hidden="true"></span><span class="sr-only">Hobbies</span></button>
@@ -177,7 +178,7 @@
   <h2 id="p-contact" tabindex="-1"><span class="hw" data-hw="contact-panel" aria-hidden="true"></span><span class="sr-only">Contact</span></h2>
   <div class="pager-stage">
     <img class="pager-img" src="/img/desk/pager.TODO.svg" alt="" aria-hidden="true">
-    <form class="pager-form" novalidate>
+    <form class="pager-form" novalidate data-solid>
       <p class="screen-line" aria-hidden="true">&gt; NEW MSG<span class="caret">_</span></p>
       <div class="field" data-field="name">
         <label for="c-name">name</label>

@@ -58,7 +58,7 @@ function card(p, i) {
   if (p.img) shot.append(el('img', { src: p.img, alt: `${p.name}`, loading: 'lazy', decoding: 'async' }));
   else shot.append(el('span', {}, `TODO: photo of ${p.name}`));
   const status = p.status === 'complete' ? 'done' : `in progress · ${p.progress}%`;
-  const c = el('article', { class: 'card', 'data-swap': '' },
+  const c = el('article', { class: 'card', 'data-swap': '', 'data-solid': '' },
     shot, title,
     el('p', { class: 'card-status' }, status),
     el('a', { class: 'card-link', href: `/projects/${p.slug}.html` }, 'read the notes →'));
@@ -99,7 +99,7 @@ if (panel) {
   pager.querySelector('.work-prev').addEventListener('click', () => go(page - 1));
   pager.querySelector('.work-next').addEventListener('click', () => go(page + 1));
   document.addEventListener('keydown', e => {
-    if (store.get().panel !== 'work' || e.target.closest('input, textarea')) return;
+    if (store.get().panel !== 'work' || window.__buddyControl || e.target.closest('input, textarea')) return;
     if (e.key === 'ArrowRight') go(page + 1);
     if (e.key === 'ArrowLeft') go(page - 1);
   });

@@ -1,0 +1,67 @@
+/* css/buddy.css — little-me and his touch controls */
+
+.buddy {
+  position: fixed; left: 0; top: 0; z-index: 35;
+  width: 0; height: 64px;            /* anchored at his feet-centre; sprite is centred on it */
+  opacity: 0; transition: opacity .4s ease;
+  color: var(--ink);
+  cursor: pointer;
+  outline: none;
+  will-change: transform;
+}
+.buddy.is-in { opacity: 1; }
+.buddy-sprite {
+  position: absolute; left: -16px; top: 0; width: 32px; height: 64px;
+}
+.bf {
+  position: absolute; inset: 0; display: none;
+  background: currentColor;
+  -webkit-mask: var(--src) bottom center / contain no-repeat;
+          mask: var(--src) bottom center / contain no-repeat;
+}
+.buddy-sprite[data-frame="still"] [data-f="still"],
+.buddy-sprite[data-frame="jump"]  [data-f="jump"],
+.buddy-sprite[data-frame="walk1"] [data-f="walk1"],
+.buddy-sprite[data-frame="walk2"] [data-f="walk2"],
+.buddy-sprite[data-frame="walk3"] [data-f="walk3"],
+.buddy-sprite[data-frame="walk4"] [data-f="walk4"],
+.buddy-sprite[data-frame="walk5"] [data-f="walk5"] { display: block; }
+
+.buddy:hover .buddy-sprite { translate: 0 -2px; }
+.buddy:focus-visible .buddy-sprite { outline: 2.5px dashed var(--signal); outline-offset: 6px; border-radius: 10px; }
+.buddy.is-controlled { cursor: default; }
+.buddy.is-controlled .buddy-sprite::after {   /* tiny "you" marker */
+  content: ""; position: absolute; left: 50%; top: -12px; width: 8px; height: 8px; translate: -50% 0;
+  background: var(--signal); border-radius: 50%;
+}
+
+.buddy-hint {
+  position: absolute; left: 22px; bottom: 64px;
+  width: max-content; max-width: 220px;
+  padding: 8px 10px; background: var(--paper); border: 2px solid var(--ink); border-radius: 12px 12px 12px 2px;
+  font: 500 12.5px/1.35 var(--font-body);
+  box-shadow: 0 6px 12px -6px rgba(30, 26, 22, .35);
+  opacity: 0; translate: 0 6px; pointer-events: none;
+  transition: opacity .2s, translate .2s;
+}
+.buddy-hint-keys { display: block; margin-top: 4px; font: 500 11px var(--font-mono); color: var(--ink-soft); }
+.buddy.show-hint .buddy-hint { opacity: 1; translate: 0 0; }
+
+.buddy-pad {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 36;
+  display: flex; gap: 10px; align-items: center;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  touch-action: none; user-select: none;
+}
+.buddy-pad[hidden] { display: none; }
+.buddy-pad button {
+  font-size: 34px; min-width: 64px; min-height: 56px; border: 2px solid var(--ink); border-radius: 14px;
+  background: var(--paper); display: grid; place-items: center;
+}
+.buddy-pad button:active { background: var(--sticky); }
+.buddy-pad .pad-jump { margin-left: auto; min-width: 120px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .buddy, .buddy-hint { transition: none; }
+}

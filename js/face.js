@@ -9,6 +9,10 @@ const COLS = 6, ROWS = 6, FRAMES = COLS * ROWS;
 const FRONT = 17;   // ≈ 0° yaw
 const EASE = 0.15;  // per-frame lerp toward target
 
+/* which of the 36 frames an element is showing right now */
+export const faceFrame = el => Math.round(el._face?.cur ?? FRONT);
+export const FACE_SHEET = { src: SHEET, cols: COLS, rows: ROWS };
+
 export function frameForPointer(px, cx, halfWidth) {
   const t = Math.max(-1, Math.min(1, (px - cx) / halfWidth));
   return Math.round(((t + 1) / 2) * (FRAMES - 1));

@@ -11,4 +11,8 @@ class NoCache(http.server.SimpleHTTPRequestHandler):
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
 print(f'Serving whatthenash.com at http://localhost:{port}')
-http.server.ThreadingHTTPServer(('127.0.0.1', port), NoCache).serve_forever()
+class Server(http.server.ThreadingHTTPServer):
+    request_queue_size = 128   # default 5 resets connections when the page fetches modules in a burst
+    daemon_threads = True
+
+Server(('127.0.0.1', port), NoCache).serve_forever()
