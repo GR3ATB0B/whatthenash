@@ -62,6 +62,7 @@
   <link rel="stylesheet" href="/css/menu.css">
   <link rel="stylesheet" href="/css/panels.css">
   <link rel="stylesheet" href="/css/buddy.css">
+  <link rel="stylesheet" href="/css/terminal.css">
 </head>
 <body>
 
@@ -137,7 +138,16 @@
     <span class="hero-i">I love to</span>
     <span class="hero-verbs" data-verbs="rebuild,create,wonder"></span>
   </p>
-  <span class="hw hero-hint jitter" data-hw="arrow-down" aria-hidden="true"></span>
+  <button type="button" class="crt-btn" aria-label="Turn on the terminal (or press the backtick key)" data-solid>
+    <svg viewBox="0 0 64 56" aria-hidden="true"><!-- TODO(Nash): swap for your own CRT drawing -->
+      <rect class="crt-btn-glow" x="9" y="8" width="36" height="28" rx="5"/>
+      <path d="M5 5 Q4 3 7 3 L55 4 Q59 4 59 8 L58 42 Q58 45 55 45 L8 46 Q5 46 5 43 Z"/>
+      <path d="M9 9 Q9 7 12 7 L42 8 Q45 8 45 11 L44 34 Q44 37 41 37 L12 37 Q9 37 9 34 Z"/>
+      <path d="M50 12 l3 0 M50 18 l3 0 M50 24 l3 0"/>
+      <path d="M18 46 L14 53 L50 53 L46 46"/>
+      <path class="crt-btn-cursor" d="M14 30 l6 0"/>
+    </svg>
+  </button>
 </main>
 <div id="scroll-space" class="scroll-space" aria-hidden="true"></div>
 
@@ -205,9 +215,20 @@
   </div>
 </section>
 
-<section class="panel" data-panel="terminal" role="dialog" aria-modal="true" aria-labelledby="p-term" hidden>
-  <h2 id="p-term" tabindex="-1">terminal</h2>
-  <p>The CRT terminal lands here in stage 4.</p>
+<section class="panel panel-terminal" data-panel="terminal" role="dialog" aria-modal="true" aria-labelledby="p-term" hidden>
+  <h2 id="p-term" class="sr-only" tabindex="-1">Terminal</h2>
+  <div class="crt">
+    <div class="crt-grain" aria-hidden="true"></div>
+    <div class="crt-sweep" aria-hidden="true"></div>
+    <div class="crt-screen">
+      <div class="crt-out" role="log" aria-live="polite"></div>
+      <form class="crt-line" autocomplete="off">
+        <label class="crt-prompt" for="crt-in">visitor@whatthenash:~$</label>
+        <input id="crt-in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go">
+      </form>
+    </div>
+    <p class="crt-count" aria-live="polite"></p>
+  </div>
 </section>
 
 <script src="/js/loader.js"></script>

@@ -8,6 +8,7 @@ import './face.js';
 import './panels/work.js';
 import './panels/about.js';
 import './panels/contact.js';
+import './terminal/terminal.js';
 import { initBuddy } from './character/buddy.js';
 
 hydrateHw();
