@@ -7,7 +7,7 @@ Branch `redesign/desk`, parked on purpose. **Not live.** `main` (and whatthenash
 git checkout redesign/desk
 python3 tools/dev-serve.py 8000      # http://localhost:8000
 node tools/dev-worker.mjs            # optional: local contact-form backend on :8787
-node --test tests/*.test.js          # 65 tests
+node --test tests/*.test.js          # 64 tests
 ```
 Go back to the live version anytime with `git checkout main`.
 
